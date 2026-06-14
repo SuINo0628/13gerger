@@ -36,13 +36,13 @@
         }
 
         body[data-theme="vermilion"] {
-            --bg: #F8E8D8; --bg-deep: #E8C8A8; --ink: #2A1810; --ink-soft: #5A3020;
-            --muted: #8B5A3C; --muted-2: #B8896A; --gold: #C87941; --gold-glow: #D89545;
-            --red: #B83A2A; --red-deep: #7A1A0A; --jade: #6B8E5A;
-            --paper: #FDF3E7; --paper-2: #F5E0C8;
-            --border: rgba(122, 26, 10, 0.18); --border-strong: rgba(122, 26, 10, 0.35);
-            --shadow: 0 4px 24px rgba(122, 26, 10, 0.08); --shadow-lg: 0 12px 48px rgba(122, 26, 10, 0.15);
-            --accent-soft: rgba(184, 58, 42, 0.08); --accent-bg: rgba(200, 121, 65, 0.12);
+            --bg: #E8ECF4; --bg-deep: #D0D8E8; --ink: #2A2840; --ink-soft: #4A4860;
+            --muted: #6A6A8A; --muted-2: #8A8AAD; --gold: #9ADEC3; --gold-glow: #C8E8D8;
+            --red: #D86E88; --red-deep: #8A4A68; --jade: #8A9ADE;
+            --paper: #F2F4F8; --paper-2: #E8ECF4;
+            --border: rgba(74, 74, 96, 0.18); --border-strong: rgba(74, 74, 96, 0.32);
+            --shadow: 0 4px 24px rgba(106, 106, 138, 0.10); --shadow-lg: 0 12px 48px rgba(106, 106, 138, 0.15);
+            --accent-soft: rgba(154, 222, 195, 0.12); --accent-bg: rgba(138, 154, 222, 0.12);
         }
 
         body[data-theme="gold"] {
@@ -145,59 +145,54 @@
 
         .cover-title {
             font-family: var(--font-brush);
-            font-size: clamp(56px, 11vw, 110px);
+            font-size: clamp(42px, 8vw, 80px);
             font-weight: 400;
             color: var(--ink);
             line-height: 1;
-            letter-spacing: 4px;
-            text-shadow: 2px 2px 0 var(--gold-glow), 4px 4px 20px rgba(0,0,0,0.08);
-            margin-bottom: 10px;
+            letter-spacing: 3px;
+            text-shadow: 1px 1px 0 var(--gold-glow);
+            margin-bottom: 8px;
             animation: inkDrop .8s ease-out;
         }
 
         @keyframes inkDrop {
-            0% { opacity: 0; transform: translateY(-20px) scale(.95); filter: blur(8px); }
-            60% { opacity: .6; filter: blur(2px); }
-            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+            0% { opacity: 0; transform: translateY(-10px); filter: blur(4px); }
+            100% { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
 
         .cover-subtitle {
             font-family: var(--font-gentle);
             color: var(--muted);
-            font-size: 15px;
+            font-size: 12px;
             letter-spacing: 3px;
-            margin-bottom: 36px;
+            margin-bottom: 20px;
         }
 
         .cover-divider {
-            width: 120px; height: 1px; margin: 0 auto 28px;
+            width: 120px; height: 1px; margin: 0 auto 16px;
             background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
         }
 
         .cover-desc {
-            color: var(--ink-soft); font-size: 14px; margin-bottom: 36px;
-            line-height: 2; letter-spacing: 1px;
+            color: var(--ink-soft); font-size: 12px; margin-bottom: 20px;
+            line-height: 1.8; letter-spacing: 1px;
         }
 
         .theme-selector {
-            display: flex; gap: 10px; justify-content: center; margin-bottom: 32px; flex-wrap: wrap;
+            display: flex; gap: 8px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap;
         }
 
         .theme-dot {
-            width: 36px; height: 36px; border-radius: 50%;
+            width: 28px; height: 28px; border-radius: 50%;
             cursor: pointer; border: 2px solid transparent;
-            transition: all .25s cubic-bezier(.2,.8,.2,1);
+            transition: border-color .15s;
             position: relative;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         }
 
-        .theme-dot::after {
-            content: ""; position: absolute; inset: 4px; border-radius: 50%;
-            background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.35));
-        }
+        .theme-dot::after { content: none; }
 
-        .theme-dot:hover { transform: scale(1.1) translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.18); }
-        .theme-dot.active { border-color: var(--gold-glow); transform: scale(1.15); box-shadow: 0 0 0 3px var(--accent-soft), 0 6px 20px rgba(0,0,0,0.2); }
+        .theme-dot:hover { border-color: var(--muted); }
+        .theme-dot.active { border-color: var(--gold-glow); }
 
         .cover-options {
             margin-bottom: 28px;
@@ -227,21 +222,16 @@
 
         .start-btn {
             font-family: var(--font-brush);
-            padding: 14px 48px;
+            padding: 10px 36px;
             background: var(--ink); color: var(--paper);
             border: none;
-            font-size: 18px; letter-spacing: 6px;
-            cursor: pointer; position: relative;
-            box-shadow: var(--shadow-lg);
-            transition: all .3s cubic-bezier(.2,.8,.2,1);
+            font-size: 16px; letter-spacing: 4px;
+            cursor: pointer;
+            transition: background .2s;
         }
 
-        .start-btn:hover {
-            background: var(--red); transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(200, 75, 49, 0.25);
-        }
-
-        .start-btn:active { transform: translateY(0); }
+        .start-btn:hover { background: var(--red); }
+        .start-btn:disabled { opacity: .5; cursor: not-allowed; }
 
         .cover-footer {
             margin-top: 24px; font-size: 11px; color: var(--muted-2); letter-spacing: 2px;
@@ -683,21 +673,22 @@
            主题选择
            ========================================================= */
         .theme-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 12px; margin-top: 8px;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 8px; margin-top: 8px;
         }
         .theme-choice {
-            padding: 16px 12px; cursor: pointer;
+            padding: 10px 8px; cursor: pointer;
             border: 1px solid var(--border); text-align: center;
-            transition: all .2s; font-family: var(--font-gentle);
-            font-size: 13px; letter-spacing: 2px; color: var(--ink);
+            transition: border-color .15s; font-family: var(--font-gentle);
+            font-size: 12px; letter-spacing: 1px; color: var(--ink);
+            background: var(--paper);
         }
         .theme-swatch {
-            display: block; width: 100%; height: 40px;
-            margin-bottom: 10px; border: 1px solid var(--border);
+            display: block; width: 100%; height: 24px;
+            margin-bottom: 6px; border: 1px solid var(--border);
         }
-        .theme-choice:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
-        .theme-choice.active { border-color: var(--red); box-shadow: 0 0 0 2px var(--accent-soft); }
+        .theme-choice:hover { border-color: var(--muted); }
+        .theme-choice.active { border-color: var(--red); }
 
         /* =========================================================
            地图
@@ -774,35 +765,38 @@
         @media (max-width: 860px) {
             .main { grid-template-columns: 1fr; }
             #sidePanel {
-                position: fixed; top: 62px; right: 0; bottom: 64px;
+                position: fixed; top: 52px; right: 0; bottom: 58px;
                 width: min(300px, calc(100vw - 24px));
                 z-index: 25; transform: translateX(100%);
-                transition: transform .25s cubic-bezier(.2,.8,.2,1);
-                box-shadow: -8px 0 32px rgba(0,0,0,0.12);
+                transition: transform .25s;
+                box-shadow: -4px 0 16px rgba(0,0,0,0.1);
                 overflow-y: auto;
             }
             #sidePanel.active { transform: translateX(0); }
-            .topbar { grid-template-columns: minmax(90px, 1fr) auto 42px; padding: 8px 10px; gap: 8px; }
-            .brand-title { font-size: 16px; letter-spacing: 2px; }
+            .topbar { grid-template-columns: minmax(100px, 1fr) auto 38px; padding: 6px 10px; gap: 6px; }
+            .brand-title { font-size: 17px; letter-spacing: 2px; }
             .brand-sub { display: none; }
             .top-stats { gap: 4px; }
-            .pill { padding: 5px 8px; font-size: 11px; }
+            .pill { padding: 4px 6px; font-size: 11px; }
             .pill strong { font-size: 12px; }
-            #input { height: 48px; font-size: 14px; }
-            .quick-btn { height: 48px; padding: 0 12px; font-size: 13px; }
-            #send { width: 48px; height: 48px; font-size: 18px; }
-            .inputbar { padding: 10px 10px calc(10px + env(safe-area-inset-bottom)); gap: 6px; }
-            #story { padding: 16px 10px 20px; }
-            .block, .streaming-block { padding: 14px 16px; font-size: 14px; }
-            .modal-card { padding: 20px 18px; max-height: 90vh; }
-            .modal h2 { font-size: 20px; letter-spacing: 4px; }
-            #app { grid-template-rows: 54px 1fr 62px; }
+            #input { height: 40px; font-size: 13px; }
+            .quick-btn { height: 40px; padding: 0 10px; font-size: 12px; }
+            #send { width: 40px; height: 40px; font-size: 16px; }
+            .inputbar { padding: 6px 8px calc(6px + env(safe-area-inset-bottom)); gap: 4px; }
+            #story { padding: 12px 10px 16px; }
+            .block, .streaming-block { padding: 12px 14px; font-size: 14px; }
+            .modal-card { padding: 18px 16px; max-height: 90vh; }
+            .modal h2 { font-size: 18px; letter-spacing: 3px; }
+            #app { grid-template-rows: 48px 1fr 56px; }
         }
 
         @media (max-width: 480px) {
             .quick-btn.hide-sm { display: none; }
-            .cover-title { font-size: clamp(48px, 14vw, 80px); }
+            .cover-title { font-size: clamp(36px, 10vw, 60px); letter-spacing: 2px; }
+            .cover-subtitle { font-size: 11px; letter-spacing: 2px; }
+            .cover-desc { font-size: 11px; line-height: 1.7; }
             .top-stats .pill.maybe-hide { display: none; }
+            .brand-title { font-size: 16px; letter-spacing: 2px; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -824,35 +818,29 @@
     <!-- ============ 封面 ============ -->
     <div id="cover">
         <div class="cover-inner">
-            <div class="cover-seal">御 制</div>
-            <h1 class="cover-title">十三太饱</h1>
-            <div class="cover-subtitle">—— 宫 中 无 正 事 · 兄 弟 争 帝 位 ——</div>
-            <div class="cover-divider"></div>
-            <p class="cover-desc">
-                大唐盛世，长安城内。<br>
-                十三位皇子，人人想当皇帝。<br>
-                宫中没有正经事，只有桂花糕的香气，<br>
-                和太监总管方时赫阴阳怪气的日常。<br>
-                <br>
-                你，将以十三位皇子其中一位的身份，<br>
-                在这荒唐的皇宫里，寻找你的归途。
-            </p>
-
-            <div class="theme-selector" id="themeSelector">
-                <div class="theme-dot active" data-theme="ink" style="background: linear-gradient(135deg, #F5E6D3, #B8935A, #C84B31);" title="水墨"></div>
-                <div class="theme-dot" data-theme="vermilion" style="background: linear-gradient(135deg, #F8E8D8, #C87941, #B83A2A);" title="朱砂"></div>
-                <div class="theme-dot" data-theme="gold" style="background: linear-gradient(135deg, #FAF3DC, #D4A857, #C8A041);" title="金殿"></div>
-                <div class="theme-dot" data-theme="jade" style="background: linear-gradient(135deg, #E8F0E4, #8BBA8B, #5C8A6B);" title="翠竹"></div>
-                <div class="theme-dot" data-theme="paper" style="background: linear-gradient(135deg, #FDF8F0, #B8956B, #8B7355);" title="宣纸"></div>
-                <div class="theme-dot" data-theme="midnight" style="background: linear-gradient(135deg, #2A2525, #D4A857, #D85A3A);" title="宫夜"></div>
-            </div>
-
-            <div class="cover-options">
+            <div class="cover-options" style="margin-top: 4px;">
                 <div class="option-row">
                     <span>选择化身</span>
                 </div>
                 <div class="member-select-grid" id="memberSelectGrid" style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 16px;">
                 </div>
+            </div>
+
+            <div class="cover-seal">御 制</div>
+            <h1 class="cover-title">十三太饱</h1>
+            <div class="cover-subtitle">—— 宫 中 无 正 事 · 兄 弟 争 帝 位 ——</div>
+            <div class="cover-divider"></div>
+            <p class="cover-desc">
+                大唐盛世，长安城内<br>
+                十三位皇子，人人想当皇帝<br>
+                宫中没有正经事，只有桂花糕的香气<br>
+                和太监总管方时赫阴阳怪气的日常<br>
+                <br>
+                你，将以十三位皇子其中一位的身份<br>
+                在这荒唐的皇宫里，寻找你的归途
+            </p>
+
+            <div class="cover-options">
                 <div class="option-row">
                     <span>恋爱剧情</span>
                     <label class="switch">
@@ -871,7 +859,7 @@
                 </div>
             </div>
 
-            <button class="start-btn" id="startBtn" disabled>请先选择化身</button>
+            <button class="start-btn" id="startBtn" disabled>皇子出击</button>
 
             <div class="cover-footer">更新时间 · 2026年6月 · 长安城</div>
         </div>
@@ -999,7 +987,7 @@
             <div class="modal-sub">每一种颜色，都是一座不同的长安城</div>
             <div class="theme-grid" id="themeGrid">
                 <div class="theme-choice" data-theme="ink"><span class="theme-swatch" style="background: linear-gradient(135deg, #F5E6D3 0%, #B8935A 50%, #C84B31 100%);"></span>水墨</div>
-                <div class="theme-choice" data-theme="vermilion"><span class="theme-swatch" style="background: linear-gradient(135deg, #F8E8D8 0%, #C87941 50%, #B83A2A 100%);"></span>朱砂</div>
+                <div class="theme-choice" data-theme="vermilion"><span class="theme-swatch" style="background: linear-gradient(135deg, #E8ECF4 0%, #D86E88 50%, #8A9ADE 100%);"></span>紫藤</div>
                 <div class="theme-choice" data-theme="gold"><span class="theme-swatch" style="background: linear-gradient(135deg, #FAF3DC 0%, #D4A857 50%, #C8A041 100%);"></span>金殿</div>
                 <div class="theme-choice" data-theme="jade"><span class="theme-swatch" style="background: linear-gradient(135deg, #E8F0E4 0%, #8BBA8B 50%, #5C8A6B 100%);"></span>翠竹</div>
                 <div class="theme-choice" data-theme="paper"><span class="theme-swatch" style="background: linear-gradient(135deg, #FDF8F0 0%, #B8956B 50%, #8B7355 100%);"></span>宣纸</div>
