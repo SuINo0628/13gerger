@@ -840,50 +840,52 @@
     <!-- ============ 封面 ============ -->
     <div id="cover">
         <div class="cover-inner">
-            <div class="cover-options" style="margin-top: 4px;">
-                <div class="option-row">
-                    <span>选择化身</span>
-                </div>
+            <!-- ============ 第一页：标题 ============ -->
+            <div class="cover-page cover-page-1 active">
+                <h1 class="cover-title">十三太饱</h1>
+                <div class="cover-subtitle">—— 宫 中 无 正 事 · 兄 弟 争 帝 位 ——</div>
+                <div class="cover-divider"></div>
+                <p class="cover-desc">
+                    大唐盛世，长安城内<br>
+                    十三位皇子，人人想当皇帝<br>
+                    宫中没有正经事，只有桂花糕的香气<br>
+                    和太监总管方时赫阴阳怪气的日常
+                </p>
+                <button class="start-btn" id="coverNextBtn">入 宫</button>
+                <div class="cover-footer">更新时间 · 2026年6月 · 长安城</div>
+            </div>
+
+            <!-- ============ 第二页：选择化身 ============ -->
+            <div class="cover-page cover-page-2">
+                <div class="cover-step-title">选择你的化身</div>
+                <div class="cover-subtitle muted">—— 此选择将决定你的身份与兄弟关系 ——</div>
+                <div class="cover-divider"></div>
                 <div class="member-select-grid" id="memberSelectGrid" style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 16px;">
                 </div>
-            </div>
 
-            <div class="cover-seal">御 制</div>
-            <h1 class="cover-title">十三太饱</h1>
-            <div class="cover-subtitle">—— 宫 中 无 正 事 · 兄 弟 争 帝 位 ——</div>
-            <div class="cover-divider"></div>
-            <p class="cover-desc">
-                大唐盛世，长安城内<br>
-                十三位皇子，人人想当皇帝<br>
-                宫中没有正经事，只有桂花糕的香气<br>
-                和太监总管方时赫阴阳怪气的日常<br>
-                <br>
-                你，将以十三位皇子其中一位的身份<br>
-                在这荒唐的皇宫里，寻找你的归途
-            </p>
-
-            <div class="cover-options">
-                <div class="option-row">
-                    <span>恋爱剧情</span>
-                    <label class="switch">
-                        <input type="checkbox" id="romanceToggle">
-                        <span class="slider"></span>
-                    </label>
-                    <span style="color: var(--muted); font-size: 12px;">（开启后皇子可攻略）</span>
+                <div class="cover-options">
+                    <div class="option-row">
+                        <span>恋爱剧情</span>
+                        <label class="switch">
+                            <input type="checkbox" id="romanceToggle">
+                            <span class="slider"></span>
+                        </label>
+                        <span style="color: var(--muted); font-size: 12px;">（开启后皇子可攻略）</span>
+                    </div>
+                    <div class="option-row">
+                        <span>打字动画</span>
+                        <label class="switch">
+                            <input type="checkbox" id="typingToggle" checked>
+                            <span class="slider"></span>
+                        </label>
+                        <span style="color: var(--muted); font-size: 12px;">（关闭则立即显示）</span>
+                    </div>
                 </div>
-                <div class="option-row">
-                    <span>打字动画</span>
-                    <label class="switch">
-                        <input type="checkbox" id="typingToggle" checked>
-                        <span class="slider"></span>
-                    </label>
-                    <span style="color: var(--muted); font-size: 12px;">（关闭则立即显示）</span>
-                </div>
+
+                <button class="start-btn" id="startBtn" disabled>皇子出击</button>
+                <button class="link-btn" id="guideBtn">使用手册 · 操作指南</button>
+                <div class="cover-footer">点击下方皇子头像即可选定，再次点击可切换</div>
             </div>
-
-            <button class="start-btn" id="startBtn" disabled>皇子出击</button>
-
-            <div class="cover-footer">更新时间 · 2026年6月 · 长安城</div>
         </div>
     </div>
 
