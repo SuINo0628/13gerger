@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>十三太饱</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=ZCOOL+XiaoWei&family=Ma+Shan+Zheng&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=ZCOOL+XiaoWei&family=Ma+Shan+Zheng&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&family=LXGW+WenKai+TC&family=ZCOOL+KuaiLe&family=Long+Cang&display=swap" rel="stylesheet">
     <style>
         /* =========================================================
            主题变量
@@ -31,8 +31,10 @@
             --accent-soft: rgba(200, 75, 49, 0.08);
             --accent-bg: rgba(184, 147, 90, 0.12);
             --font-serif: "Noto Serif SC", "Songti SC", "SimSun", serif;
-            --font-brush: "Ma Shan Zheng", "KaiTi", serif;
-            --font-gentle: "ZCOOL XiaoWei", "KaiTi", serif;
+            --font-brush: "Ma Shan Zheng", "KaiTi", "STKaiti", serif;
+            --font-gentle: "ZCOOL XiaoWei", "LXGW WenKai TC", "KaiTi", serif;
+            --font-casual: "ZCOOL KuaiLe", "LXGW WenKai TC", "Noto Sans SC", sans-serif;
+            --font-mono: "Consolas", "Courier New", monospace;
         }
 
         body[data-theme="vermilion"] {
@@ -358,12 +360,12 @@
             background: var(--paper); border: 1px solid var(--border);
             padding: 18px 22px;
             box-shadow: var(--shadow);
-            animation: blockIn .5s cubic-bezier(.2,.8,.2,1) both;
+            animation: blockIn .5s ease both;
             position: relative;
         }
 
         @keyframes blockIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(6px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -389,6 +391,23 @@
         .block.narration { font-size: 15px; color: var(--ink); line-height: 2; }
         .block.narration p { margin-bottom: 10px; }
         .block.narration p:last-child { margin-bottom: 0; }
+
+        .dialogue-line {
+            display: block; margin: 4px 0;
+        }
+        .dialogue-line .speaker {
+            font-family: var(--font-brush);
+            color: var(--red);
+            font-size: 15px;
+            letter-spacing: 1px;
+            margin-right: 2px;
+        }
+        .dialogue-line .content {
+            color: var(--ink-soft);
+            font-style: italic;
+            font-size: 15px;
+            line-height: 1.9;
+        }
 
         .block.dialogue { background: var(--paper-2); }
         .block.dialogue .speaker {
@@ -784,10 +803,13 @@
             #send { width: 40px; height: 40px; font-size: 16px; }
             .inputbar { padding: 6px 8px calc(6px + env(safe-area-inset-bottom)); gap: 4px; }
             #story { padding: 12px 10px 16px; }
-            .block, .streaming-block { padding: 12px 14px; font-size: 14px; }
+            .block { padding: 12px 14px; font-size: 14px; margin-bottom: 12px; }
+            .block::before { width: 2px; }
             .modal-card { padding: 18px 16px; max-height: 90vh; }
             .modal h2 { font-size: 18px; letter-spacing: 3px; }
             #app { grid-template-rows: 48px 1fr 56px; }
+            .option-btn { padding: 10px 14px 10px 24px; font-size: 13px; min-height: 40px; }
+            .dialogue-line .speaker { font-size: 14px; }
         }
 
         @media (max-width: 480px) {
@@ -1117,19 +1139,19 @@
         const CONFIG = {
             name: "十三太饱",
             members: [
-                { rank: "太子", name: "崔胜澈", title: "长子 · 稳重可靠", favorStart: 55, palace: "东宫" },
-                { rank: "二王子", name: "尹净汉", title: "净王 · 聪慧狡黠", favorStart: 60, palace: "净王府" },
-                { rank: "三王子", name: "洪知秀", title: "知王 · 温文尔雅", favorStart: 58, palace: "知王府" },
-                { rank: "四王子", name: "文俊辉", title: "辉王 · 天马行空", favorStart: 45, palace: "辉王府" },
-                { rank: "五王子", name: "权顺荣", title: "荣王 · 精力旺盛", favorStart: 52, palace: "荣王府" },
-                { rank: "六王子", name: "全圆佑", title: "圆王 · 外冷内热", favorStart: 48, palace: "圆王府" },
-                { rank: "七王子", name: "李知勋", title: "勋王 · 才华横溢", favorStart: 62, palace: "勋王府" },
-                { rank: "八王子", name: "徐明浩", title: "明王 · 飘逸出尘", favorStart: 50, palace: "明王府" },
-                { rank: "九王子", name: "金珉奎", title: "珉王 · 阳光万能", favorStart: 65, palace: "珉王府" },
-                { rank: "十王子", name: "李硕珉", title: "硕王 · 温柔治愈", favorStart: 58, palace: "硕王府" },
-                { rank: "十一王子", name: "夫胜宽", title: "胜王 · 能言善辩", favorStart: 50, palace: "胜王府" },
-                { rank: "十二王子", name: "崔韩率", title: "韩王 · 四次元", favorStart: 45, palace: "韩王府" },
-                { rank: "十三王子", name: "李灿", title: "灿王 · 努力上进", favorStart: 55, palace: "灿王府" }
+                { rank: "太子", name: "崔胜澈", title: "长子 · 稳重可靠", palace: "东宫" },
+                { rank: "二王子", name: "尹净汉", title: "净王 · 聪慧狡黠", palace: "净王府" },
+                { rank: "三王子", name: "洪知秀", title: "知王 · 温文尔雅", palace: "知王府" },
+                { rank: "四王子", name: "文俊辉", title: "辉王 · 天马行空", palace: "辉王府" },
+                { rank: "五王子", name: "权顺荣", title: "荣王 · 精力旺盛", palace: "荣王府" },
+                { rank: "六王子", name: "全圆佑", title: "圆王 · 外冷内热", palace: "圆王府" },
+                { rank: "七王子", name: "李知勋", title: "勋王 · 才华横溢", palace: "勋王府" },
+                { rank: "八王子", name: "徐明浩", title: "明王 · 飘逸出尘", palace: "明王府" },
+                { rank: "九王子", name: "金珉奎", title: "珉王 · 阳光万能", palace: "珉王府" },
+                { rank: "十王子", name: "李硕珉", title: "硕王 · 温柔治愈", palace: "硕王府" },
+                { rank: "十一王子", name: "夫胜宽", title: "胜王 · 能言善辩", palace: "胜王府" },
+                { rank: "十二王子", name: "崔韩率", title: "韩王 · 四次元", palace: "韩王府" },
+                { rank: "十三王子", name: "李灿", title: "灿王 · 努力上进", palace: "灿王府" }
             ],
             npcs: [
                 { name: "方时赫", title: "太监总管", desc: "宫里最阴阳怪气的人，却掌管着一切杂务" },
@@ -1138,21 +1160,21 @@
                 { name: "崔尚宫", title: "尚宫", desc: "掌管宫女与礼节的女官，不苟言笑" }
             ],
             locations: [
-                { icon: "御", name: "御书房", desc: "皇帝与太子处理政事之处，肃静庄重" },
-                { icon: "书", name: "尚书房", desc: "皇子们每日读书习字，柳先生在此教书" },
-                { icon: "膳", name: "御膳房", desc: "胖婶的地盘，永远飘着桂花糕的香气" },
-                { icon: "寝", name: "东宫", desc: "太子居所，宽敞肃穆" },
-                { icon: "庭", name: "御花园", desc: "假山流水，偶遇皇子最频繁的地方" },
-                { icon: "莲", name: "太液池", desc: "夏夜清凉，荷花与星光相伴" },
-                { icon: "泉", name: "华清池", desc: "温泉汤池，是放松的好去处" },
-                { icon: "庙", name: "太庙", desc: "祭祀先祖之地，只有在特殊事件时开放" },
-                { icon: "门", name: "朱雀门", desc: "进出皇宫的正门，有时会有市井消息" },
-                { icon: "塔", name: "大雁塔", desc: "宫外著名的大雁塔，可远眺长安" }
+                { icon: "御", name: "御书房", desc: "皇帝与太子处理政事之处，肃静庄重，香炉里飘出袅袅檀香" },
+                { icon: "书", name: "尚书房", desc: "皇子们每日读书习字，柳先生在此教书，书架上堆满经史子集" },
+                { icon: "膳", name: "御膳房", desc: "胖婶的地盘，永远飘着桂花糕的香气，锅碗瓢盆声不停" },
+                { icon: "寝", name: "东宫", desc: "太子居所，宽敞肃穆，门前两株老松苍劲挺拔" },
+                { icon: "庭", name: "御花园", desc: "假山流水，百花争艳，偶遇皇子最频繁的地方" },
+                { icon: "莲", name: "太液池", desc: "夏夜清凉，荷花与星光相伴，水面上偶尔有鲤鱼跃出" },
+                { icon: "泉", name: "华清池", desc: "温泉汤池，水汽氤氲，是放松的好去处" },
+                { icon: "庙", name: "太庙", desc: "祭祀先祖之地，只有在特殊事件时开放，庄严肃穆" },
+                { icon: "门", name: "朱雀门", desc: "进出皇宫的正门，有时会有市井消息飘进来" },
+                { icon: "塔", name: "大雁塔", desc: "宫外著名的大雁塔，可远眺长安全城景色" }
             ],
             faq: [
-                { q: "这个游戏怎么玩？", a: "你扮演第十四位皇子，在皇宫中自由行动。通过输入文字（或点击选项）与场景、人物互动。每一日你有有限的体力，体力耗尽后便需要歇息进入下一日。" },
+                { q: "这个游戏怎么玩？", a: "你扮演一位皇子，在皇宫中自由行动。通过输入文字（或点击选项）与场景、人物互动。每一日你有有限的体力，体力耗尽后便需要歇息进入下一日。" },
                 { q: "圣眷值有什么用？", a: "圣眷代表皇上对你的印象。它会在与重要人物互动、参与事件后变化，影响后续剧情走向。" },
-                { q: "皇子好感度是？", a: "十三位皇子各有独立的好感度。开启『恋爱剧情』后，他们可以被攻略——你会通过交谈、赠予、一起行动等方式改变他们对你的态度。" },
+                { q: "皇子好感度是？", a: "十二位皇子各有独立的好感度。开启『恋爱剧情』后，他们可以被攻略——你会通过交谈、赠予、一起行动等方式改变他们对你的态度。" },
                 { q: "我可以做什么？", a: "几乎任何事——去御膳房蹭饭、去尚书房听课、去御花园散步、去找某位皇子闲聊、甚至偷懒睡一天。只要在输入框里描述你的意图，AI 会为你编写出对应的剧情。" },
                 { q: "需要接入 Key 才能玩吗？", a: "是的。点击右上角菜单 → 『接入 Key』，将你自己的 DeepSeek（或 Groq/Gemini）Key 填入后保存。Key 只保存在你的浏览器本地。" },
                 { q: "如何跳过动画？", a: "点击输入栏的『跳过』按钮，或在封面关闭『打字动画』。正在播放时按也可以跳过。" }
@@ -1181,12 +1203,11 @@
             customPrompt: localStorage.getItem('ssb_customPrompt') || ''
         };
 
-        // 初始化各皇子好感度（排除化身）
+        // 初始化各皇子好感度（排除化身，随机生成）
         CONFIG.members.forEach(m => {
-            // 化身皇子不初始化好感度
             if (state.avatar && m.name === state.avatar) return;
             const saved = localStorage.getItem('ssb_favor_' + m.name);
-            state.members[m.name] = saved ? parseInt(saved) : m.favorStart;
+            state.members[m.name] = saved ? parseInt(saved) : (35 + Math.floor(Math.random() * 45));
         });
 
         const DAY_CHARS = ['一','二','三','四','五','六','七','八','九','十','十一','十二','十三','十四','十五','十六','十七','十八','十九','二十'];
@@ -1462,7 +1483,7 @@
                 text: msg.length > 80 ? msg.slice(0, 80) + '…' : msg,
                 time: new Date().toLocaleTimeString('zh-CN', { hour12: false })
             });
-            scrollStory(Math.max(0, startPos - 30));
+            scrollStory(startPos);
             isUserScrollingUp = false;
         }
 
@@ -1479,7 +1500,7 @@
                 text: html.replace(/<[^>]*>/g,'').replace(/\s+/g,' ').slice(0, 80),
                 time: new Date().toLocaleTimeString('zh-CN', { hour12: false })
             });
-            scrollStory(Math.max(0, startPos - 30));
+            scrollStory(startPos);
             isUserScrollingUp = false;
         }
 
@@ -1496,7 +1517,7 @@
                 text: text.length > 80 ? text.slice(0, 80) + '…' : text,
                 time: new Date().toLocaleTimeString('zh-CN', { hour12: false })
             });
-            scrollStory(Math.max(0, startPos - 30));
+            scrollStory(startPos);
             isUserScrollingUp = false;
         }
 
@@ -1506,24 +1527,28 @@
             const div = document.createElement('div');
             div.className = 'block narration';
             div.id = 'msg-' + Date.now() + '-' + (++_msgIdSeq);
-            // 将对话（“某人：…”）以斜体显示
-            const formatted = text
-                .replace(/\n/g, '<br>')
-                .replace(/([^<\s][^：<>]{0,12}[^<])[：:]/g, '<span style="color:var(--red);font-family:var(--font-brush);">$1：</span><em style="color:var(--ink-soft);">')
-                .replace(/。<br>|！<br>|？<br>|…<br>/g, match => {
-                    // 每段对话在句号/感叹号后闭合em
-                    const idx = match.indexOf('<br>');
-                    return match.slice(0, idx) ? (match.slice(0, idx) + '</em>' + '<br>') : match;
-                });
-            // 如果还有未关闭的em
-            div.innerHTML = formatted + (formatted.indexOf('<em>') !== -1 && formatted.lastIndexOf('</em>') < formatted.indexOf('<em>') ? '</em>' : '');
+            // 对话行（"人物：内容"）格式化，对话内容斜体，说话者变色
+            let html = '';
+            const dialogueRegex = /^([\u4e00-\u9fa5A-Za-z]{1,10})[：:]/;
+            lines.forEach(line => {
+                if (!line.trim()) { html += '<br>'; return; }
+                const m = line.match(dialogueRegex);
+                if (m) {
+                    const speaker = m[1];
+                    const actualContent = line.replace(dialogueRegex, '');
+                    html += `<div class="dialogue-line"><span class="speaker">${speaker}：</span><span class="content">${escapeHTML(actualContent)}</span></div>`;
+                } else {
+                    html += `<div style="margin:4px 0;line-height:2;color:var(--ink);">${escapeHTML(line)}</div>`;
+                }
+            });
+            div.innerHTML = html;
             story.appendChild(div);
             storyHistory.push({
                 id: div.id, type: 'assistant',
                 text: text.replace(/\s+/g, ' ').slice(0, 80) + (text.length > 80 ? '…' : ''),
                 time: new Date().toLocaleTimeString('zh-CN', { hour12: false })
             });
-            scrollStory(Math.max(0, startPos - 30));
+            scrollStory(startPos);
             isUserScrollingUp = false;
             // 消耗体力
             changeEnergy(-3);
@@ -1559,7 +1584,20 @@
             const startPos = story.scrollHeight;
             const wrap = document.createElement('div');
             wrap.className = 'options-list';
-            options.forEach(opt => {
+            // 去重并过滤无效选项（如包含"体力"、"当前"、"好感"的系统文字）
+            const invalidKeywords = /体力|当前|好感度|圣眷|第.*日|更新|提示/;
+            const seen = new Set();
+            const cleanOptions = options.filter(opt => {
+                if (!opt || opt.trim().length < 2) return false;
+                if (invalidKeywords.test(opt)) return false;
+                if (seen.has(opt.trim())) return false;
+                seen.add(opt.trim());
+                return true;
+            }).slice(0, 4); // 最多4个选项
+            if (cleanOptions.length === 0) {
+                cleanOptions.push('去御花园逛逛', '去找某位皇子闲聊', '回寝宫歇息');
+            }
+            cleanOptions.forEach(opt => {
                 const b = document.createElement('button');
                 b.className = 'option-btn';
                 b.textContent = opt;
@@ -1578,7 +1616,7 @@
             hint.innerHTML = '◆ 君可自择言行，天道自有定数。';
             story.appendChild(hint);
             
-            scrollStory(Math.max(0, startPos - 30));
+            scrollStory(startPos);
             isUserScrollingUp = false;
         }
 
@@ -1633,7 +1671,7 @@
             div.innerHTML = '<span class="streaming-text"></span><span class="typing-cursor">|</span>';
             story.appendChild(div);
             streamingEl = div.querySelector('.streaming-text');
-            scrollStory(Math.max(0, startPos - 30));
+            scrollStory(startPos);
             isUserScrollingUp = false;
             return div;
         }
@@ -1741,7 +1779,9 @@
             // 排除化身后构建成员列表
             const availableMembers = CONFIG.members.filter(m => !state.avatar || m.name !== state.avatar);
             const memberList = availableMembers.map(m => `${m.rank}${m.name}（${m.title}，当前好感度${state.members[m.name] || 0}）`).join('；');
-            const avatarInfo = state.avatar ? `，汝化身为${state.avatar}` : '';
+            const avatarMember = CONFIG.members.find(m => m.name === state.avatar);
+            const playerTitle = avatarMember ? `${avatarMember.rank}${avatarMember.name}` : '玩家';
+            const avatarInfo = state.avatar ? `（即${playerTitle}）` : '';
             return `你扮演一位古风宫廷文字游戏的剧情主持（说书人），游戏名为《十三太饱》。
 
 当前世界信息：
@@ -1750,25 +1790,35 @@
 - 玩家体力：${state.energy}/100
 - 圣眷（皇帝对玩家的印象）：${state.favor}/100
 - 恋爱剧情开关：${state.romance ? '开启（皇子可以被攻略，允许情感互动与暧昧描写）' : '关闭（仅限兄弟情谊，不可出现恋爱/暧昧内容）'}
+- 玩家化身：${playerTitle}${avatarInfo}
 
 主要角色：
-- 玩家：第十四皇子（由用户扮演${avatarInfo}，尚未在宫中确立势力）
 - ${memberList}
 - 方时赫：太监总管，阴阳怪气，掌管宫内事务
 - 胖婶：御膳房掌勺，性格豪爽，桂花糕是她的招牌
 - 柳先生：太傅，皇子们的老师，博学严肃
 - 崔尚宫：尚宫，掌管宫女与礼节，不苟言笑
 
-重要地图：御书房、尚书房、御膳房、东宫、御花园、太液池、华清池、太庙、朱雀门、大雁塔
+重要地图与环境：
+- 御书房：皇帝与太子处理政事之处，肃静庄重，檀香袅袅
+- 尚书房：皇子们每日读书习字，柳先生在此教书
+- 御膳房：永远飘着桂花糕的香气，锅碗瓢盆声络绎不绝
+- 东宫：太子居所，宽敞肃穆，门前两株老松
+- 御花园：假山流水，百花争艳，偶遇皇子最频繁
+- 太液池：夏夜清凉，荷花与星光相伴
+- 华清池：温泉汤池，水汽氤氲
+- 太庙：祭祀先祖之地，庄严肃穆
+- 朱雀门：进出皇宫正门
+- 大雁塔：宫外著名景点，可远眺长安
 
 你的职责：
-1. 根据用户的输入，生成 150-400 字的生动剧情，包含环境描述、人物动作与对话
-2. 对话请以"人物：内容"格式写出
+1. 根据用户输入，生成 180-400 字生动剧情，包含环境描写（天气、光线、气味、声音）、人物动作与对话
+2. 人物对话请严格以"人物名：对话内容"格式书写，必须换行
 3. 风格：轻松略带荒诞，偶尔诙谐，保持古风口吻但不艰涩
-4. 每次剧情结束时，提出 2-4 个简短的行动选项供玩家选择（另起一行，以"◇"开头列出）
-5. 可以在剧情中自然地描述角色好感度变化（例如"金珉奎似乎对你颇有好感 +2"），会被系统自动解析并更新
-6. 当玩家体力较低时提醒他休息
-7. 当事件涉及皇帝时可以让"圣眷"数值变化（例如"圣上微微一笑 圣眷+3"）
+4. 每次剧情结束时，提出 2-4 个简短的行动选项供玩家选择（另起一行，必须以"◇"开头列出）。行动选项必须与当前剧情高度相关，不可出现"体力恢复中"、"当前体力"等系统提示性文字作为选项
+5. 可以在剧情中自然地描述角色好感度变化（例如"金珉奎对你莞尔一笑，好感+2"），会被系统自动解析并更新
+6. 当玩家体力较低时（<30）可以适当提醒休息
+7. 当事件涉及皇帝时可以让"圣眷"数值变化（例如"圣上微微点头 圣眷+3"）
 8. 语气：叙事采用第三人称，玩家的选择由"你"开头（即第二人称）
 9. 保持剧情连贯，参考上文（玩家最近的位置是：${state.lastLocation}）
 10. 如用户输入与当前皇宫世界完全无关，温和地将他拉回剧情
@@ -1910,13 +1960,30 @@
                 typeText(response, () => {
                     // 记录历史
                     state.chatHistory.push({ role: 'assistant', content: response });
-                    // 从文本中提取选项（以◇、◆、◇、数字开头的行）
-                    const optionLines = response.split(/\n/).filter(line => /^\s*[◇◆\d\[\(①②③④⑤]/.test(line) || /^[1-4][．.\、]/.test(line));
+                    // 从文本中提取选项（以◇、◆、数字开头的行）
+                    const lines = response.split(/\n/);
+                    const invalidKeywords = /体力|当前|好感|圣眷|第.*日|更新|提示|状态$/;
+                    const optionLines = lines.filter(line => {
+                        if (!line.trim()) return false;
+                        // 必须以特殊符号或数字. 开头
+                        if (!/^\s*[◇◆◆①②③④⑤0-9]/.test(line) && !/^[1-4][\.．\、\)]/.test(line)) return false;
+                        return true;
+                    });
                     if (optionLines.length >= 2) {
-                        const opts = optionLines.map(l => l.replace(/^\s*[◇◆\d\[\(①②③④⑤\.．\、]\s*/, '').trim()).slice(0, 4);
-                        showOptions(opts);
+                        const opts = optionLines.map(l => l.replace(/^\s*[◇◆◆①②③④⑤0-9\[\(]\s*[\.\．\、\)]?\s*/, '').trim()).filter(opt => {
+                            return opt && opt.length >= 2 && !invalidKeywords.test(opt);
+                        });
+                        // 去重
+                        const unique = [];
+                        const seenOpts = new Set();
+                        opts.forEach(o => { if (!seenOpts.has(o)) { seenOpts.add(o); unique.push(o); } });
+                        if (unique.length >= 2) {
+                            showOptions(unique);
+                        } else {
+                            const defaults = ['在附近走走', '去找某位皇子闲聊', '回自己的宫中歇息', '去御膳房蹭点吃的'];
+                            showOptions(defaults);
+                        }
                     } else {
-                        // 给一组默认选项
                         const defaults = ['在附近走走', '去找某位皇子闲聊', '回自己的宫中歇息', '去御膳房蹭点吃的'];
                         showOptions(defaults);
                     }
@@ -1983,17 +2050,20 @@
          * ========================================================= */
         function showOpening() {
             appendSystem('—— 长安城 · 大明宫 · 第 一 日 ——');
+            const avatarMember = CONFIG.members.find(m => m.name === state.avatar);
+            const playerTitle = avatarMember ? `${avatarMember.rank}${avatarMember.name}` : '殿下';
+            const palaceName = avatarMember ? avatarMember.palace : '你的寝宫';
             const opening = `晨雾还未完全散去，长安宫内的红瓦金顶已被朝阳染作一片温柔。
 
-你缓缓睁开眼，发现自己躺在一间陌生却雅致的寝宫里。檀香炉里升起袅袅青烟，窗外的廊柱间传来宫女轻缓的脚步声。
+你缓缓睁开眼，发现自己躺在${palaceName}的寝宫里。檀香炉里升起袅袅青烟，窗外的廊柱间传来宫女轻缓的脚步声。
 
-方时赫：殿下，您终于醒了。圣上召您即刻去御书房见驾——不过依老奴看，您这身装束，倒不妨先在宫中四处走动走动。
+方时赫：殿下，您终于醒了。圣上召您去御书房见驾——不过依老奴看，您这身装束，倒不妨先在宫中四处走动走动。
 
 这位尖嗓的太监总管微微欠身，嘴角挂着一抹说不清是善意还是讥讽的笑。
 
-你是大唐新册封的第十四皇子。今日，是你在宫中的第一个清晨。十三位皇兄已在这座皇宫里生活多年——他们之中，有人对你好奇，有人对你提防，也有人……或许会成为你的盟友或对手。
+你是${playerTitle}，今日是宫中寻常的一日。十二位皇兄已在这座皇宫里生活多年——他们之中，有人对你好奇，有人对你提防，也有人……或许会成为你的盟友或对手。
 
-胖婶：（从门外远远地传来）哎哟，新殿下醒了？御膳房给您留着桂花糕呢！`;
+胖婶：（从门外远远地传来）哎哟，${avatarMember ? avatarMember.rank : '殿下'}醒了？御膳房给您留着桂花糕呢！`;
             startStreamingBlock();
             typeText(opening, () => {
                 showOptions([
