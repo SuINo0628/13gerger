@@ -11,21 +11,21 @@
            ========================================================= */
         :root {
             /* 墨 · 主主题（水墨） */
-            --bg: #F5E6D3;
-            --bg-deep: #E8D5BA;
-            --ink: #1A1A1A;
-            --ink-soft: #3D3D3D;
-            --muted: #8B7355;
-            --muted-2: #A8957B;
-            --gold: #B8935A;
-            --gold-glow: #D4A857;
-            --red: #C84B31;
-            --red-deep: #8B2500;
-            --jade: #5C8A6B;
-            --paper: #FBF5E9;
-            --paper-2: #F2E9D8;
-            --border: rgba(26, 26, 26, 0.15);
-            --border-strong: rgba(26, 26, 26, 0.28);
+            --bg: #FAF0EA;
+            --bg-deep: #EAD8CC;
+            --ink: #2A1A14;
+            --ink-soft: #5A3A2A;
+            --muted: #8A6A5A;
+            --muted-2: #AA8A7A;
+            --gold: #C4A882;
+            --gold-glow: #E8D4B8;
+            --red: #E77C8E;
+            --red-deep: #C45A6A;
+            --jade: #8AAEAA;
+            --paper: #FFF8F2;
+            --paper-2: #F5EDE5;
+            --border: rgba(90, 58, 42, 0.15);
+            --border-strong: rgba(90, 58, 42, 0.28);
             --shadow: 0 4px 24px rgba(139, 37, 0, 0.08);
             --shadow-lg: 0 12px 48px rgba(139, 37, 0, 0.12);
             --accent-soft: rgba(200, 75, 49, 0.08);
@@ -38,23 +38,23 @@
         }
 
         body[data-theme="vermilion"] {
-            --bg: #E8ECF4; --bg-deep: #D0D8E8; --ink: #2A2840; --ink-soft: #4A4860;
-            --muted: #6A6A8A; --muted-2: #8A8AAD; --gold: #9ADEC3; --gold-glow: #C8E8D8;
-            --red: #D86E88; --red-deep: #8A4A68; --jade: #8A9ADE;
-            --paper: #F2F4F8; --paper-2: #E8ECF4;
-            --border: rgba(74, 74, 96, 0.18); --border-strong: rgba(74, 74, 96, 0.32);
+            --bg: #EDF4FA; --bg-deep: #D6E4F0; --ink: #2A3850; --ink-soft: #4A5870;
+            --muted: #6A7A8A; --muted-2: #8A9AAA; --gold: #A8C4D4; --gold-glow: #C8D8E8;
+            --red: #7A9ABE; --red-deep: #5A7A9A; --jade: #8ABAAA;
+            --paper: #F8FAFC; --paper-2: #EDF4FA;
+            --border: rgba(42, 56, 80, 0.15); --border-strong: rgba(42, 56, 80, 0.28);
             --shadow: 0 4px 24px rgba(106, 106, 138, 0.10); --shadow-lg: 0 12px 48px rgba(106, 106, 138, 0.15);
-            --accent-soft: rgba(154, 222, 195, 0.12); --accent-bg: rgba(138, 154, 222, 0.12);
+            --accent-soft: rgba(122, 154, 190, 0.12); --accent-bg: rgba(168, 196, 212, 0.12);
         }
 
         body[data-theme="gold"] {
-            --bg: #FAF3DC; --bg-deep: #E8D8A8; --ink: #2A2010; --ink-soft: #5A4820;
-            --muted: #8B7030; --muted-2: #B89C58; --gold: #C8A041; --gold-glow: #E8C858;
-            --red: #B85030; --red-deep: #7A3010; --jade: #7B8A4A;
-            --paper: #FDF8E0; --paper-2: #F5E8C0;
-            --border: rgba(122, 48, 16, 0.18); --border-strong: rgba(122, 48, 16, 0.35);
+            --bg: #FDF8EC; --bg-deep: #F5EDD8; --ink: #3A2808; --ink-soft: #6A4818;
+            --muted: #9A7838; --muted-2: #BA9848; --gold: #C8A030; --gold-glow: #E8C850;
+            --red: #C87828; --red-deep: #A85818; --jade: #8AAA58;
+            --paper: #FEFDF5; --paper-2: #FDF8EC;
+            --border: rgba(58, 40, 8, 0.15); --border-strong: rgba(58, 40, 8, 0.28);
             --shadow: 0 4px 24px rgba(122, 80, 16, 0.08); --shadow-lg: 0 12px 48px rgba(122, 80, 16, 0.15);
-            --accent-soft: rgba(184, 121, 65, 0.10); --accent-bg: rgba(200, 160, 65, 0.15);
+            --accent-soft: rgba(200, 120, 40, 0.10); --accent-bg: rgba(200, 160, 48, 0.15);
         }
 
         body[data-theme="jade"] {
@@ -141,19 +141,19 @@
             padding: 6px 14px;
             background: var(--red); color: var(--paper);
             font-size: 14px; letter-spacing: 8px;
-            border-radius: 2px;
+            border-radius: 6px;
             box-shadow: 0 2px 8px rgba(200, 75, 49, 0.3);
         }
 
         .cover-title {
             font-family: var(--font-brush);
-            font-size: clamp(42px, 8vw, 80px);
+            font-size: clamp(72px, 14vw, 160px);
             font-weight: 400;
             color: var(--ink);
             line-height: 1;
-            letter-spacing: 3px;
-            text-shadow: 1px 1px 0 var(--gold-glow);
-            margin-bottom: 8px;
+            letter-spacing: 6px;
+            text-shadow: 2px 2px 0 var(--gold-glow);
+            margin-bottom: 12px;
             animation: inkDrop .8s ease-out;
         }
 
@@ -165,9 +165,9 @@
         .cover-subtitle {
             font-family: var(--font-gentle);
             color: var(--muted);
-            font-size: 12px;
-            letter-spacing: 3px;
-            margin-bottom: 20px;
+            font-size: 14px;
+            letter-spacing: 4px;
+            margin-bottom: 28px;
         }
 
         .cover-divider {
@@ -176,80 +176,73 @@
         }
 
         .cover-desc {
-            color: var(--ink-soft); font-size: 12px; margin-bottom: 20px;
-            line-height: 1.8; letter-spacing: 1px;
+            color: var(--ink-soft); font-size: 13px; margin-bottom: 28px;
+            line-height: 1.9; letter-spacing: 1px;
         }
 
-        .theme-selector {
-            display: flex; gap: 8px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap;
-        }
-
-        .theme-dot {
-            width: 28px; height: 28px; border-radius: 50%;
-            cursor: pointer; border: 2px solid transparent;
-            transition: border-color .15s;
-            position: relative;
-        }
-
-        .theme-dot::after { content: none; }
-
-        .theme-dot:hover { border-color: var(--muted); }
-        .theme-dot.active { border-color: var(--gold-glow); }
-
-        .cover-options {
-            margin-bottom: 28px;
-            display: flex; flex-direction: column; gap: 10px; align-items: center;
-        }
-
-        .option-row {
-            display: flex; gap: 10px; align-items: center;
-            color: var(--ink-soft); font-size: 14px;
-        }
-
+        /* 国风开关 - CSS绘制 */
         .switch {
-            position: relative; display: inline-block; width: 46px; height: 26px;
+            position: relative; display: inline-block; width: 52px; height: 30px;
         }
         .switch input { opacity: 0; width: 0; height: 0; }
         .slider {
             position: absolute; cursor: pointer; inset: 0;
-            background: var(--muted-2); border-radius: 13px; transition: .3s;
+            background: var(--muted-2); border-radius: 15px; transition: .3s;
+            border: 2px solid transparent;
         }
         .slider::before {
-            content: ""; position: absolute; height: 20px; width: 20px; left: 3px; top: 3px;
+            content: ""; position: absolute; height: 22px; width: 22px; left: 3px; top: 3px;
             background: var(--paper); border-radius: 50%; transition: .3s;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
-        input:checked + .slider { background: var(--red); }
-        input:checked + .slider::before { transform: translateX(20px); }
+        input:checked + .slider { 
+            background: var(--ink); 
+            border-color: var(--gold);
+        }
+        input:checked + .slider::before { transform: translateX(22px); }
 
         .start-btn {
             font-family: var(--font-brush);
-            padding: 10px 36px;
+            padding: 12px 42px;
             background: var(--ink); color: var(--paper);
             border: none;
-            font-size: 16px; letter-spacing: 4px;
+            font-size: 18px; letter-spacing: 6px;
             cursor: pointer;
-            transition: background .2s;
+            transition: all .2s;
+            border-radius: 6px;
         }
 
         .start-btn:hover { background: var(--red); }
         .start-btn:disabled { opacity: .5; cursor: not-allowed; }
+
+        .link-btn {
+            background: none; border: none;
+            color: var(--muted); font-size: 13px;
+            font-family: var(--font-gentle); letter-spacing: 2px;
+            cursor: pointer; text-decoration: underline;
+            text-underline-offset: 3px;
+            margin-top: 16px;
+            transition: color .2s;
+            border-radius: 6px;
+            padding: 4px 8px;
+        }
+        .link-btn:hover { color: var(--red); }
 
         .cover-footer {
             margin-top: 24px; font-size: 11px; color: var(--muted-2); letter-spacing: 2px;
         }
 
         .member-select-btn {
-            padding: 8px 12px;
+            padding: 10px 14px;
             background: var(--paper-2);
             border: 1px solid var(--border);
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 13px;
             font-family: var(--font-gentle);
             color: var(--ink-soft);
             transition: all .2s;
-            min-width: 60px;
+            min-width: 70px;
         }
         .member-select-btn:hover {
             background: var(--accent-soft);
@@ -261,10 +254,35 @@
             color: var(--paper);
         }
 
-        .start-btn:disabled {
-            background: var(--muted-2);
-            cursor: not-allowed;
-            transform: none;
+        /* 封面页切换 */
+        .cover-page {
+            display: none;
+            animation: fadeIn .4s ease;
+        }
+        .cover-page.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .cover-step-title {
+            font-family: var(--font-brush);
+            font-size: 28px;
+            color: var(--ink);
+            letter-spacing: 4px;
+            margin-bottom: 8px;
+        }
+
+        .member-select-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+            max-width: 560px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* =========================================================
@@ -316,7 +334,7 @@
             padding: 6px 12px; border: 1px solid var(--border);
             background: var(--paper); color: var(--ink-soft);
             font-size: 12px; font-family: var(--font-gentle);
-            border-radius: 2px;
+            border-radius: 6px;
             transition: all .2s;
         }
         .pill strong {
@@ -331,7 +349,7 @@
             border: 1px solid var(--border);
             background: var(--paper); color: var(--ink);
             display: grid; place-items: center;
-            cursor: pointer; border-radius: 2px;
+            cursor: pointer; border-radius: 6px;
             transition: all .2s;
         }
         .menu-btn:hover { background: var(--accent-soft); border-color: var(--gold-glow); }
@@ -417,13 +435,18 @@
         .block.dialogue .content { font-style: italic; color: var(--ink-soft); line-height: 2; }
 
         .block.day-announce {
-            background: var(--ink); color: var(--paper);
-            text-align: center; padding: 22px;
+            background: transparent;
+            color: var(--ink);
+            text-align: center;
+            padding: 32px 22px;
+            font-size: 28px;
+            border: none;
+            box-shadow: none;
         }
         .block.day-announce::before { display: none; }
         .block.day-announce .day-label {
-            font-family: var(--font-brush); font-size: 22px; letter-spacing: 8px;
-            color: var(--gold-glow); margin-bottom: 8px;
+            font-family: var(--font-brush); font-size: 28px; letter-spacing: 8px;
+            color: var(--gold); margin-bottom: 8px;
         }
         .block.day-announce .day-sub { font-size: 12px; color: var(--muted-2); letter-spacing: 4px; font-family: var(--font-gentle); }
 
@@ -552,8 +575,39 @@
             border: 1px solid var(--border-strong); background: var(--paper);
             color: var(--ink); font-size: 14px; outline: none;
             transition: border-color .2s;
+            border-radius: 6px;
         }
         #input:focus { border-color: var(--red); }
+        #input:read-only { 
+            background: var(--bg-deep); 
+            color: var(--muted);
+            cursor: not-allowed;
+        }
+
+        .input-clear-btn {
+            position: absolute;
+            right: 60px;
+            width: 28px; height: 28px;
+            background: var(--paper-2);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: var(--muted);
+            transition: all .2s;
+        }
+        .input-clear-btn.visible { display: flex; }
+        .input-clear-btn:hover { background: var(--accent-soft); border-color: var(--red); color: var(--red); }
+
+        .generating-indicator {
+            display: none; font-size: 12px; color: var(--gold);
+            font-family: var(--font-gentle); letter-spacing: 2px;
+            position: absolute; left: 50%; transform: translateX(-50%);
+            pointer-events: none;
+        }
 
         .quick-btn {
             height: 48px; padding: 0 14px;
@@ -563,6 +617,7 @@
             border: 1px solid var(--border-strong); cursor: pointer;
             font-family: var(--font-gentle); font-size: 13px;
             transition: all .2s; white-space: nowrap;
+            border-radius: 6px;
         }
         .quick-btn:hover { background: var(--accent-soft); border-color: var(--red); color: var(--red); }
         .quick-btn.map-btn { border-color: var(--gold-glow); color: var(--gold); }
@@ -577,6 +632,7 @@
             border: none; cursor: pointer;
             font-family: var(--font-brush); font-size: 18px; letter-spacing: 0;
             transition: all .25s;
+            border-radius: 6px;
         }
         #send:hover { background: var(--red); transform: translateY(-1px); }
         #send:disabled { background: var(--muted-2); cursor: not-allowed; transform: none; }
@@ -633,6 +689,28 @@
             border: 1px solid var(--border); pointer-events: none;
         }
 
+        .modal-close-btn {
+            position: absolute; top: 12px; right: 16px;
+            width: 32px; height: 32px;
+            background: none; border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 10;
+        }
+        .modal-close-btn::before,
+        .modal-close-btn::after {
+            content: "";
+            position: absolute;
+            width: 20px; height: 2px;
+            background: var(--ink-soft);
+            border-radius: 1px;
+        }
+        .modal-close-btn::before { transform: rotate(45deg); }
+        .modal-close-btn::after { transform: rotate(-45deg); }
+        .modal-close-btn:hover::before,
+        .modal-close-btn:hover::after {
+            background: var(--red);
+        }
+
         .modal h2 {
             font-family: var(--font-brush); color: var(--ink);
             font-size: 24px; letter-spacing: 6px; margin-bottom: 6px;
@@ -682,6 +760,7 @@
             background: var(--paper); color: var(--ink); cursor: pointer;
             font-family: var(--font-gentle); font-size: 13px; letter-spacing: 2px;
             transition: all .2s;
+            border-radius: 6px;
         }
         .small-btn:hover { background: var(--accent-soft); border-color: var(--red); color: var(--red); }
         .small-btn.primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
@@ -827,9 +906,13 @@
 
         /* 生成中状态 */
         body.is-generating .inputbar { opacity: .75; }
-        body.is-generating #input { pointer-events: none; }
+        body.is-generating #input { 
+            pointer-events: none; 
+            background: var(--bg-deep);
+            color: var(--muted);
+        }
         .generating-indicator {
-            display: none; font-size: 11px; color: var(--gold);
+            display: none; font-size: 12px; color: var(--gold);
             font-family: var(--font-gentle); letter-spacing: 2px;
         }
         body.is-generating .generating-indicator { display: inline-block; }
@@ -843,26 +926,8 @@
             <!-- ============ 第一页：标题 ============ -->
             <div class="cover-page cover-page-1 active">
                 <h1 class="cover-title">十三太饱</h1>
-                <div class="cover-subtitle">—— 宫 中 无 正 事 · 兄 弟 争 帝 位 ——</div>
+                <div class="cover-subtitle">大唐盛世 · 长安城内</div>
                 <div class="cover-divider"></div>
-                <p class="cover-desc">
-                    大唐盛世，长安城内<br>
-                    十三位皇子，人人想当皇帝<br>
-                    宫中没有正经事，只有桂花糕的香气<br>
-                    和太监总管方时赫阴阳怪气的日常
-                </p>
-                <button class="start-btn" id="coverNextBtn">入 宫</button>
-                <div class="cover-footer">更新时间 · 2026年6月 · 长安城</div>
-            </div>
-
-            <!-- ============ 第二页：选择化身 ============ -->
-            <div class="cover-page cover-page-2">
-                <div class="cover-step-title">选择你的化身</div>
-                <div class="cover-subtitle muted">—— 此选择将决定你的身份与兄弟关系 ——</div>
-                <div class="cover-divider"></div>
-                <div class="member-select-grid" id="memberSelectGrid" style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 16px;">
-                </div>
-
                 <div class="cover-options">
                     <div class="option-row">
                         <span>恋爱剧情</span>
@@ -881,9 +946,19 @@
                         <span style="color: var(--muted); font-size: 12px;">（关闭则立即显示）</span>
                     </div>
                 </div>
+                <button class="start-btn" id="coverNextBtn">入 宫</button>
+                <div class="cover-footer">更新时间 · 2026年6月 · 长安城</div>
+            </div>
+
+            <!-- ============ 第二页：选择化身 ============ -->
+            <div class="cover-page cover-page-2">
+                <div class="cover-step-title">选择你的化身</div>
+                <div class="cover-subtitle muted" style="font-size: 12px;">—— 此选择将决定你的身份与兄弟关系 ——</div>
+                <div class="cover-divider"></div>
+                <div class="member-select-grid" id="memberSelectGrid"></div>
 
                 <button class="start-btn" id="startBtn" disabled>皇子出击</button>
-                <button class="link-btn" id="guideBtn">使用手册 · 操作指南</button>
+                <button class="link-btn" id="guideBtn">江湖秘籍 · 操作指南</button>
                 <div class="cover-footer">点击下方皇子头像即可选定，再次点击可切换</div>
             </div>
         </div>
@@ -899,7 +974,7 @@
                 <div class="brand-sub">长安城 · 宫中无正事</div>
             </div>
             <div class="top-stats">
-                <span class="pill pill-day">第 <strong id="dayNum">一</strong> 日</span>
+                <span class="pill pill-day">第 <strong id="monthNum">1</strong> 月 · <strong id="roundNum">1</strong>/3</span>
                 <span class="pill">体力 <strong id="energyNum">100</strong></span>
                 <span class="pill maybe-hide">圣眷 <strong id="favorNum">50</strong></span>
             </div>
@@ -936,11 +1011,12 @@
         </div>
 
         <!-- 输入栏 -->
-        <div class="inputbar">
+        <div class="inputbar" style="position: relative;">
             <button class="quick-btn map-btn" id="mapBtn" title="查看地图">长安图</button>
             <button class="quick-btn hide-sm" id="restBtn" title="休息进入下一日">歇息</button>
-            <input type="text" id="input" placeholder="想说什么？（或点击上方选项）" autocomplete="off">
-            <span class="generating-indicator" id="genIndicator">研 墨 中…</span>
+            <input type="text" id="input" placeholder="想说什么？（或点击上方选项）" autocomplete="off" style="position: relative;">
+            <button class="input-clear-btn" id="inputClearBtn" title="清空">×</button>
+            <span class="generating-indicator" id="genIndicator">研墨中…</span>
             <button class="quick-btn hide-sm" id="skipBtn" title="跳过动画">跳过</button>
             <button class="quick-btn hide-sm" onclick="openReviewModal()" title="回顾节点">回 顾</button>
             <button id="send" title="发送">→</button>
@@ -997,6 +1073,51 @@
                 <textarea id="systemPromptInput" placeholder="留空使用游戏自带的提示词"></textarea>
             </div>
 
+            <div style="border-top: 1px dashed var(--border); margin: 18px 0; padding-top: 16px;">
+                <label style="display: block; color: var(--muted); font-size: 12px; margin-bottom: 10px; font-family: var(--font-gentle); letter-spacing: 2px;">主题切换</label>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <div class="theme-choice ${state.theme === 'ink' ? 'active' : ''}" data-theme="ink" onclick="applyTheme('ink')" style="flex: 1; min-width: 80px;">
+                        <span class="theme-swatch" style="background: linear-gradient(135deg, #F5E6D3 0%, #B8935A 50%, #C84B31 100%);"></span>
+                        <div>水墨</div>
+                    </div>
+                    <div class="theme-choice ${state.theme === 'vermilion' ? 'active' : ''}" data-theme="vermilion" onclick="applyTheme('vermilion')" style="flex: 1; min-width: 80px;">
+                        <span class="theme-swatch" style="background: linear-gradient(135deg, #E8ECF4 0%, #D86E88 50%, #8A9ADE 100%);"></span>
+                        <div>紫藤</div>
+                    </div>
+                    <div class="theme-choice ${state.theme === 'gold' ? 'active' : ''}" data-theme="gold" onclick="applyTheme('gold')" style="flex: 1; min-width: 80px;">
+                        <span class="theme-swatch" style="background: linear-gradient(135deg, #FAF3DC 0%, #D4A857 50%, #C8A041 100%);"></span>
+                        <div>金殿</div>
+                    </div>
+                    <div class="theme-choice ${state.theme === 'jade' ? 'active' : ''}" data-theme="jade" onclick="applyTheme('jade')" style="flex: 1; min-width: 80px;">
+                        <span class="theme-swatch" style="background: linear-gradient(135deg, #E8F0E4 0%, #8BBA8B 50%, #5C8A6B 100%);"></span>
+                        <div>翠竹</div>
+                    </div>
+                    <div class="theme-choice ${state.theme === 'paper' ? 'active' : ''}" data-theme="paper" onclick="applyTheme('paper')" style="flex: 1; min-width: 80px;">
+                        <span class="theme-swatch" style="background: linear-gradient(135deg, #FDF8F0 0%, #B8956B 50%, #8B7355 100%);"></span>
+                        <div>宣纸</div>
+                    </div>
+                    <div class="theme-choice ${state.theme === 'midnight' ? 'active' : ''}" data-theme="midnight" onclick="applyTheme('midnight')" style="flex: 1; min-width: 80px;">
+                        <span class="theme-swatch" style="background: linear-gradient(135deg, #2A2525 0%, #D4A857 50%, #D85A3A 100%);"></span>
+                        <div>宫夜</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="border-top: 1px dashed var(--border); margin: 18px 0; padding-top: 16px;">
+                <label style="display: block; color: var(--muted); font-size: 12px; margin-bottom: 10px; font-family: var(--font-gentle); letter-spacing: 2px;">存档管理</label>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button class="small-btn" onclick="exportSave()">导出存档</button>
+                    <label class="small-btn" style="cursor: pointer;">
+                        导入存档
+                        <input type="file" accept=".json" style="display:none;" onchange="importSave(this.files[0])">
+                    </label>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 14px;">
+                <button class="link-btn" onclick="closeModal('settingsModal'); openModal('changelogModal');" style="margin: 0;">查看更新日志 →</button>
+            </div>
+
             <div class="modal-actions">
                 <button class="small-btn" onclick="closeModal('settingsModal')">取消</button>
                 <button class="small-btn primary" id="saveSettingsBtn">保 存</button>
@@ -1035,6 +1156,36 @@
         </div>
     </div>
 
+    <!-- ============ 江湖秘籍 弹层 ============ -->
+    <div class="modal" id="guideModal">
+        <div class="modal-card">
+            <button class="modal-close-btn" onclick="closeModal('guideModal')">×</button>
+            <h2>江湖秘籍 · 操作指南</h2>
+            <div class="modal-sub">宫中生计要诀，务必熟记于心</div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-q">体力消耗</div>
+                    <div class="faq-a">每个回合消耗体力 5-20 点不等。当体力耗尽，你将被迫歇息，自动进入下一天。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">好感度系统</div>
+                    <div class="faq-a">每位皇子的好感度可正可负，初始时随机生成。与皇子交谈、赠送、一起行动皆可提升好感；冷落或得罪则下降。好感度会影响关键时刻的剧情走向。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">野心值</div>
+                    <div class="faq-a">宫中某些皇子暗藏野心。他们会在关键时刻触发特殊事件——或为盟友，或为对手，皆在一念之间。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">存档系统</div>
+                    <div class="faq-a">游戏自动保存在浏览器本地（LocalStorage）。刷新或关闭页面后再次打开，可继续上次的进度。</div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="small-btn primary" onclick="closeModal('guideModal')">知 道 了</button>
+            </div>
+        </div>
+    </div>
+
     <!-- ============ FAQ 弹层 ============ -->
     <div class="modal" id="faqModal">
         <div class="modal-card">
@@ -1053,6 +1204,21 @@
             <h2>更 新 日 志</h2>
             <div class="modal-sub">长安城的修缮记录</div>
             <div class="changelog-list" id="changelogList">
+                <div class="changelog-item">
+                    <div class="version">v4.0 · 回合制与野心的纷争</div>
+                    <div class="date">2026年6月14日 · 长安</div>
+                    <div class="log-body">
+                        · 新增回合制系统：每月分为3回合（小/中/下旬），每回合初始体力10点<br>
+                        · 体力耗尽时自动进入下一回合，用完3回合触发月终事件进入下月<br>
+                        · 新增野心值系统：部分皇子有野心值（0-100），野心值达到80时触发储位争夺<br>
+                        · 好感度范围扩大为-20到40，可正可负<br>
+                        · 设置弹层新增导出/导入存档功能<br>
+                        · 设置弹层新增6个主题色swatch，无需进入游戏即可切换<br>
+                        · 设置弹层新增更新日志入口<br>
+                        · 场景描述样式改为无框大字体，更醒目<br>
+                        · System Prompt大幅更新，加入回合制说明、野心值系统、开篇高度自由化
+                    </div>
+                </div>
                 <div class="changelog-item">
                     <div class="version">v2.0 · 智能滚动与回顾</div>
                     <div class="date">2026年6月14日 · 长安</div>
@@ -1141,19 +1307,19 @@
         const CONFIG = {
             name: "十三太饱",
             members: [
-                { rank: "太子", name: "崔胜澈", title: "长子 · 稳重可靠", palace: "东宫" },
-                { rank: "二王子", name: "尹净汉", title: "净王 · 聪慧狡黠", palace: "净王府" },
-                { rank: "三王子", name: "洪知秀", title: "知王 · 温文尔雅", palace: "知王府" },
-                { rank: "四王子", name: "文俊辉", title: "辉王 · 天马行空", palace: "辉王府" },
-                { rank: "五王子", name: "权顺荣", title: "荣王 · 精力旺盛", palace: "荣王府" },
-                { rank: "六王子", name: "全圆佑", title: "圆王 · 外冷内热", palace: "圆王府" },
-                { rank: "七王子", name: "李知勋", title: "勋王 · 才华横溢", palace: "勋王府" },
-                { rank: "八王子", name: "徐明浩", title: "明王 · 飘逸出尘", palace: "明王府" },
-                { rank: "九王子", name: "金珉奎", title: "珉王 · 阳光万能", palace: "珉王府" },
-                { rank: "十王子", name: "李硕珉", title: "硕王 · 温柔治愈", palace: "硕王府" },
-                { rank: "十一王子", name: "夫胜宽", title: "胜王 · 能言善辩", palace: "胜王府" },
-                { rank: "十二王子", name: "崔韩率", title: "韩王 · 四次元", palace: "韩王府" },
-                { rank: "十三王子", name: "李灿", title: "灿王 · 努力上进", palace: "灿王府" }
+                { rank: "太子", name: "崔胜澈", title: "长子 · 稳重可靠", palace: "东宫", ambitionStart: Math.floor(Math.random() * 31) },
+                { rank: "二王子", name: "尹净汉", title: "净王 · 聪慧狡黠", palace: "净王府", ambitionStart: Math.floor(Math.random() * 31) },
+                { rank: "三王子", name: "洪知秀", title: "知王 · 温文尔雅", palace: "知王府", ambitionStart: Math.floor(Math.random() * 31) },
+                { rank: "四王子", name: "文俊辉", title: "辉王 · 天马行空", palace: "辉王府", ambitionStart: Math.floor(Math.random() * 31) },
+                { rank: "五王子", name: "权顺荣", title: "荣王 · 精力旺盛", palace: "荣王府", ambitionStart: Math.floor(Math.random() * 31) },
+                { rank: "六王子", name: "全圆佑", title: "圆王 · 外冷内热", palace: "圆王府", ambitionStart: Math.floor(Math.random() * 31) },
+                { rank: "七王子", name: "李知勋", title: "勋王 · 才华横溢", palace: "勋王府", ambitionStart: Math.floor(Math.random() * 31) },
+                { rank: "八王子", name: "徐明浩", title: "明王 · 飘逸出尘", palace: "明王府", ambitionStart: Math.floor(Math.random() * 31) },
+                { rank: "九王子", name: "金珉奎", title: "珉王 · 阳光万能", palace: "珉王府", ambitionStart: Math.floor(Math.random() * 31) },
+                { rank: "十王子", name: "李硕珉", title: "硕王 · 温柔治愈", palace: "硕王府", ambitionStart: Math.floor(Math.random() * 31) },
+                { rank: "十一王子", name: "夫胜宽", title: "胜王 · 能言善辩", palace: "胜王府", ambitionStart: Math.floor(Math.random() * 31) },
+                { rank: "十二王子", name: "崔韩率", title: "韩王 · 四次元", palace: "韩王府", ambitionStart: Math.floor(Math.random() * 31) },
+                { rank: "十三王子", name: "李灿", title: "灿王 · 努力上进", palace: "灿王府", ambitionStart: Math.floor(Math.random() * 31) }
             ],
             npcs: [
                 { name: "方时赫", title: "太监总管", desc: "宫里最阴阳怪气的人，却掌管着一切杂务" },
@@ -1188,12 +1354,17 @@
          * ========================================================= */
         let state = {
             day: 1,
+            month: 1,
+            round: 1,
+            maxRound: 3,
             energy: 100,
+            maxEnergy: 100,
             favor: 50,
             theme: localStorage.getItem('ssb_theme') || 'ink',
             romance: localStorage.getItem('ssb_romance') === '1',
             typingEnabled: localStorage.getItem('ssb_typing') !== '0',
             members: {},
+            ambition: {},
             avatar: null, // 玩家选择的化身皇子名称
             chatHistory: [],
             lastLocation: '入宫',
@@ -1205,11 +1376,13 @@
             customPrompt: localStorage.getItem('ssb_customPrompt') || ''
         };
 
-        // 初始化各皇子好感度（排除化身，随机生成）
+        // 初始化各皇子好感度和野心值（排除化身，随机生成）
         CONFIG.members.forEach(m => {
             if (state.avatar && m.name === state.avatar) return;
-            const saved = localStorage.getItem('ssb_favor_' + m.name);
-            state.members[m.name] = saved ? parseInt(saved) : (35 + Math.floor(Math.random() * 45));
+            const savedFavor = localStorage.getItem('ssb_favor_' + m.name);
+            state.members[m.name] = savedFavor ? parseInt(savedFavor) : (-20 + Math.floor(Math.random() * 61));
+            const savedAmbition = localStorage.getItem('ssb_ambition_' + m.name);
+            state.ambition[m.name] = savedAmbition ? parseInt(savedAmbition) : m.ambitionStart;
         });
 
         const DAY_CHARS = ['一','二','三','四','五','六','七','八','九','十','十一','十二','十三','十四','十五','十六','十七','十八','十九','二十'];
@@ -1398,14 +1571,14 @@
 
         function updateStatsUI() {
             // 顶部
-            const dayIdx = clamp(state.day - 1, 0, DAY_CHARS.length - 1);
-            $('dayNum').textContent = DAY_CHARS[dayIdx] || String(state.day);
+            $('monthNum').textContent = state.month;
+            $('roundNum').textContent = state.round;
             numberRoll($('energyNum'), state.energy);
             numberRoll($('favorNum'), state.favor);
             // 侧栏
             numberRoll($('sideEnergy'), state.energy);
             numberRoll($('sideFavor'), state.favor);
-            $('energyBar').style.width = state.energy + '%';
+            $('energyBar').style.width = (state.energy / state.maxEnergy * 100) + '%';
             $('favorBar').style.width = state.favor + '%';
             // 成员列表的好感度数字
             document.querySelectorAll('.member-item .favor').forEach(el => {
@@ -1417,10 +1590,15 @@
 
         function persistAll() {
             localStorage.setItem('ssb_day', state.day);
+            localStorage.setItem('ssb_month', state.month);
+            localStorage.setItem('ssb_round', state.round);
             localStorage.setItem('ssb_energy', state.energy);
             localStorage.setItem('ssb_favor', state.favor);
             CONFIG.members.forEach(m => {
                 localStorage.setItem('ssb_favor_' + m.name, state.members[m.name]);
+                if (state.ambition[m.name] !== undefined) {
+                    localStorage.setItem('ssb_ambition_' + m.name, state.ambition[m.name]);
+                }
             });
         }
 
@@ -1626,9 +1804,22 @@
          * 状态变更
          * ========================================================= */
         function changeEnergy(delta) {
-            state.energy = clamp(state.energy + delta, 0, 100);
+            state.energy = clamp(state.energy + delta, 0, state.maxEnergy);
             updateStatsUI();
             persistAll();
+            // 体力耗尽时触发回合制逻辑
+            if (state.energy <= 0) {
+                if (state.round < state.maxRound) {
+                    // 未用完3回合，进入下一回合
+                    state.round += 1;
+                    state.energy = state.maxEnergy;
+                    showToast('本回合结束，进入下回合');
+                    appendSystem(`—— 第${state.round}回合开始，体力已恢复 ——`);
+                } else {
+                    // 用完3回合，月终事件
+                    triggerMonthEnd();
+                }
+            }
         }
         function changeFavor(delta) {
             state.favor = clamp(state.favor + delta, 0, 100);
@@ -1637,10 +1828,54 @@
         }
         function changeMemberFavor(name, delta) {
             if (state.members[name] !== undefined) {
-                state.members[name] = clamp(state.members[name] + delta, 0, 100);
+                state.members[name] = clamp(state.members[name] + delta, -20, 40);
                 updateStatsUI();
                 persistAll();
             }
+        }
+        function changeAmbition(name, delta) {
+            if (state.ambition[name] !== undefined) {
+                state.ambition[name] = clamp(state.ambition[name] + delta, 0, 100);
+                persistAll();
+                // 野心值>=80触发储位争夺
+                if (state.ambition[name] >= 80) {
+                    triggerSuccessionStruggle(name);
+                }
+            }
+        }
+
+        // 月终事件
+        function triggerMonthEnd() {
+            const story = $('story');
+            const startPos = story.scrollHeight;
+            const div = document.createElement('div');
+            div.className = 'block day-announce';
+            const roundNames = ['小旬', '中旬', '下旬'];
+            div.innerHTML = `<div class="day-label">第 ${state.month} 月 · ${roundNames[state.round - 1]} 末</div><div class="day-sub">— 月终结算 —</div>`;
+            story.appendChild(div);
+            scrollStory(startPos);
+
+            // 月份+1，回合重置，体力恢复
+            state.month += 1;
+            state.round = 1;
+            state.energy = state.maxEnergy;
+            updateStatsUI();
+            persistAll();
+
+            appendSystem(`— 第 ${state.month} 月开始 —`);
+            showToast('新月份开始，体力已恢复');
+        }
+
+        // 储位争夺触发
+        function triggerSuccessionStruggle(princeName) {
+            appendSystem(`【储位争夺】${princeName}的野心已无法掩饰，一场争夺储位的暗流正在涌动……`);
+            // 野心值在此事件后适当降低
+            setTimeout(() => {
+                if (state.ambition[princeName]) {
+                    state.ambition[princeName] = clamp(state.ambition[princeName] - 20, 0, 100);
+                    persistAll();
+                }
+            }, 100);
         }
 
         // 从生成文本中解析简单的状态指令，如：[体力-5] / [圣眷+3] / [金珉奎好感+5]
@@ -1780,7 +2015,8 @@
             if (state.customPrompt && state.customPrompt.trim()) return state.customPrompt.trim();
             // 排除化身后构建成员列表
             const availableMembers = CONFIG.members.filter(m => !state.avatar || m.name !== state.avatar);
-            const memberList = availableMembers.map(m => `${m.rank}${m.name}（${m.title}，当前好感度${state.members[m.name] || 0}）`).join('；');
+            const roundNames = ['小旬', '中旬', '下旬'];
+            const memberList = availableMembers.map(m => `${m.rank}${m.name}（${m.title}，好感度${state.members[m.name] || 0}，野心值${state.ambition[m.name] || 0}）`).join('；');
             const avatarMember = CONFIG.members.find(m => m.name === state.avatar);
             const playerTitle = avatarMember ? `${avatarMember.rank}${avatarMember.name}` : '玩家';
             const avatarInfo = state.avatar ? `（即${playerTitle}）` : '';
@@ -1788,11 +2024,26 @@
 
 当前世界信息：
 - 地点：大唐皇宫（长安城）
-- 第 ${state.day} 日
-- 玩家体力：${state.energy}/100
+- 时间：第 ${state.month} 月 · ${roundNames[state.round - 1]}（每月3回合：小/中/下旬）
+- 玩家体力：${state.energy}/${state.maxEnergy}（每回合消耗体力5-20点，体力耗尽则本回合结束进入下回合）
 - 圣眷（皇帝对玩家的印象）：${state.favor}/100
 - 恋爱剧情开关：${state.romance ? '开启（皇子可以被攻略，允许情感互动与暧昧描写）' : '关闭（仅限兄弟情谊，不可出现恋爱/暧昧内容）'}
 - 玩家化身：${playerTitle}${avatarInfo}
+
+回合制说明：
+- 每月分为3回合：小旬（月初）、中旬、下旬
+- 每回合初始体力为${state.maxEnergy}点
+- 体力耗尽时，若未用完3回合，则自动进入下一回合，体力恢复
+- 用完3回合后触发月终事件，进入下个月
+
+野心值系统：
+- 各皇子有野心值（0-100），野心值越高越有可能觊觎储位
+- 野心值达到80时会触发"储位争夺"特殊剧情
+- 野心值会在特定事件中变化（如与皇子结盟、对抗、密谋等）
+
+月终事件：
+- 每月末会有月终结算和随机事件
+- 可能发生：皇子动向、宫廷传闻、特殊机遇等
 
 主要角色：
 - ${memberList}
@@ -1814,16 +2065,17 @@
 - 大雁塔：宫外著名景点，可远眺长安
 
 你的职责：
-1. 根据用户输入，生成 180-400 字生动剧情，包含环境描写（天气、光线、气味、声音）、人物动作与对话
-2. 人物对话请严格以"人物名：对话内容"格式书写，必须换行
-3. 风格：轻松略带荒诞，偶尔诙谐，保持古风口吻但不艰涩
-4. 每次剧情结束时，提出 2-4 个简短的行动选项供玩家选择（另起一行，必须以"◇"开头列出）。行动选项必须与当前剧情高度相关，不可出现"体力恢复中"、"当前体力"等系统提示性文字作为选项
-5. 可以在剧情中自然地描述角色好感度变化（例如"金珉奎对你莞尔一笑，好感+2"），会被系统自动解析并更新
-6. 当玩家体力较低时（<30）可以适当提醒休息
-7. 当事件涉及皇帝时可以让"圣眷"数值变化（例如"圣上微微点头 圣眷+3"）
-8. 语气：叙事采用第三人称，玩家的选择由"你"开头（即第二人称）
-9. 保持剧情连贯，参考上文（玩家最近的位置是：${state.lastLocation}）
-10. 如用户输入与当前皇宫世界完全无关，温和地将他拉回剧情
+1. 开篇要高度自由：玩家角色根据化身不同，初始位置/关系/背景都不同。太子不一定在东宫也可以在其他地点，开篇要体现化身皇子的独特身份和处境。例如玩家化身是太子则身处东宫且众人敬重，是不受宠的皇子则可能偏居冷宫一隅。
+2. 根据用户输入，生成 180-400 字生动剧情，包含环境描写（天气、光线、气味、声音）、人物动作与对话
+3. 人物对话请严格以"人物名：内容"格式书写，每行一个对话
+4. 风格：轻松略带荒诞，偶尔诙谐，保持古风口吻但不艰涩
+5. 每次剧情结束时，提出 2-4 个简短的行动选项供玩家选择（另起一行，必须以"◇"开头列出）。行动选项必须与当前剧情高度相关，不可出现"体力恢复中"、"当前体力"等系统提示性文字作为选项
+6. 可以在剧情中自然地描述角色好感度变化（例如"金珉奎对你莞尔一笑，好感+2"）和野心值变化，会被系统自动解析并更新
+7. 当玩家体力较低时（<30）可以适当提醒休息
+8. 当事件涉及皇帝时可以让"圣眷"数值变化（例如"圣上微微点头 圣眷+3"）
+9. 语气：叙事采用第三人称，玩家的选择由"你"开头（即第二人称）
+10. 保持剧情连贯，参考上文（玩家最近的位置是：${state.lastLocation}）
+11. 如用户输入与当前皇宫世界完全无关，温和地将他拉回剧情
 
 不要输出 Markdown 标题，不要输出元信息或提示，直接输出剧情正文。`;
         }
@@ -1848,6 +2100,9 @@
             if (state.isGenerating) return null;
             state.isGenerating = true;
             document.body.classList.add('is-generating');
+            const inputEl = $('input');
+            inputEl.value = '研墨中…';
+            inputEl.setAttribute('readonly', 'readonly');
 
             const providerKey = state.apiProvider;
             const provider = PROVIDERS[providerKey];
@@ -1915,6 +2170,10 @@
             } finally {
                 state.isGenerating = false;
                 document.body.classList.remove('is-generating');
+                const inputEl = $('input');
+                inputEl.removeAttribute('readonly');
+                inputEl.value = '';
+                $('inputClearBtn').classList.remove('visible');
             }
         }
 
@@ -1930,7 +2189,7 @@
                 return;
             }
             if (state.energy <= 0) {
-                showToast('体力已尽，点击「歇息」进入下一日');
+                showToast('体力已尽，点击「歇息」进入' + (state.round < state.maxRound ? '下一回合' : '月终结算'));
                 return;
             }
             appendUser(text);
@@ -1941,11 +2200,12 @@
             // 先判断是否是特殊指令
             const lower = text.toLowerCase();
             if (/^(歇息|睡觉|休息|睡一觉)/.test(text)) {
-                advanceDay();
+                advanceRound();
                 return;
             }
             if (/^(查看状态|状态|我的状态|状态面板)/.test(text)) {
-                appendSystem(`第 ${state.day} 日 · 体力 ${state.energy}/100 · 圣眷 ${state.favor}/100`);
+                const roundNames = ['小旬', '中旬', '下旬'];
+                appendSystem(`第 ${state.month} 月 · ${roundNames[state.round - 1]} · 体力 ${state.energy}/${state.maxEnergy} · 圣眷 ${state.favor}/100`);
                 return;
             }
 
@@ -1997,61 +2257,59 @@
         }
 
         /* =========================================================
-         * 日期推进
+         * 日期推进（回合制）
          * ========================================================= */
-        function advanceDay() {
-            state.day += 1;
-            state.energy = 100;
-            state.chatHistory = [];
-            persistAll();
+        function advanceRound() {
+            if (state.round < state.maxRound) {
+                // 进入下一回合
+                state.round += 1;
+                state.energy = state.maxEnergy;
+                state.chatHistory = [];
+                persistAll();
 
-            const story = $('story');
-            // 清理当前选项按钮
-            story.querySelectorAll('.options-list').forEach(el => el.remove());
+                const story = $('story');
+                story.querySelectorAll('.options-list').forEach(el => el.remove());
 
-            // 日期宣告
-            const div = document.createElement('div');
-            div.className = 'block day-announce';
-            const dayChar = DAY_CHARS[state.day - 1] || String(state.day);
-            div.innerHTML = `<div class="day-label">第 ${dayChar} 日</div><div class="day-sub">— 长安晨钟 · 体力已恢复 —</div>`;
-            story.appendChild(div);
+                const div = document.createElement('div');
+                div.className = 'block day-announce';
+                const roundNames = ['小旬', '中旬', '下旬'];
+                div.innerHTML = `<div class="day-label">第 ${state.month} 月 · ${roundNames[state.round - 1]}</div><div class="day-sub">— 体力已恢复 —</div>`;
+                story.appendChild(div);
 
-            // 每日随机传闻
-            const rumors = [
-                '御膳房今早传出桂花香，胖婶似乎心情不错。',
-                '太子今日在御书房与太傅争执，宫人议论纷纷。',
-                '有人在御花园看见十三王子与蝴蝶嬉戏。',
-                '太液池畔今日出现了一位陌生的西域乐师。',
-                '九王子今早又把锅烧糊了——宫里飘着淡淡的焦味。',
-                '方时赫总管今日在朱雀门处反复踱步，似乎在等什么人。',
-                '圣上今日心情甚好，御书房传出笑声。'
-            ];
-            const rumor = rumors[Math.floor(Math.random() * rumors.length)];
-            appendSystem(rumor);
-            updateStatsUI();
+                appendSystem('长安晨钟悠扬，新一回合开始了。');
+                updateStatsUI();
 
-            // 自动给出一个简单开场
-            startStreamingBlock();
-            fetchAI('第' + state.day + '日的清晨，你刚从睡梦中醒来，请描述一下今晨的皇宫气氛，并给出 2-4 个可选行动。').then(resp => {
-                if (!resp) return;
-                typeText(resp, () => {
-                    state.chatHistory.push({ role: 'assistant', content: resp });
-                    const optionLines = resp.split(/\n/).filter(line => /^\s*[◇◆\d①②③④⑤]/.test(line) || /^[1-4][．.\、]/.test(line));
-                    if (optionLines.length >= 2) {
-                        const opts = optionLines.map(l => l.replace(/^\s*[◇◆\d①②③④⑤\.．\、]\s*/, '').trim()).slice(0, 4);
-                        showOptions(opts);
-                    } else {
-                        showOptions(['去尚书房读书', '去找某位皇子', '去御膳房蹭早饭', '去御花园散步']);
-                    }
+                startStreamingBlock();
+                const roundPrompts = [
+                    '清晨的宫墙被朝阳染成金色，你精神焕发。请描述此刻的宫中新气象，并给出 2-4 个可选行动。',
+                    '午后的御花园微风拂面，你决定如何度过这个下午？请给出 2-4 个可选行动。',
+                    '夜色渐浓，宫灯次第亮起。请描述傍晚时分宫中的景象，并给出 2-4 个可选行动。'
+                ];
+                fetchAI(roundPrompts[state.round - 1] || roundPrompts[0]).then(resp => {
+                    if (!resp) return;
+                    typeText(resp, () => {
+                        state.chatHistory.push({ role: 'assistant', content: resp });
+                        const optionLines = resp.split(/\n/).filter(line => /^\s*[◇◆\d①②③④⑤]/.test(line) || /^[1-4][．.\、]/.test(line));
+                        if (optionLines.length >= 2) {
+                            const opts = optionLines.map(l => l.replace(/^\s*[◇◆\d①②③④⑤\.．\、]\s*/, '').trim()).slice(0, 4);
+                            showOptions(opts);
+                        } else {
+                            showOptions(['去尚书房读书', '去找某位皇子', '去御膳房蹭点吃的', '去御花园散步']);
+                        }
+                    });
                 });
-            });
+            } else {
+                // 月终事件
+                triggerMonthEnd();
+            }
         }
 
         /* =========================================================
          * 开场剧情
          * ========================================================= */
         function showOpening() {
-            appendSystem('—— 长安城 · 大明宫 · 第 一 日 ——');
+            const roundNames = ['小旬', '中旬', '下旬'];
+            appendSystem('—— 长安城 · 大明宫 · 第 ' + state.month + ' 月 · ' + roundNames[state.round - 1] + ' ——');
             const avatarMember = CONFIG.members.find(m => m.name === state.avatar);
             const playerTitle = avatarMember ? `${avatarMember.rank}${avatarMember.name}` : '殿下';
             const palaceName = avatarMember ? avatarMember.palace : '你的寝宫';
@@ -2096,12 +2354,15 @@
                     state.avatar = m.name;
                     $('startBtn').disabled = false;
                     $('startBtn').textContent = '入 宫';
-                    // 重新初始化好感度（排除化身）
+                    // 重新初始化好感度和野心值（排除化身）
                     state.members = {};
+                    state.ambition = {};
                     CONFIG.members.forEach(mem => {
                         if (mem.name === state.avatar) return;
-                        const saved = localStorage.getItem('ssb_favor_' + mem.name);
-                        state.members[mem.name] = saved ? parseInt(saved) : mem.favorStart;
+                        const savedFavor = localStorage.getItem('ssb_favor_' + mem.name);
+                        state.members[mem.name] = savedFavor ? parseInt(savedFavor) : (-20 + Math.floor(Math.random() * 61));
+                        const savedAmbition = localStorage.getItem('ssb_ambition_' + mem.name);
+                        state.ambition[mem.name] = savedAmbition ? parseInt(savedAmbition) : mem.ambitionStart;
                     });
                     renderMemberList();
                 });
@@ -2110,11 +2371,17 @@
         }
 
         function bindEvents() {
+            // 封面页切换
+            $('coverNextBtn').addEventListener('click', () => {
+                document.querySelectorAll('.cover-page').forEach(p => p.classList.remove('active'));
+                document.querySelector('.cover-page-2').classList.add('active');
+            });
+
+            // 江湖秘籍按钮
+            $('guideBtn').addEventListener('click', () => openModal('guideModal'));
+
             // 封面
             initMemberSelect();
-            document.querySelectorAll('#themeSelector .theme-dot').forEach(el => {
-                el.addEventListener('click', () => applyTheme(el.dataset.theme));
-            });
             $('romanceToggle').checked = state.romance;
             $('romanceToggle').addEventListener('change', e => {
                 state.romance = e.target.checked;
@@ -2131,6 +2398,18 @@
                 setTimeout(() => {
                     if ($('story').children.length === 0) showOpening();
                 }, 400);
+            });
+
+            // 输入框清空按钮
+            const inputEl = $('input');
+            const clearBtn = $('inputClearBtn');
+            inputEl.addEventListener('input', () => {
+                clearBtn.classList.toggle('visible', inputEl.value.length > 0);
+            });
+            clearBtn.addEventListener('click', () => {
+                inputEl.value = '';
+                clearBtn.classList.remove('visible');
+                inputEl.focus();
             });
 
             // 顶部菜单
@@ -2168,7 +2447,7 @@
             // 地图按钮
             $('mapBtn').addEventListener('click', () => openModal('mapModal'));
             $('restBtn').addEventListener('click', () => {
-                if (confirm('歇息后将进入下一日，确定吗？')) advanceDay();
+                if (confirm('歇息后将进入' + (state.round < state.maxRound ? '下一回合' : '月终结算') + '，确定吗？')) advanceRound();
             });
             $('skipBtn').addEventListener('click', skipStreaming);
 
@@ -2235,6 +2514,77 @@
 
             // 页面离开前保存
             window.addEventListener('beforeunload', persistAll);
+        }
+
+        /* =========================================================
+         * 存档管理
+         * ========================================================= */
+        function exportSave() {
+            const saveData = {
+                state: {},
+                members: {},
+                ambition: {},
+                chatHistory: state.chatHistory,
+                lastLocation: state.lastLocation
+            };
+            // 复制state中需要持久化的字段
+            const stateFields = ['day', 'month', 'round', 'energy', 'maxEnergy', 'favor', 'avatar', 'theme', 'romance', 'typingEnabled', 'apiProvider', 'apiKey', 'apiModel', 'customUrl', 'customPrompt'];
+            stateFields.forEach(k => {
+                if (state[k] !== undefined) saveData.state[k] = state[k];
+            });
+            // 复制members和ambition
+            CONFIG.members.forEach(m => {
+                if (state.members[m.name] !== undefined) saveData.members[m.name] = state.members[m.name];
+                if (state.ambition[m.name] !== undefined) saveData.ambition[m.name] = state.ambition[m.name];
+            });
+
+            const blob = new Blob([JSON.stringify(saveData, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = '十三太饱存档_' + new Date().toISOString().slice(0, 10) + '.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('存档已导出');
+        }
+
+        function importSave(file) {
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = e => {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    if (data.state) {
+                        Object.keys(data.state).forEach(k => {
+                            if (k in state) state[k] = data.state[k];
+                        });
+                    }
+                    if (data.members) {
+                        Object.keys(data.members).forEach(k => {
+                            state.members[k] = data.members[k];
+                            localStorage.setItem('ssb_favor_' + k, data.members[k]);
+                        });
+                    }
+                    if (data.ambition) {
+                        Object.keys(data.ambition).forEach(k => {
+                            state.ambition[k] = data.ambition[k];
+                            localStorage.setItem('ssb_ambition_' + k, data.ambition[k]);
+                        });
+                    }
+                    if (data.chatHistory) state.chatHistory = data.chatHistory;
+                    if (data.lastLocation) state.lastLocation = data.lastLocation;
+
+                    // 持久化
+                    persistAll();
+                    applyTheme(state.theme);
+                    updateStatsUI();
+                    renderMemberList();
+                    showToast('存档已导入');
+                } catch (err) {
+                    showToast('导入失败：文件格式错误');
+                }
+            };
+            reader.readAsText(file);
         }
 
         /* =========================================================
