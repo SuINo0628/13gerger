@@ -129,6 +129,7 @@
                 linear-gradient(180deg, transparent, var(--bg-deep)),
                 radial-gradient(ellipse at 50% 40%, var(--accent-bg), transparent 60%);
             -webkit-overflow-scrolling: touch;
+            box-sizing: border-box;
         }
 
         #cover.hidden { opacity: 0; pointer-events: none; }
@@ -137,59 +138,101 @@
             width: min(680px, 100%);
             text-align: center;
             position: relative;
-            padding: 32px 20px 40px;
+            padding: 28px 20px 40px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            flex: 1;
+            justify-content: center;
+            gap: 0;
+            box-sizing: border-box;
+            flex: 1 0 auto;
+        }
+
+        .cover-page {
+            width: 100%;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            flex: 1 1 auto;
+            padding-top: 16px;
+            padding-bottom: 16px;
+            gap: 12px;
+            animation: fadeIn .4s ease;
+            box-sizing: border-box;
+        }
+        .cover-page.active {
+            display: flex;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .cover-page .cover-top {
+            flex: 0 0 auto;
+            width: 100%;
+        }
+        .cover-page .cover-middle {
+            flex: 1 1 auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 0;
+        }
+        .cover-page .cover-bottom {
+            flex: 0 0 auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
         }
 
         .cover-title {
             font-family: var(--font-brush);
-            font-size: clamp(60px, 16vw, 140px);
+            font-size: clamp(56px, 14vw, 128px);
             font-weight: 400;
             color: var(--ink);
             line-height: 1;
-            letter-spacing: 10px;
+            letter-spacing: 8px;
             text-shadow: 3px 3px 0 var(--gold-glow);
-            margin-top: 24px;
-            margin-bottom: 18px;
+            margin: 12px 0 10px;
             animation: inkDrop .8s ease-out;
         }
 
         @keyframes inkDrop {
-            0% { opacity: 0; transform: translateY(-10px); filter: blur(4px); }
+            0% { opacity: 0; transform: translateY(-8px); filter: blur(4px); }
             100% { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
 
         .cover-subtitle {
             font-family: var(--font-gentle);
             color: var(--muted);
-            font-size: 14px;
-            letter-spacing: 5px;
-            margin-bottom: 10px;
+            font-size: 13px;
+            letter-spacing: 4px;
+            margin-bottom: 6px;
         }
 
         .cover-divider {
-            width: 160px; height: 2px; margin: 0 auto 14px;
+            width: 160px; height: 2px; margin: 4px auto 8px;
             background: linear-gradient(90deg, transparent, var(--gold), transparent);
             opacity: .5;
         }
 
         .cover-desc {
-            color: var(--ink-soft); font-size: 14px; margin-bottom: 20px;
-            line-height: 2; letter-spacing: 1px;
+            color: var(--ink-soft); font-size: 13px; margin: 6px auto 14px;
+            line-height: 1.9; letter-spacing: 1px;
             max-width: 480px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         /* 国风开关 - CSS绘制 */
         .switch {
-            position: relative; display: inline-block; width: 52px; height: 28px;
+            position: relative; display: inline-block; width: 46px; height: 26px;
             flex-shrink: 0;
         }
         .switch input { opacity: 0; width: 0; height: 0; }
@@ -199,7 +242,7 @@
             border: 2px solid transparent;
         }
         .slider::before {
-            content: ""; position: absolute; height: 20px; width: 20px; left: 2px; top: 2px;
+            content: ""; position: absolute; height: 18px; width: 18px; left: 2px; top: 2px;
             background: var(--paper); border-radius: 50%; transition: .3s;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
@@ -207,46 +250,49 @@
             background: var(--ink);
             border-color: var(--gold);
         }
-        input:checked + .slider::before { transform: translateX(22px); }
+        input:checked + .slider::before { transform: translateX(18px); }
 
         .cover-options {
             display: flex; flex-direction: column;
-            gap: 10px;
-            margin: 0 auto 24px;
-            max-width: 480px;
+            gap: 8px;
+            margin: 10px auto 18px;
+            max-width: 440px;
             width: 100%;
         }
         .option-row {
             display: flex; align-items: center; justify-content: center;
-            gap: 14px;
+            gap: 12px;
             font-family: var(--font-gentle);
-            font-size: 14px;
+            font-size: 13px;
             color: var(--ink-soft);
             letter-spacing: 2px;
         }
         .option-row > span:first-child {
-            min-width: 72px;
+            min-width: 64px;
             text-align: right;
         }
         .option-row > span:last-child {
-            min-width: 100px;
+            min-width: 80px;
             text-align: left;
-            font-size: 12px;
+            font-size: 11px;
+            color: var(--muted);
         }
 
         .start-btn {
             font-family: var(--font-brush);
-            padding: 16px 64px;
+            padding: 14px 48px;
             background: var(--ink); color: var(--paper);
             border: none;
-            font-size: 20px; letter-spacing: 8px;
+            font-size: 18px; letter-spacing: 6px;
             cursor: pointer;
             transition: all .15s;
             border-radius: 8px;
-            margin-top: 8px;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.15);
-            min-height: 56px;
+            margin-top: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            min-height: 50px;
             touch-action: manipulation;
+            width: auto;
+            min-width: 180px;
         }
 
         .start-btn:hover { background: var(--red); transform: translateY(-1px); }
@@ -259,35 +305,57 @@
 
         .link-btn {
             background: none; border: none;
-            color: var(--muted); font-size: 13px;
+            color: var(--muted); font-size: 12px;
             font-family: var(--font-gentle); letter-spacing: 2px;
             cursor: pointer; text-decoration: underline;
             text-underline-offset: 3px;
-            margin-top: 8px;
+            margin-top: 4px;
             transition: color .2s;
             border-radius: 6px;
-            padding: 8px 12px;
+            padding: 6px 10px;
         }
         .link-btn:hover { color: var(--red); }
         .link-btn:active { color: var(--red-deep); }
 
         .cover-footer {
-            margin-top: 16px; font-size: 11px; color: var(--muted-2); letter-spacing: 2px;
+            margin-top: 8px; font-size: 11px; color: var(--muted-2); letter-spacing: 2px;
+        }
+
+        .cover-step-title {
+            font-family: var(--font-serif);
+            font-size: 22px;
+            color: var(--ink);
+            letter-spacing: 4px;
+            margin: 4px 0 2px;
+            font-weight: 700;
+        }
+
+        .member-select-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            margin: 6px auto 10px;
+            max-width: 520px;
+            width: 100%;
         }
 
         .member-select-btn {
-            padding: 10px 8px;
+            padding: 8px 4px;
             background: var(--paper-2);
             border: 1px solid var(--border);
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 13px;
+            font-size: 12px;
             font-family: var(--font-serif);
             color: var(--ink-soft);
             transition: all .15s;
             min-width: 0;
-            line-height: 1.4;
+            line-height: 1.3;
             touch-action: manipulation;
+            min-height: 38px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         .member-select-btn:hover {
             background: var(--accent-soft);
@@ -302,41 +370,8 @@
             background: var(--gold);
             border-color: var(--red);
             color: var(--ink);
-            font-weight: 600;
-            box-shadow: 0 2px 8px var(--accent-soft);
-        }
-
-        /* 封面页切换 */
-        .cover-page {
-            display: none;
-            animation: fadeIn .4s ease;
-        }
-        .cover-page.active {
-            display: block;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .cover-step-title {
-            font-family: var(--font-serif);
-            font-size: 26px;
-            color: var(--ink);
-            letter-spacing: 4px;
-            margin-bottom: 8px;
             font-weight: 700;
-        }
-
-        .member-select-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-            gap: 8px;
-            margin-bottom: 20px;
-            max-width: 560px;
-            margin-left: auto;
-            margin-right: auto;
-            width: 100%;
+            box-shadow: 0 2px 6px var(--accent-soft);
         }
 
         /* =========================================================
@@ -429,13 +464,12 @@
         #story::-webkit-scrollbar-thumb { background: var(--muted-2); border-radius: 3px; }
 
         .block {
-            max-width: 760px; margin: 0 auto 16px;
+            max-width: 760px; margin: 0 auto 14px;
             background: var(--paper); border: 1px solid var(--border);
-            padding: 18px 22px;
-            box-shadow: var(--shadow);
-            animation: blockIn .5s ease both;
-            position: relative;
-            font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+            padding: 16px 20px;
+            animation: blockIn .4s ease both;
+            font-family: var(--font-serif);
+            border-radius: 8px;
         }
 
         @keyframes blockIn {
@@ -443,24 +477,19 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .block::before {
-            content: ""; position: absolute; left: 0; top: 0; bottom: 0;
-            width: 4px; background: var(--gold);
-        }
-
         .block.user-block {
             background: var(--accent-bg);
             border-color: var(--gold-glow);
         }
-        .block.user-block::before { background: var(--red); }
 
         .block.system-block {
             text-align: center; background: transparent;
-            border: 1px dashed var(--border); box-shadow: none;
-            font-family: var(--font-gentle); color: var(--muted);
-            font-size: 12px; padding: 10px 16px;
+            border: none !important; border-radius: 0;
+            box-shadow: none !important;
+            font-family: var(--font-serif); color: var(--muted-2);
+            font-size: 12px; padding: 8px 16px;
+            letter-spacing: 3px;
         }
-        .block.system-block::before { display: none; }
 
         .block.narration { font-size: 15px; color: var(--ink); line-height: 2; }
         .block.narration p { margin-bottom: 10px; }
@@ -470,11 +499,12 @@
             display: block; margin: 4px 0;
         }
         .dialogue-line .speaker {
-            font-family: "Ma Shan Zheng", "Zhi Mang Xing", "KaiTi", serif;
+            font-family: var(--font-brush);
             color: var(--red);
             font-size: 15px;
-            letter-spacing: 1px;
-            margin-right: 2px;
+            letter-spacing: 2px;
+            margin-right: 4px;
+            font-weight: 600;
         }
         .dialogue-line .content {
             color: var(--ink);
@@ -485,7 +515,7 @@
 
         .block.dialogue { background: var(--paper-2); }
         .block.dialogue .speaker {
-            font-family: "Ma Shan Zheng", "Zhi Mang Xing", "KaiTi", serif; color: var(--red);
+            font-family: var(--font-brush); color: var(--red);
             font-size: 16px; margin-bottom: 8px; letter-spacing: 2px;
         }
         .block.dialogue .content { font-style: italic; color: var(--ink); line-height: 2; }
@@ -496,8 +526,9 @@
             text-align: center;
             padding: 30px 22px;
             font-size: 26px;
-            border: none;
-            box-shadow: none;
+            border: none !important;
+            border-radius: 0;
+            box-shadow: none !important;
             font-family: var(--font-serif);
             font-weight: 700;
         }
@@ -512,14 +543,11 @@
 
         .streaming-block {
             background: var(--paper); border: 1px solid var(--border);
-            padding: 18px 22px; margin: 0 auto 16px; max-width: 760px;
+            padding: 16px 20px; margin: 0 auto 14px; max-width: 760px;
             font-size: 15px; line-height: 2;
-            box-shadow: var(--shadow);
             position: relative;
-            font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
-        }
-        .streaming-block::before {
-            content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--red);
+            font-family: var(--font-serif);
+            border-radius: 8px;
         }
 
         .streaming-text { white-space: pre-wrap; }
@@ -1004,16 +1032,20 @@
             .option-btn { padding: 12px 14px 12px 38px; font-size: 14px; min-height: 48px; }
             .dialogue-line .speaker { font-size: 14px; }
 
-            .cover-inner { padding: 20px 14px 36px; min-height: 100vh; }
-            .cover-title { font-size: clamp(48px, 14vw, 120px); letter-spacing: 6px; margin-top: 16px; margin-bottom: 10px; }
-            .cover-subtitle { font-size: 12px; letter-spacing: 3px; margin-bottom: 8px; }
-            .cover-desc { font-size: 12px; line-height: 1.8; margin-bottom: 16px; }
-            .option-row { font-size: 12px; letter-spacing: 1px; gap: 10px; }
-            .option-row > span:first-child { min-width: 56px; font-size: 12px; }
-            .option-row > span:last-child { font-size: 11px; min-width: 80px; }
-            .start-btn { padding: 14px 40px; font-size: 16px; letter-spacing: 5px; min-height: 50px; margin-top: 10px; }
-            .member-select-grid { grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); gap: 6px; margin-bottom: 16px; }
-            .member-select-btn { font-size: 12px; padding: 10px 6px; }
+            .cover-inner { padding: 18px 14px 32px; min-height: 100vh; gap: 8px; }
+            .cover-title { font-size: clamp(44px, 14vw, 110px); letter-spacing: 6px; margin: 8px 0 8px; }
+            .cover-subtitle { font-size: 11px; letter-spacing: 3px; margin-bottom: 6px; }
+            .cover-desc { font-size: 12px; line-height: 1.8; margin: 6px auto 10px; }
+            .cover-divider { width: 120px; margin: 2px auto 8px; }
+            .option-row { font-size: 11px; letter-spacing: 1px; gap: 8px; }
+            .option-row > span:first-child { min-width: 52px; font-size: 11px; }
+            .option-row > span:last-child { font-size: 10px; min-width: 70px; }
+            .start-btn { padding: 12px 36px; font-size: 15px; letter-spacing: 4px; min-height: 48px; margin-top: 8px; }
+            .cover-step-title { font-size: 18px; letter-spacing: 3px; }
+            .member-select-grid { grid-template-columns: repeat(3, 1fr); gap: 5px; margin: 4px auto 8px; }
+            .member-select-btn { font-size: 11px; padding: 7px 3px; min-height: 34px; }
+            .link-btn { font-size: 11px; padding: 6px 8px; }
+            .cover-footer { font-size: 10px; }
         }
 
         @media (max-width: 480px) {
@@ -1053,45 +1085,56 @@
         <div class="cover-inner">
             <!-- ============ 第一页：标题 ============ -->
             <div class="cover-page cover-page-1 active">
-                <h1 class="cover-title">十三太饱</h1>
-                <div class="cover-subtitle">大唐盛世 · 长安城内</div>
-                <div class="cover-divider"></div>
-                <div class="cover-desc">
-                    繁华落尽的宫苑深处，一场关于权力与命运的棋局正在悄然展开。<br>
-                    十二位皇子，各怀心事，在这盛世繁华中寻找属于自己的归途。
-                </div>
-                <div class="cover-options">
-                    <div class="option-row">
-                        <span>恋爱剧情</span>
-                        <label class="switch">
-                            <input type="checkbox" id="romanceToggle">
-                            <span class="slider"></span>
-                        </label>
-                        <span style="color: var(--muted); font-size: 12px;">（开启后皇子可攻略）</span>
-                    </div>
-                    <div class="option-row">
-                        <span>打字动画</span>
-                        <label class="switch">
-                            <input type="checkbox" id="typingToggle" checked>
-                            <span class="slider"></span>
-                        </label>
-                        <span style="color: var(--muted); font-size: 12px;">（关闭则立即显示）</span>
+                <div class="cover-top">
+                    <h1 class="cover-title">十三太饱</h1>
+                    <div class="cover-subtitle">大唐盛世 · 长安城内</div>
+                    <div class="cover-divider"></div>
+                    <div class="cover-desc">
+                        繁华落尽的宫苑深处，一场关于权力与命运的棋局正在悄然展开。<br>
+                        十二位皇子，各怀心事，在这盛世繁华中寻找属于自己的归途。
                     </div>
                 </div>
-                <button class="start-btn" id="coverNextBtn">入 宫</button>
-                <div class="cover-footer">更新时间 · 2026年6月 · 长安城</div>
+                <div class="cover-middle">
+                    <div class="cover-options">
+                        <div class="option-row">
+                            <span>恋爱剧情</span>
+                            <label class="switch">
+                                <input type="checkbox" id="romanceToggle">
+                                <span class="slider"></span>
+                            </label>
+                            <span>（开启后皇子可攻略）</span>
+                        </div>
+                        <div class="option-row">
+                            <span>打字动画</span>
+                            <label class="switch">
+                                <input type="checkbox" id="typingToggle" checked>
+                                <span class="slider"></span>
+                            </label>
+                            <span>（关闭则立即显示）</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="cover-bottom">
+                    <button class="start-btn" id="coverNextBtn">入 宫</button>
+                    <div class="cover-footer">更新时间 · 2026年6月 · 长安城</div>
+                </div>
             </div>
 
             <!-- ============ 第二页：选择化身 ============ -->
             <div class="cover-page cover-page-2">
-                <div class="cover-step-title">选择你的化身</div>
-                <div class="cover-subtitle muted" style="font-size: 12px;">—— 点击选定一位皇子，开启你的宫廷征程 ——</div>
-                <div class="cover-divider"></div>
-                <div class="member-select-grid" id="memberSelectGrid"></div>
-
-                <button class="start-btn" id="startBtn" disabled>皇子出击</button>
-                <button class="link-btn" id="guideBtn">江湖秘籍 · 操作指南</button>
-                <div class="cover-footer">点击上方姓名即可选定，再次点击可切换</div>
+                <div class="cover-top">
+                    <div class="cover-step-title">选择你的化身</div>
+                    <div class="cover-subtitle muted" style="font-size: 12px;">—— 点击选定一位皇子，开启你的宫廷征程 ——</div>
+                    <div class="cover-divider"></div>
+                </div>
+                <div class="cover-middle">
+                    <div class="member-select-grid" id="memberSelectGrid"></div>
+                </div>
+                <div class="cover-bottom">
+                    <button class="start-btn" id="startBtn" disabled>皇子出击</button>
+                    <button class="link-btn" id="guideBtn">江湖秘籍 · 操作指南</button>
+                    <div class="cover-footer">点击上方姓名即可选定，再次点击可切换</div>
+                </div>
             </div>
         </div>
     </div>
@@ -1448,10 +1491,26 @@
                 { rank: "十三王子", name: "李灿", title: "灿王 · 努力上进", palace: "灿王府", ambitionStart: Math.floor(Math.random() * 31) }
             ],
             npcs: [
-                { name: "方时赫", title: "太监总管", desc: "宫里最阴阳怪气的人，却掌管着一切杂务" },
-                { name: "胖婶", title: "御膳房掌勺", desc: "唯一敢骂皇子的人，她的桂花糕远近闻名" },
+                { name: "方时赫", title: "太监总管", desc: "宫里最阴阳怪气的人，掌管一切杂务" },
+                { name: "小德子", title: "方时赫的徒弟", desc: "手脚麻利但嘴不严，八卦从他这儿流出" },
+                { name: "小顺子", title: "当值太监", desc: "负责传召，跑得特别快" },
+                { name: "老太监", title: "宫门看门人", desc: "在宫门看了三十年门，见过太多事情" },
+                { name: "胖婶", title: "御膳房掌勺", desc: "桂花糕远近闻名，唯一敢骂皇子的人" },
+                { name: "小苏", title: "御膳房帮厨", desc: "刚入宫半年，做的莲子羹很好吃" },
+                { name: "刘厨子", title: "御膳房厨师", desc: "做的红烧肉一绝，但脾气暴躁" },
                 { name: "柳先生", title: "太傅", desc: "皇子们的老师，全皇宫最博学的人" },
-                { name: "崔尚宫", title: "尚宫", desc: "掌管宫女与礼节的女官，不苟言笑" }
+                { name: "崔尚宫", title: "尚宫", desc: "掌管宫女与礼节，不苟言笑" },
+                { name: "小春", title: "贴身宫女", desc: "话不多但心细，常默默做事" },
+                { name: "小荷", title: "宫女", desc: "负责洒扫庭院，见过不少不该看的" },
+                { name: "小菊", title: "宫女", desc: "掌管宫灯，夜晚里最安静的存在" },
+                { name: "张统领", title: "侍卫统领", desc: "负责宫禁安全，铁面无私" },
+                { name: "小李子", title: "新晋侍卫", desc: "年轻的侍卫，好奇心旺盛" },
+                { name: "孙太医", title: "太医", desc: "宫中最老的太医，看病很慢但很准" },
+                { name: "小药童", title: "太医院学徒", desc: "常背着药箱在宫里乱跑" },
+                { name: "王嬷嬷", title: "教引嬷嬷", desc: "负责教导皇子礼节，极为严厉" },
+                { name: "钱公公", title: "司礼监太监", desc: "掌管宫中文书，沉默寡言" },
+                { name: "刘公公", title: "御花园管事", desc: "对花草极有耐心，对人却不一定" },
+                { name: "说书人老陈", title: "宫外说书人", desc: "偶尔入宫表演，故事最多" }
             ],
             locations: [
                 { icon: "御", name: "御书房", desc: "皇帝与太子处理政事之处，肃静庄重，香炉里飘出袅袅檀香" },
@@ -1865,15 +1924,18 @@
             return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
         }
 
-        function scrollStory(targetPosition) {
+        function scrollStory(targetPosition, scrollMode) {
             const s = $('story');
             if (!s) return;
             // 用户已手动向上滚动 → 暂停自动跟随（仅在无参数调用时）
-            if (isUserScrollingUp && targetPosition === undefined) return;
+            if (isUserScrollingUp && targetPosition === undefined && scrollMode === undefined) return;
 
             _programmaticScrolling = true;
-            if (targetPosition !== undefined) {
-                // 滚到新内容开头（留 30px 上下文余量）
+            if (scrollMode === 'top-of-new') {
+                // 滚动到新内容的顶部：让新文本的第一句话出现在视窗上方
+                s.scrollTo({ top: targetPosition, behavior: 'smooth' });
+            } else if (targetPosition !== undefined) {
+                // 滚到新内容开头（轻触即可）
                 s.scrollTop = targetPosition;
             } else {
                 s.scrollTop = s.scrollHeight;
@@ -1882,7 +1944,7 @@
             setTimeout(() => {
                 _programmaticScrolling = false;
                 _lastScrollTop = s.scrollTop;
-            }, 80);
+            }, 120);
         }
 
         function showOptions(options) {
@@ -2026,26 +2088,42 @@
         let streamingTimer = null;
         let streamingSkip = false;
 
+        let _newBlockTop = null;
+
         function startStreamingBlock() {
             const story = $('story');
             const startPos = story.scrollHeight;
+            _newBlockTop = startPos;
             const div = document.createElement('div');
             div.className = 'streaming-block';
-            div.innerHTML = '<span class="streaming-text"></span><span class="typing-cursor">|</span>';
+            div.innerHTML = '<span class="streaming-text"></span>';
             story.appendChild(div);
             streamingEl = div.querySelector('.streaming-text');
-            scrollStory(startPos);
+            scrollStory(startPos, 'top-of-new');
             isUserScrollingUp = false;
             return div;
+        }
+
+        // 从文本中提取选项行（◇开头/数字开头），不让它们出现在正文里
+        function stripOptionLines(text) {
+            const lines = text.split('\n');
+            const storyLines = [];
+            for (let i = 0; i < lines.length; i++) {
+                const t = lines[i];
+                if (/^\s*[◇◆①②③④⑤⑥⑦⑧⑨]/.test(t) || /^\s*[1-9][\.．\、\)]/.test(t)) continue;
+                storyLines.push(t);
+            }
+            return storyLines.join('\n');
         }
 
         function typeText(text, onDone) {
             if (!streamingEl) { onDone && onDone(); return; }
             streamingSkip = false;
+            const shownText = stripOptionLines(text);
             const showInstantly = !state.typingEnabled;
             let i = 0;
             const buf = [];
-            const totalLen = text.length;
+            const totalLen = shownText.length;
             const interval = showInstantly ? 0 : Math.max(8, Math.min(30, Math.floor(1800 / Math.max(totalLen, 1))));
 
             function flush() {
@@ -2056,33 +2134,47 @@
             }
 
             if (showInstantly) {
-                streamingEl.innerHTML = escapeHTML(text).replace(/\n/g, '<br>');
+                streamingEl.innerHTML = escapeHTML(shownText).replace(/\n/g, '<br>');
                 streamingTimer = setTimeout(() => { finishStreaming(); onDone && onDone(); }, 120);
                 return;
             }
 
-            // 使用 requestAnimationFrame 分帧显示
             const chunkSize = Math.max(1, Math.floor(totalLen / 200) + 1);
             function step() {
                 if (streamingSkip || state._forceStop) {
-                    streamingEl.innerHTML = escapeHTML(text).replace(/\n/g, '<br>');
+                    streamingEl.innerHTML = escapeHTML(shownText).replace(/\n/g, '<br>');
                     finishStreaming();
                     onDone && onDone();
                     return;
                 }
                 let added = 0;
-                while (i < text.length && added < chunkSize) {
-                    const ch = text[i];
+                while (i < shownText.length && added < chunkSize) {
+                    const ch = shownText[i];
                     if (ch === '\n') buf.push('<br>');
                     else buf.push(ch === '<' ? '&lt;' : ch === '>' ? '&gt;' : ch);
                     i++; added++;
                 }
                 flush();
-                scrollStory();
-                if (i < text.length) {
+                // 打字中跟随底部（用户看到新字出现）
+                const s = $('story');
+                if (s && !isUserScrollingUp) {
+                    _programmaticScrolling = true;
+                    s.scrollTop = s.scrollHeight;
+                    setTimeout(() => { _programmaticScrolling = false; _lastScrollTop = s ? s.scrollTop : 0; }, 40);
+                }
+                if (i < shownText.length) {
                     streamingTimer = setTimeout(step, interval);
                 } else {
                     finishStreaming();
+                    // 打字完成后：回滚到新文本的第一句话（开头）
+                    if (_newBlockTop !== null) {
+                        const s2 = $('story');
+                        if (s2) {
+                            _programmaticScrolling = true;
+                            s2.scrollTo({ top: _newBlockTop, behavior: 'smooth' });
+                            setTimeout(() => { _programmaticScrolling = false; _lastScrollTop = s2 ? s2.scrollTop : 0; }, 250);
+                        }
+                    }
                     onDone && onDone();
                 }
             }
@@ -2174,9 +2266,26 @@
 主要角色：
 - ${memberList}
 - 方时赫：太监总管，阴阳怪气，掌管宫内事务
-- 胖婶：御膳房掌勺，性格豪爽，桂花糕是她的招牌
-- 柳先生：太傅，皇子们的老师，博学严肃
+- 小德子：方时赫的徒弟，手脚麻利但嘴不严，八卦从他这儿流出
+- 小顺子：当值太监，负责传召，跑得特别快
+- 老太监：宫门看门人，在宫门看了三十年门，见过太多事情
+- 胖婶：御膳房掌勺，性格豪爽，桂花糕远近闻名
+- 小苏：御膳房帮厨，刚入宫半年，做的莲子羹很好吃
+- 刘厨子：御膳房厨师，做的红烧肉一绝，但脾气暴躁
+- 柳先生：太傅，皇子们的老师，全皇宫最博学的人
 - 崔尚宫：尚宫，掌管宫女与礼节，不苟言笑
+- 小春：贴身宫女，话不多但心细，常默默做事
+- 小荷：宫女，负责洒扫庭院，见过不少不该看的
+- 小菊：宫女，掌管宫灯，夜晚里最安静的存在
+- 张统领：侍卫统领，负责宫禁安全，铁面无私
+- 小李子：年轻的新晋侍卫，好奇心旺盛
+- 孙太医：宫中最老的太医，看病很慢但很准
+- 小药童：太医院学徒，常背着药箱在宫里乱跑
+- 王嬷嬷：教引嬷嬷，负责教导皇子礼节，极为严厉
+- 钱公公：司礼监太监，掌管宫中文书，沉默寡言
+- 刘公公：御花园管事，对花草极有耐心，对人却不一定
+- 说书人老陈：宫外说书人，偶尔入宫表演，故事最多
+- 各种路人宫女、太监、跑腿小厮：在不同场景随机出现，增加真实感
 
 重要地图与环境：
 - 御书房：皇帝与太子处理政事之处，肃静庄重，檀香袅袅
@@ -2191,9 +2300,9 @@
 - 大雁塔：宫外著名景点，可远眺长安
 
 你的职责：
-1. 开篇要高度自由：玩家角色根据化身不同，初始位置/关系/背景都不同。太子不一定在东宫也可以在其他地点，开篇要体现化身皇子的独特身份和处境。例如玩家化身是太子则身处东宫且众人敬重，是不受宠的皇子则可能偏居冷宫一隅。
+1. 开篇要高度自由且有代入感：玩家角色根据化身不同，初始位置/关系/背景都不同。太子不一定在东宫也可以在其他地点，开篇要体现化身皇子的独特身份和处境。
 2. 根据用户输入，生成 180-400 字生动剧情，包含环境描写（天气、光线、气味、声音）、人物动作与对话
-3. 人物对话请严格以"人物名：内容"格式书写，每行一个对话
+3. 人物对话请严格以"人物名：内容"格式书写，每行一个对话。多使用路人NPC（小德子、小苏、小荷、小李子、孙太医等），不要总用方时赫
 4. 风格：轻松略带荒诞，偶尔诙谐，保持古风口吻但不艰涩
 5. 每次剧情结束时，提出 2-4 个简短的行动选项供玩家选择（另起一行，必须以"◇"开头列出）。行动选项必须与当前剧情高度相关，不可出现"体力恢复中"、"当前体力"等系统提示性文字作为选项
 6. 可以在剧情中自然地描述角色好感度变化（例如"金珉奎对你莞尔一笑，好感+2"）和野心值变化，会被系统自动解析并更新
@@ -2203,7 +2312,12 @@
 10. 保持剧情连贯，参考上文（玩家最近的位置是：${state.lastLocation}）
 11. 如用户输入与当前皇宫世界完全无关，温和地将他拉回剧情
 
-不要输出 Markdown 标题，不要输出元信息或提示，直接输出剧情正文。`;
+绝对不可输出以下内容：
+- "长安城 · 大明宫"、"第 X 月"、"小旬/中旬/下旬" 等格式化的地点时间标题
+- Markdown 标题、元信息或提示
+- 重复的行动选项
+
+直接输出剧情正文即可。`;
         }
 
         function buildMessages(userInput) {
@@ -2288,7 +2402,7 @@
                 showToast('AI 接入失败: ' + (err.message || '未知错误'));
                 // 提供一个兜底的简单剧情
                 return `（AI 接入暂时不通畅。）
-门外传来方时赫的尖细嗓音："殿下，这会儿时辰不早了——" 你眨了眨眼，窗外的日影斜斜拖过朱红廊柱。也许你可以：
+窗外传来小德子匆忙的脚步声，你听见他低声对小荷说："殿下醒了没有？御膳房的桂花糕快凉了——" 你眨了眨眼，窗外的日影斜斜拖过朱红廊柱。也许你可以：
 
 ◇ 在宫中随便走走
 ◇ 去御膳房找点吃的
@@ -2434,30 +2548,127 @@
          * 开场剧情
          * ========================================================= */
         function showOpening() {
-            const roundNames = ['小旬', '中旬', '下旬'];
-            appendSystem('—— 长安城 · 大明宫 · 第 ' + state.month + ' 月 · ' + roundNames[state.round - 1] + ' ——');
             const avatarMember = CONFIG.members.find(m => m.name === state.avatar);
             const playerTitle = avatarMember ? `${avatarMember.rank}${avatarMember.name}` : '殿下';
-            const palaceName = avatarMember ? avatarMember.palace : '你的寝宫';
-            const opening = `晨雾还未完全散去，长安宫内的红瓦金顶已被朝阳染作一片温柔。
 
-你缓缓睁开眼，发现自己躺在${palaceName}的寝宫里。檀香炉里升起袅袅青烟，窗外的廊柱间传来宫女轻缓的脚步声。
+            // 随机天气/时间
+            const weathers = [
+                "晨雾尚未散去，廊下的灯笼还点着",
+                "朝阳初升，金色的光从朱红的宫墙上方斜斜照下",
+                "昨夜下了点小雨，青石板上还有水痕",
+                "桂花香飘了满院，想来是御花园的桂树开了",
+                "蝉鸣声声，已是初夏的天气",
+                "檐角的风铃被风轻轻吹动，发出细碎的声音"
+            ];
+            const weather = weathers[Math.floor(Math.random() * weathers.length)];
 
-方时赫：殿下，您终于醒了。圣上召您去御书房见驾——不过依老奴看，您这身装束，倒不妨先在宫中四处走动走动。
+            // 随机位置（每个皇子有自己的偏好地点）
+            const places = {
+                "崔胜澈": ["东宫书房", "御书房外的廊下", "练武场边的凉亭"],
+                "尹净汉": ["太液池边", "御花园的牡丹亭", "自己宫中的小亭"],
+                "洪知秀": ["尚书房", "御书房外", "太庙外的松树下"],
+                "文俊辉": ["御膳房外的廊下", "东宫的厨房里", "太液池边的假山"],
+                "权顺荣": ["御花园的亭子", "太液池边", "练武场旁边"],
+                "全圆佑": ["御花园的竹林", "自己寝宫的窗边", "尚书房外的廊下"],
+                "李知勋": ["御花园的亭子里", "自己宫中", "御书房外偷听"],
+                "徐明浩": ["御花园的竹林小径", "太液池边的柳荫下", "宫墙边的老槐树下"],
+                "金珉奎": ["御花园的牡丹丛边", "东宫门口", "御膳房附近"],
+                "李硕珉": ["御花园的亭子", "尚书房外", "自己寝宫的廊下"],
+                "夫胜宽": ["尚书房外", "御花园的凉亭中", "太液池边的石凳上"],
+                "崔韩率": ["御花园的小溪边", "宫墙上远眺", "御膳房外的廊下"],
+                "李灿": ["练武场边", "东宫门口", "御花园的亭子里"]
+            };
+            const memberPlaces = places[state.avatar] || ["你的寝宫", "御花园", "太液池边"];
+            const currentPlace = memberPlaces[Math.floor(Math.random() * memberPlaces.length)];
 
-这位尖嗓的太监总管微微欠身，嘴角挂着一抹说不清是善意还是讥讽的笑。
+            // 随机NPC
+            const randomNpcs = ["小德子", "老太监", "小顺子", "小苏", "小荷", "小春", "小李子", "小药童", "方时赫", "胖婶"];
+            const openingNpc = randomNpcs[Math.floor(Math.random() * randomNpcs.length)];
 
-你是${playerTitle}，今日是宫中寻常的一日。十二位皇兄已在这座皇宫里生活多年——他们之中，有人对你好奇，有人对你提防，也有人……或许会成为你的盟友或对手。
+            // 根据NPC生成不同的互动语
+            const makeNpcLine = (npc) => {
+                const lines = {
+                    "小德子": [
+                        `${npc}：殿下醒了？奴才这就去打盆水来。对了，方才九皇子殿下又路过您这儿了……`,
+                        `${npc}：殿下今日要去尚书房吗？听说柳先生今天要讲《贞观政要》。`,
+                        `${npc}：（小声）殿下，刚才方总管问起您的去向……要不要奴才替您回了？`
+                    ],
+                    "老太监": [
+                        `${npc}：殿下，今日风大，要不要让小的把廊下的灯点上？（咳嗽两声后，继续慢悠悠扫他的地）`,
+                        `${npc}：殿下这是要出门？小心啊，今早御花园的青石板有些滑。`,
+                        `${npc}：（眯着眼看你半晌）殿下精神头不错，难得难得……`
+                    ],
+                    "小顺子": [
+                        `${npc}：殿下！奴才正要去找您！圣上派人传话来——（喘着气）`,
+                        `${npc}：殿下，您吩咐的事奴才记下了，这就去办！`,
+                        `${npc}：（一溜烟跑过又折回来）殿下恕罪，奴才……奴才跑错方向了……`
+                    ],
+                    "小苏": [
+                        `${npc}：殿下，御膳房新蒸的桂花糕，您要不要先垫垫？胖婶刚端出来的。`,
+                        `${npc}：（怯怯地）殿下，我刚从御花园经过，好像看到七皇子在石桌旁发呆。`,
+                        `${npc}：殿下，今日有莲子羹，您要留一碗吗？`
+                    ],
+                    "小荷": [
+                        `${npc}：殿下，您醒了。廊下的海棠开了呢，要不要让奴才采几枝进来？`,
+                        `${npc}：（放下茶盏）殿下，这是刚泡的菊花茶，加了些枸杞。`,
+                        `${npc}：殿下，今早打扫时，在廊下捡到一枚玉佩……您看是不是哪位殿下落的？`
+                    ],
+                    "小春": [
+                        `${npc}：殿下，您的朝服已经备好了。（轻声）今天宫中似乎有贵客来。`,
+                        `${npc}：（低头垂手）殿下，您吩咐的东西都已备好，随时可以动身。`,
+                        `${npc}：殿下……（欲言又止）没什么，只是觉得您最近瘦了。`
+                    ],
+                    "小李子": [
+                        `${npc}：（在廊下值勤，见你出来，连忙低头行礼）殿下早！`,
+                        `${npc}：殿下，奴才在御花园捡到一枝开得正好的花，您要不要看看？`,
+                        `${npc}：殿下！（小声）刚才见到崔尚宫往您这个方向来了……`
+                    ],
+                    "小药童": [
+                        `${npc}：（背着药箱差点撞上你）啊！殿下恕罪！奴才……奴才是太医院的小药童。`,
+                        `${npc}：殿下，孙太医说最近天气变化大，让奴才送些养生汤过来……`,
+                        `${npc}：（好奇地四处张望）殿下，这宫里您住了多少年呀？`
+                    ],
+                    "方时赫": [
+                        `${npc}：（眯起眼睛）殿下醒了？圣上召您去御书房见驾——不过依老奴看，您这身装束……还是先四处走走？`,
+                        `${npc}：殿下，您可算醒了。（皮笑肉不笑）昨日您说的事，老奴已经替您办好了。`,
+                        `${npc}：殿下，您知道吗，三皇子刚才还问起您呢。（意味深长地笑）`
+                    ],
+                    "胖婶": [
+                        `${npc}：殿下！您可算醒了！御膳房给您留着桂花糕呢，再不吃就凉透了！`,
+                        `${npc}：殿下您说说，这御膳房的规矩……（滔滔不绝）总之您一定要多吃点！`,
+                        `${npc}：（远远地喊）殿下！今天有您爱吃的莲子羹！`
+                    ]
+                };
+                const arr = lines[npc] || [`${npc}：殿下，您早。`];
+                return arr[Math.floor(Math.random() * arr.length)];
+            };
 
-胖婶：（从门外远远地传来）哎哟，${avatarMember ? avatarMember.rank : '殿下'}醒了？御膳房给您留着桂花糕呢！`;
+            const npcLine = makeNpcLine(openingNpc);
+
+            // 随机事件感的结尾
+            const endings = [
+                `你深深吸了一口气——长安的风，宫墙的味道，还有说不清的什么。今日会发生什么呢？`,
+                `你整理了一下衣襟，迈出今日的第一步。在这深宫中，每一步都可能改变什么。`,
+                `窗外的鸟鸣声忽然清晰起来，你微微一笑——看来今日不会太过无聊。`,
+                `你从榻上起身，只觉得今日似乎有些什么不一样的事将要发生。`,
+                `檀香袅袅，你闭上眼片刻——无论今日发生什么，你总归是要面对的。`
+            ];
+            const ending = endings[Math.floor(Math.random() * endings.length)];
+
+            const opening = `${weather}。你睁开眼，发现自己正身在${currentPlace}。空气里飘着淡淡的檀香，远处隐约传来宫女轻缓的脚步声。\n\n${npcLine}\n\n你是${playerTitle}。在这偌大的皇宫中，十二位皇兄各怀心事——有人对你好奇，有人对你提防，而有些人……或许会成为你意想不到的盟友或对手。\n\n${ending}`;
+
             startStreamingBlock();
             typeText(opening, () => {
-                showOptions([
-                    '先去御书房拜见父皇',
-                    '去御膳房尝尝桂花糕',
-                    '在宫里先四处逛逛',
-                    '去找某位皇子见个面'
-                ]);
+                // 根据化身生成不同的初始选项
+                const optionsByPlace = {
+                    "御书房": ['进去见父皇', '在外面先听听', '转身离开去别处'],
+                    "御花园": ['在园子里逛逛', '去找某位皇子聊聊', '继续回房休息'],
+                    "尚书房": ['进去读书', '先找柳先生聊聊', '悄悄溜走'],
+                    "东宫": ['在宫中走走', '去练武场看看', '去书房'],
+                    default: ['先在附近走走', '去找某位皇子', '回自己寝宫休息', '去御膳房蹭点吃的']
+                };
+                const opts = optionsByPlace[currentPlace] || optionsByPlace.default;
+                showOptions(opts);
             });
         }
 
