@@ -1,0 +1,2196 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="ink">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>十三太饱</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=ZCOOL+XiaoWei&family=Ma+Shan+Zheng&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* =========================================================
+           主题变量
+           ========================================================= */
+        :root {
+            /* 墨 · 主主题（水墨） */
+            --bg: #F5E6D3;
+            --bg-deep: #E8D5BA;
+            --ink: #1A1A1A;
+            --ink-soft: #3D3D3D;
+            --muted: #8B7355;
+            --muted-2: #A8957B;
+            --gold: #B8935A;
+            --gold-glow: #D4A857;
+            --red: #C84B31;
+            --red-deep: #8B2500;
+            --jade: #5C8A6B;
+            --paper: #FBF5E9;
+            --paper-2: #F2E9D8;
+            --border: rgba(26, 26, 26, 0.15);
+            --border-strong: rgba(26, 26, 26, 0.28);
+            --shadow: 0 4px 24px rgba(139, 37, 0, 0.08);
+            --shadow-lg: 0 12px 48px rgba(139, 37, 0, 0.12);
+            --accent-soft: rgba(200, 75, 49, 0.08);
+            --accent-bg: rgba(184, 147, 90, 0.12);
+            --font-serif: "Noto Serif SC", "Songti SC", "SimSun", serif;
+            --font-brush: "Ma Shan Zheng", "KaiTi", serif;
+            --font-gentle: "ZCOOL XiaoWei", "KaiTi", serif;
+        }
+
+        body[data-theme="vermilion"] {
+            --bg: #F8E8D8; --bg-deep: #E8C8A8; --ink: #2A1810; --ink-soft: #5A3020;
+            --muted: #8B5A3C; --muted-2: #B8896A; --gold: #C87941; --gold-glow: #D89545;
+            --red: #B83A2A; --red-deep: #7A1A0A; --jade: #6B8E5A;
+            --paper: #FDF3E7; --paper-2: #F5E0C8;
+            --border: rgba(122, 26, 10, 0.18); --border-strong: rgba(122, 26, 10, 0.35);
+            --shadow: 0 4px 24px rgba(122, 26, 10, 0.08); --shadow-lg: 0 12px 48px rgba(122, 26, 10, 0.15);
+            --accent-soft: rgba(184, 58, 42, 0.08); --accent-bg: rgba(200, 121, 65, 0.12);
+        }
+
+        body[data-theme="gold"] {
+            --bg: #FAF3DC; --bg-deep: #E8D8A8; --ink: #2A2010; --ink-soft: #5A4820;
+            --muted: #8B7030; --muted-2: #B89C58; --gold: #C8A041; --gold-glow: #E8C858;
+            --red: #B85030; --red-deep: #7A3010; --jade: #7B8A4A;
+            --paper: #FDF8E0; --paper-2: #F5E8C0;
+            --border: rgba(122, 48, 16, 0.18); --border-strong: rgba(122, 48, 16, 0.35);
+            --shadow: 0 4px 24px rgba(122, 80, 16, 0.08); --shadow-lg: 0 12px 48px rgba(122, 80, 16, 0.15);
+            --accent-soft: rgba(184, 121, 65, 0.10); --accent-bg: rgba(200, 160, 65, 0.15);
+        }
+
+        body[data-theme="jade"] {
+            --bg: #E8F0E4; --bg-deep: #C8D8BE; --ink: #1A2A1A; --ink-soft: #3D5A3D;
+            --muted: #5A8B5A; --muted-2: #7BAB7B; --gold: #8B8855; --gold-glow: #B8B566;
+            --red: #A8503A; --red-deep: #6A2A1A; --jade: #4A8A5A;
+            --paper: #F0F8EC; --paper-2: #E0ECD8;
+            --border: rgba(26, 58, 26, 0.15); --border-strong: rgba(26, 58, 26, 0.3);
+            --shadow: 0 4px 24px rgba(74, 138, 90, 0.10); --shadow-lg: 0 12px 48px rgba(74, 138, 90, 0.15);
+            --accent-soft: rgba(74, 138, 90, 0.10); --accent-bg: rgba(139, 136, 85, 0.12);
+        }
+
+        body[data-theme="midnight"] {
+            --bg: #1A1818; --bg-deep: #2A2525; --ink: #E8D5BA; --ink-soft: #B8A88A;
+            --muted: #A8885A; --muted-2: #7A6848; --gold: #D4A857; --gold-glow: #E8C478;
+            --red: #D85A3A; --red-deep: #A83818; --jade: #8BBA8B;
+            --paper: #2A2525; --paper-2: #353030;
+            --border: rgba(212, 168, 87, 0.18); --border-strong: rgba(212, 168, 87, 0.35);
+            --shadow: 0 4px 24px rgba(0, 0, 0, 0.35); --shadow-lg: 0 12px 48px rgba(0, 0, 0, 0.5);
+            --accent-soft: rgba(212, 168, 87, 0.12); --accent-bg: rgba(216, 90, 58, 0.10);
+        }
+
+        body[data-theme="paper"] {
+            --bg: #FDF8F0; --bg-deep: #F0E6D8; --ink: #2A2018; --ink-soft: #5A4838;
+            --muted: #8B7355; --muted-2: #B89C78; --gold: #B8956B; --gold-glow: #D8B888;
+            --red: #B85030; --red-deep: #7A3020; --jade: #6B8A7B;
+            --paper: #FFFBF2; --paper-2: #FAF3E5;
+            --border: rgba(122, 80, 48, 0.15); --border-strong: rgba(122, 80, 48, 0.32);
+            --shadow: 0 4px 24px rgba(122, 80, 48, 0.08); --shadow-lg: 0 12px 48px rgba(122, 80, 48, 0.12);
+            --accent-soft: rgba(184, 80, 48, 0.08); --accent-bg: rgba(184, 149, 107, 0.12);
+        }
+
+        /* =========================================================
+           全局
+           ========================================================= */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html, body {
+            width: 100%; height: 100%; overflow: hidden;
+            background: var(--bg); color: var(--ink);
+            font-family: var(--font-serif);
+            font-size: 15px; line-height: 1.75;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-image:
+                radial-gradient(ellipse at 20% 10%, var(--accent-bg) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 90%, var(--accent-bg) 0%, transparent 45%),
+                repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(139, 115, 85, 0.015) 2px, rgba(139, 115, 85, 0.015) 4px);
+        }
+
+        body::before {
+            content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+            background:
+                radial-gradient(circle at 85% 15%, rgba(200, 75, 49, 0.06) 0%, transparent 35%),
+                radial-gradient(circle at 15% 85%, rgba(184, 147, 90, 0.05) 0%, transparent 30%);
+        }
+
+        button, input, textarea { font-family: inherit; }
+
+        /* =========================================================
+           封面
+           ========================================================= */
+        #cover {
+            position: fixed; inset: 0; z-index: 50;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 24px; opacity: 1; transition: opacity .6s ease;
+            background:
+                linear-gradient(180deg, transparent, var(--bg-deep)),
+                radial-gradient(ellipse at 50% 40%, var(--accent-bg), transparent 60%);
+        }
+
+        #cover.hidden { opacity: 0; pointer-events: none; }
+
+        .cover-inner {
+            width: min(680px, 100%); text-align: center; position: relative;
+            padding: 48px 32px 36px;
+        }
+
+        .cover-seal {
+            font-family: var(--font-brush);
+            display: inline-block; margin: 0 auto 28px;
+            padding: 6px 14px;
+            background: var(--red); color: var(--paper);
+            font-size: 14px; letter-spacing: 8px;
+            border-radius: 2px;
+            box-shadow: 0 2px 8px rgba(200, 75, 49, 0.3);
+        }
+
+        .cover-title {
+            font-family: var(--font-brush);
+            font-size: clamp(56px, 11vw, 110px);
+            font-weight: 400;
+            color: var(--ink);
+            line-height: 1;
+            letter-spacing: 4px;
+            text-shadow: 2px 2px 0 var(--gold-glow), 4px 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 10px;
+            animation: inkDrop .8s ease-out;
+        }
+
+        @keyframes inkDrop {
+            0% { opacity: 0; transform: translateY(-20px) scale(.95); filter: blur(8px); }
+            60% { opacity: .6; filter: blur(2px); }
+            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        }
+
+        .cover-subtitle {
+            font-family: var(--font-gentle);
+            color: var(--muted);
+            font-size: 15px;
+            letter-spacing: 3px;
+            margin-bottom: 36px;
+        }
+
+        .cover-divider {
+            width: 120px; height: 1px; margin: 0 auto 28px;
+            background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+        }
+
+        .cover-desc {
+            color: var(--ink-soft); font-size: 14px; margin-bottom: 36px;
+            line-height: 2; letter-spacing: 1px;
+        }
+
+        .theme-selector {
+            display: flex; gap: 10px; justify-content: center; margin-bottom: 32px; flex-wrap: wrap;
+        }
+
+        .theme-dot {
+            width: 36px; height: 36px; border-radius: 50%;
+            cursor: pointer; border: 2px solid transparent;
+            transition: all .25s cubic-bezier(.2,.8,.2,1);
+            position: relative;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .theme-dot::after {
+            content: ""; position: absolute; inset: 4px; border-radius: 50%;
+            background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.35));
+        }
+
+        .theme-dot:hover { transform: scale(1.1) translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.18); }
+        .theme-dot.active { border-color: var(--gold-glow); transform: scale(1.15); box-shadow: 0 0 0 3px var(--accent-soft), 0 6px 20px rgba(0,0,0,0.2); }
+
+        .cover-options {
+            margin-bottom: 28px;
+            display: flex; flex-direction: column; gap: 10px; align-items: center;
+        }
+
+        .option-row {
+            display: flex; gap: 10px; align-items: center;
+            color: var(--ink-soft); font-size: 14px;
+        }
+
+        .switch {
+            position: relative; display: inline-block; width: 46px; height: 26px;
+        }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider {
+            position: absolute; cursor: pointer; inset: 0;
+            background: var(--muted-2); border-radius: 13px; transition: .3s;
+        }
+        .slider::before {
+            content: ""; position: absolute; height: 20px; width: 20px; left: 3px; top: 3px;
+            background: var(--paper); border-radius: 50%; transition: .3s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        input:checked + .slider { background: var(--red); }
+        input:checked + .slider::before { transform: translateX(20px); }
+
+        .start-btn {
+            font-family: var(--font-brush);
+            padding: 14px 48px;
+            background: var(--ink); color: var(--paper);
+            border: none;
+            font-size: 18px; letter-spacing: 6px;
+            cursor: pointer; position: relative;
+            box-shadow: var(--shadow-lg);
+            transition: all .3s cubic-bezier(.2,.8,.2,1);
+        }
+
+        .start-btn:hover {
+            background: var(--red); transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(200, 75, 49, 0.25);
+        }
+
+        .start-btn:active { transform: translateY(0); }
+
+        .cover-footer {
+            margin-top: 24px; font-size: 11px; color: var(--muted-2); letter-spacing: 2px;
+        }
+
+        .member-select-btn {
+            padding: 8px 12px;
+            background: var(--paper-2);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            font-family: var(--font-gentle);
+            color: var(--ink-soft);
+            transition: all .2s;
+            min-width: 60px;
+        }
+        .member-select-btn:hover {
+            background: var(--accent-soft);
+            border-color: var(--gold-glow);
+        }
+        .member-select-btn.selected {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--paper);
+        }
+
+        .start-btn:disabled {
+            background: var(--muted-2);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* =========================================================
+           主应用
+           ========================================================= */
+        #app {
+            position: relative; z-index: 1;
+            height: 100vh; display: grid;
+            grid-template-rows: 62px 1fr 64px;
+            overflow: hidden;
+            opacity: 0; transition: opacity .5s ease;
+        }
+        #app.visible { opacity: 1; }
+
+        /* =========================================================
+           顶栏
+           ========================================================= */
+        .topbar {
+            display: grid; grid-template-columns: minmax(160px, 1fr) auto 42px;
+            align-items: center; gap: 12px; padding: 10px 16px;
+            background: linear-gradient(180deg, var(--paper), var(--paper-2));
+            border-bottom: 1px solid var(--border-strong);
+            z-index: 20; position: relative;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+
+        .topbar::after {
+            content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold-glow), transparent);
+            opacity: .5;
+        }
+
+        .brand {
+            display: flex; flex-direction: column; line-height: 1.2; min-width: 0;
+        }
+        .brand-title {
+            font-family: var(--font-brush); font-size: 20px; color: var(--ink);
+            letter-spacing: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .brand-sub {
+            font-family: var(--font-gentle); font-size: 10px; color: var(--muted);
+            letter-spacing: 2px; margin-top: 2px;
+        }
+
+        .top-stats { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+
+        .pill {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 6px 12px; border: 1px solid var(--border);
+            background: var(--paper); color: var(--ink-soft);
+            font-size: 12px; font-family: var(--font-gentle);
+            border-radius: 2px;
+            transition: all .2s;
+        }
+        .pill strong {
+            color: var(--red); font-weight: 600; font-size: 14px;
+            font-family: var(--font-serif);
+        }
+        .pill-day { border-color: var(--gold-glow); background: var(--accent-bg); }
+        .pill-day strong { color: var(--gold); }
+
+        .menu-btn {
+            width: 38px; height: 38px;
+            border: 1px solid var(--border);
+            background: var(--paper); color: var(--ink);
+            display: grid; place-items: center;
+            cursor: pointer; border-radius: 2px;
+            transition: all .2s;
+        }
+        .menu-btn:hover { background: var(--accent-soft); border-color: var(--gold-glow); }
+        .menu-btn svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 2; fill: none; }
+
+        /* =========================================================
+           主内容区
+           ========================================================= */
+        .main {
+            min-height: 0; display: grid;
+            grid-template-columns: minmax(0, 1fr) 320px;
+            overflow: hidden; position: relative;
+        }
+
+        #story {
+            min-width: 0; overflow-y: auto; overflow-x: hidden;
+            padding: 24px clamp(14px, 3vw, 40px);
+            scroll-behavior: smooth;
+        }
+
+        #story::-webkit-scrollbar { width: 6px; }
+        #story::-webkit-scrollbar-thumb { background: var(--muted-2); border-radius: 3px; }
+
+        .block {
+            max-width: 760px; margin: 0 auto 16px;
+            background: var(--paper); border: 1px solid var(--border);
+            padding: 18px 22px;
+            box-shadow: var(--shadow);
+            animation: blockIn .5s cubic-bezier(.2,.8,.2,1) both;
+            position: relative;
+        }
+
+        @keyframes blockIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .block::before {
+            content: ""; position: absolute; left: 0; top: 0; bottom: 0;
+            width: 3px; background: var(--red);
+        }
+
+        .block.user-block {
+            background: var(--accent-bg);
+            border-color: var(--gold-glow);
+        }
+        .block.user-block::before { background: var(--gold); }
+
+        .block.system-block {
+            text-align: center; background: transparent;
+            border: 1px dashed var(--border); box-shadow: none;
+            font-family: var(--font-gentle); color: var(--muted);
+            font-size: 12px; padding: 10px 16px;
+        }
+        .block.system-block::before { display: none; }
+
+        .block.narration { font-size: 15px; color: var(--ink); line-height: 2; }
+        .block.narration p { margin-bottom: 10px; }
+        .block.narration p:last-child { margin-bottom: 0; }
+
+        .block.dialogue { background: var(--paper-2); }
+        .block.dialogue .speaker {
+            font-family: var(--font-brush); color: var(--red);
+            font-size: 16px; margin-bottom: 8px; letter-spacing: 2px;
+        }
+        .block.dialogue .content { font-style: italic; color: var(--ink-soft); line-height: 2; }
+
+        .block.day-announce {
+            background: var(--ink); color: var(--paper);
+            text-align: center; padding: 22px;
+        }
+        .block.day-announce::before { display: none; }
+        .block.day-announce .day-label {
+            font-family: var(--font-brush); font-size: 22px; letter-spacing: 8px;
+            color: var(--gold-glow); margin-bottom: 8px;
+        }
+        .block.day-announce .day-sub { font-size: 12px; color: var(--muted-2); letter-spacing: 4px; font-family: var(--font-gentle); }
+
+        .story-response { margin-bottom: 0; }
+
+        .streaming-block {
+            background: var(--paper); border: 1px solid var(--border);
+            padding: 18px 22px; margin: 0 auto 16px; max-width: 760px;
+            font-size: 15px; line-height: 2;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+        .streaming-block::before {
+            content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--gold);
+        }
+
+        .streaming-text { white-space: pre-wrap; }
+
+        .typing-cursor {
+            display: inline-block; width: 2px; height: 1.3em;
+            background: var(--gold-glow); margin-left: 2px; vertical-align: -4px;
+            animation: cursorBlink 1s steps(2, end) infinite;
+        }
+        @keyframes cursorBlink { 50% { opacity: 0; } }
+
+        .options-list { max-width: 760px; margin: 0 auto 16px; display: flex; flex-direction: column; gap: 8px; }
+
+        .option-btn {
+            text-align: left; padding: 14px 16px 14px 28px;
+            min-height: 52px;
+            display: flex;
+            align-items: center;
+            background: var(--paper); color: var(--ink);
+            border: 1px solid var(--border); cursor: pointer;
+            font-size: 14px; font-family: var(--font-serif);
+            transition: all .2s cubic-bezier(.2,.8,.2,1);
+            line-height: 1.7;
+            position: relative;
+        }
+        .option-btn::before {
+            content: "◇"; position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+            color: var(--gold); font-size: 12px; transition: all .2s;
+        }
+        .option-btn:hover {
+            background: var(--accent-soft); border-color: var(--red); transform: translateX(4px);
+        }
+        .option-btn:hover::before { content: "◆"; color: var(--red); }
+        .option-btn:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+
+        .options-note {
+            text-align: center; color: var(--muted); font-size: 11px;
+            margin-top: 4px; font-family: var(--font-gentle); letter-spacing: 1px;
+        }
+
+        /* =========================================================
+           侧栏
+           ========================================================= */
+        #sidePanel {
+            border-left: 1px solid var(--border);
+            background: linear-gradient(180deg, var(--paper), var(--paper-2));
+            padding: 18px 14px; overflow-y: auto; position: relative;
+        }
+        #sidePanel::-webkit-scrollbar { width: 4px; }
+        #sidePanel::-webkit-scrollbar-thumb { background: var(--muted-2); }
+
+        .side-title {
+            font-family: var(--font-brush); color: var(--ink);
+            font-size: 15px; letter-spacing: 4px; margin-bottom: 10px;
+            padding-bottom: 8px; border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; gap: 8px;
+        }
+        .side-title::before { content: "◆"; color: var(--red); font-size: 10px; }
+        .side-title.muted { color: var(--muted); }
+
+        .stat-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 7px 0; font-size: 13px; color: var(--ink-soft);
+            border-bottom: 1px dashed var(--border); gap: 8px;
+        }
+        .stat-row:last-child { border-bottom: none; }
+        .stat-row strong { color: var(--ink); font-family: var(--font-gentle); font-size: 13px; }
+        .stat-row .bar {
+            flex: 1; height: 4px; background: var(--border);
+            position: relative; margin: 0 10px; min-width: 40px;
+        }
+        .stat-row .bar span {
+            position: absolute; left: 0; top: 0; height: 100%; background: var(--gold);
+            transition: width .4s cubic-bezier(.2,.8,.2,1);
+        }
+        .stat-row .bar.energy span { background: var(--jade); }
+        .stat-row .bar.favor span { background: var(--red); }
+
+        .member-list { display: grid; gap: 2px; margin-bottom: 18px; }
+        .member-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 6px 8px; font-size: 12px; color: var(--ink-soft);
+            border-left: 2px solid transparent; transition: all .15s;
+        }
+        .member-item:hover { background: var(--accent-soft); border-left-color: var(--red); }
+        .member-item .rank { font-family: var(--font-gentle); color: var(--gold); font-size: 11px; margin-right: 6px; }
+        .member-item .name { flex: 1; }
+        .member-item .favor { color: var(--red); font-family: var(--font-gentle); font-weight: 600; }
+
+        .mini-note {
+            font-family: var(--font-gentle); font-size: 11px; color: var(--muted);
+            line-height: 1.8; padding: 10px; background: var(--accent-soft);
+            border-left: 2px solid var(--gold); margin-top: 12px;
+        }
+
+        /* =========================================================
+           输入栏
+           ========================================================= */
+        .inputbar {
+            display: flex; gap: 10px; padding: 12px 16px;
+            border-top: 1px solid var(--border-strong);
+            background: linear-gradient(180deg, var(--paper-2), var(--paper));
+            align-items: center;
+        }
+        .inputbar::before {
+            content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--red), transparent); opacity: .4;
+        }
+
+        #input {
+            flex: 1; min-width: 0; height: 48px; padding: 0 14px;
+            border: 1px solid var(--border-strong); background: var(--paper);
+            color: var(--ink); font-size: 14px; outline: none;
+            transition: border-color .2s;
+        }
+        #input:focus { border-color: var(--red); }
+
+        .quick-btn {
+            height: 48px; padding: 0 14px;
+            display: flex;
+            align-items: center;
+            background: var(--paper); color: var(--ink);
+            border: 1px solid var(--border-strong); cursor: pointer;
+            font-family: var(--font-gentle); font-size: 13px;
+            transition: all .2s; white-space: nowrap;
+        }
+        .quick-btn:hover { background: var(--accent-soft); border-color: var(--red); color: var(--red); }
+        .quick-btn.map-btn { border-color: var(--gold-glow); color: var(--gold); }
+        .quick-btn.map-btn:hover { background: var(--accent-bg); color: var(--red); border-color: var(--red); }
+
+        #send {
+            width: 50px; height: 48px; flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--ink); color: var(--paper);
+            border: none; cursor: pointer;
+            font-family: var(--font-brush); font-size: 18px; letter-spacing: 0;
+            transition: all .25s;
+        }
+        #send:hover { background: var(--red); transform: translateY(-1px); }
+        #send:disabled { background: var(--muted-2); cursor: not-allowed; transform: none; }
+
+        /* =========================================================
+           菜单下拉
+           ========================================================= */
+        #menuDropdown {
+            position: fixed; top: 64px; right: 16px; z-index: 30;
+            min-width: 170px;
+            background: var(--paper); border: 1px solid var(--border-strong);
+            box-shadow: var(--shadow-lg);
+            opacity: 0; transform: translateY(-8px); pointer-events: none;
+            transition: all .18s cubic-bezier(.2,.8,.2,1);
+        }
+        #menuDropdown.active { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+        .menu-item {
+            padding: 12px 18px; font-family: var(--font-gentle);
+            font-size: 13px; color: var(--ink-soft); cursor: pointer;
+            border-bottom: 1px dashed var(--border);
+            display: flex; align-items: center; gap: 10px;
+            transition: all .15s;
+        }
+        .menu-item:last-child { border-bottom: none; }
+        .menu-item:hover { background: var(--accent-soft); color: var(--red); padding-left: 24px; }
+        .menu-item .dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+
+        /* =========================================================
+           弹层
+           ========================================================= */
+        .modal {
+            position: fixed; inset: 0; z-index: 80;
+            display: none; place-items: center; padding: 20px;
+            background: rgba(26, 26, 26, 0.55);
+            backdrop-filter: blur(4px);
+        }
+        .modal.active { display: grid; animation: modalFade .25s ease; }
+        @keyframes modalFade { from { opacity: 0; } to { opacity: 1; } }
+
+        .modal-card {
+            width: min(680px, 100%); max-height: 85vh; overflow: auto;
+            background: var(--paper); border: 1px solid var(--border-strong);
+            box-shadow: var(--shadow-lg); padding: 28px 32px;
+            position: relative;
+            animation: modalSlide .35s cubic-bezier(.2,.8,.2,1);
+        }
+        @keyframes modalSlide {
+            from { opacity: 0; transform: translateY(20px) scale(.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .modal-card::before {
+            content: ""; position: absolute; top: 8px; bottom: 8px; left: 8px; right: 8px;
+            border: 1px solid var(--border); pointer-events: none;
+        }
+
+        .modal h2 {
+            font-family: var(--font-brush); color: var(--ink);
+            font-size: 24px; letter-spacing: 6px; margin-bottom: 6px;
+            border-bottom: 2px solid var(--red); display: inline-block; padding-bottom: 4px;
+        }
+        .modal-sub {
+            color: var(--muted); font-size: 12px; margin-bottom: 22px;
+            font-family: var(--font-gentle); letter-spacing: 2px;
+        }
+
+        .field { margin: 14px 0; }
+        .field label {
+            display: block; color: var(--muted); font-size: 12px;
+            margin-bottom: 6px; font-family: var(--font-gentle); letter-spacing: 2px;
+        }
+        .field input, .field textarea, .field select {
+            width: 100%; padding: 10px 12px;
+            border: 1px solid var(--border-strong); background: var(--paper-2);
+            color: var(--ink); font-size: 13px; outline: none;
+            font-family: var(--font-serif);
+        }
+        .field textarea { min-height: 120px; resize: vertical; line-height: 1.8; }
+        .field input:focus, .field textarea:focus, .field select:focus { border-color: var(--red); }
+
+        .provider-row {
+            display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 4px;
+        }
+        .provider-chip {
+            padding: 6px 12px; border: 1px solid var(--border);
+            background: var(--paper-2); color: var(--ink-soft); cursor: pointer;
+            font-size: 12px; font-family: var(--font-gentle);
+            transition: all .2s;
+        }
+        .provider-chip:hover { border-color: var(--gold-glow); }
+        .provider-chip.active {
+            background: var(--ink); color: var(--paper); border-color: var(--ink);
+        }
+        .provider-note { font-size: 11px; color: var(--muted-2); margin-top: 4px; font-family: var(--font-gentle); }
+
+        .modal-actions {
+            display: flex; gap: 10px; justify-content: flex-end;
+            margin-top: 22px; flex-wrap: wrap;
+        }
+
+        .small-btn {
+            padding: 10px 20px; border: 1px solid var(--border-strong);
+            background: var(--paper); color: var(--ink); cursor: pointer;
+            font-family: var(--font-gentle); font-size: 13px; letter-spacing: 2px;
+            transition: all .2s;
+        }
+        .small-btn:hover { background: var(--accent-soft); border-color: var(--red); color: var(--red); }
+        .small-btn.primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+        .small-btn.primary:hover { background: var(--red); border-color: var(--red); color: var(--paper); }
+        .small-btn.danger:hover { background: var(--red-deep); color: var(--paper); border-color: var(--red-deep); }
+
+        /* =========================================================
+           主题选择
+           ========================================================= */
+        .theme-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 12px; margin-top: 8px;
+        }
+        .theme-choice {
+            padding: 16px 12px; cursor: pointer;
+            border: 1px solid var(--border); text-align: center;
+            transition: all .2s; font-family: var(--font-gentle);
+            font-size: 13px; letter-spacing: 2px; color: var(--ink);
+        }
+        .theme-swatch {
+            display: block; width: 100%; height: 40px;
+            margin-bottom: 10px; border: 1px solid var(--border);
+        }
+        .theme-choice:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+        .theme-choice.active { border-color: var(--red); box-shadow: 0 0 0 2px var(--accent-soft); }
+
+        /* =========================================================
+           地图
+           ========================================================= */
+        .map-list { display: grid; gap: 10px; margin-top: 8px; }
+        .location-card {
+            padding: 14px 16px; border: 1px solid var(--border);
+            background: var(--paper-2); cursor: pointer; transition: all .2s;
+            display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center;
+        }
+        .location-card:hover {
+            background: var(--accent-soft); border-color: var(--red);
+            transform: translateX(4px);
+        }
+        .location-icon {
+            font-family: var(--font-brush); font-size: 24px;
+            color: var(--gold); width: 44px; text-align: center;
+        }
+        .location-info .name {
+            font-family: var(--font-brush); font-size: 16px; color: var(--ink);
+            letter-spacing: 3px; margin-bottom: 2px;
+        }
+        .location-info .desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+        .location-arrow { color: var(--gold); font-family: var(--font-brush); font-size: 18px; }
+
+        /* =========================================================
+           FAQ/玩法说明
+           ========================================================= */
+        .faq-list { display: grid; gap: 12px; }
+        .faq-item {
+            padding: 14px 16px; border: 1px solid var(--border); background: var(--paper-2);
+        }
+        .faq-q {
+            font-family: var(--font-brush); color: var(--red);
+            font-size: 15px; letter-spacing: 1px; margin-bottom: 8px;
+        }
+        .faq-a { font-size: 13px; color: var(--ink-soft); line-height: 1.9; }
+
+        /* =========================================================
+           更新日志
+           ========================================================= */
+        .changelog-list { display: flex; flex-direction: column; gap: 18px; }
+        .changelog-item {
+            padding-bottom: 16px; border-bottom: 1px dashed var(--border);
+        }
+        .changelog-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .changelog-item .version {
+            font-family: var(--font-brush); color: var(--red); font-size: 14px;
+            letter-spacing: 2px; margin-bottom: 2px;
+        }
+        .changelog-item .date { font-size: 11px; color: var(--muted); font-family: var(--font-gentle); }
+        .changelog-item .log-body {
+            margin-top: 8px; font-size: 13px; color: var(--ink-soft); line-height: 1.9;
+        }
+        .changelog-item .log-body ul { margin-left: 18px; margin-top: 4px; }
+        .changelog-item .log-body li { margin-bottom: 2px; }
+
+        /* =========================================================
+           Toast
+           ========================================================= */
+        #toast {
+            position: fixed; left: 50%; bottom: 84px;
+            transform: translateX(-50%) translateY(10px); z-index: 100;
+            background: var(--ink); color: var(--paper);
+            padding: 10px 22px; font-family: var(--font-gentle); font-size: 13px;
+            letter-spacing: 2px; opacity: 0; pointer-events: none;
+            transition: all .25s ease;
+        }
+        #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+        /* =========================================================
+           响应式
+           ========================================================= */
+        @media (max-width: 860px) {
+            .main { grid-template-columns: 1fr; }
+            #sidePanel {
+                position: fixed; top: 62px; right: 0; bottom: 64px;
+                width: min(300px, calc(100vw - 24px));
+                z-index: 25; transform: translateX(100%);
+                transition: transform .25s cubic-bezier(.2,.8,.2,1);
+                box-shadow: -8px 0 32px rgba(0,0,0,0.12);
+                overflow-y: auto;
+            }
+            #sidePanel.active { transform: translateX(0); }
+            .topbar { grid-template-columns: minmax(90px, 1fr) auto 42px; padding: 8px 10px; gap: 8px; }
+            .brand-title { font-size: 16px; letter-spacing: 2px; }
+            .brand-sub { display: none; }
+            .top-stats { gap: 4px; }
+            .pill { padding: 5px 8px; font-size: 11px; }
+            .pill strong { font-size: 12px; }
+            #input { height: 48px; font-size: 14px; }
+            .quick-btn { height: 48px; padding: 0 12px; font-size: 13px; }
+            #send { width: 48px; height: 48px; font-size: 18px; }
+            .inputbar { padding: 10px 10px calc(10px + env(safe-area-inset-bottom)); gap: 6px; }
+            #story { padding: 16px 10px 20px; }
+            .block, .streaming-block { padding: 14px 16px; font-size: 14px; }
+            .modal-card { padding: 20px 18px; max-height: 90vh; }
+            .modal h2 { font-size: 20px; letter-spacing: 4px; }
+            #app { grid-template-rows: 54px 1fr 62px; }
+        }
+
+        @media (max-width: 480px) {
+            .quick-btn.hide-sm { display: none; }
+            .cover-title { font-size: clamp(48px, 14vw, 80px); }
+            .top-stats .pill.maybe-hide { display: none; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+        }
+
+        /* 生成中状态 */
+        body.is-generating .inputbar { opacity: .75; }
+        body.is-generating #input { pointer-events: none; }
+        .generating-indicator {
+            display: none; font-size: 11px; color: var(--gold);
+            font-family: var(--font-gentle); letter-spacing: 2px;
+        }
+        body.is-generating .generating-indicator { display: inline-block; }
+    </style>
+</head>
+<body>
+
+    <!-- ============ 封面 ============ -->
+    <div id="cover">
+        <div class="cover-inner">
+            <div class="cover-seal">御 制</div>
+            <h1 class="cover-title">十三太饱</h1>
+            <div class="cover-subtitle">—— 宫 中 无 正 事 · 兄 弟 争 帝 位 ——</div>
+            <div class="cover-divider"></div>
+            <p class="cover-desc">
+                大唐盛世，长安城内。<br>
+                十三位皇子，人人想当皇帝。<br>
+                宫中没有正经事，只有桂花糕的香气，<br>
+                和太监总管方时赫阴阳怪气的日常。<br>
+                <br>
+                你，将以十三位皇子其中一位的身份，<br>
+                在这荒唐的皇宫里，寻找你的归途。
+            </p>
+
+            <div class="theme-selector" id="themeSelector">
+                <div class="theme-dot active" data-theme="ink" style="background: linear-gradient(135deg, #F5E6D3, #B8935A, #C84B31);" title="水墨"></div>
+                <div class="theme-dot" data-theme="vermilion" style="background: linear-gradient(135deg, #F8E8D8, #C87941, #B83A2A);" title="朱砂"></div>
+                <div class="theme-dot" data-theme="gold" style="background: linear-gradient(135deg, #FAF3DC, #D4A857, #C8A041);" title="金殿"></div>
+                <div class="theme-dot" data-theme="jade" style="background: linear-gradient(135deg, #E8F0E4, #8BBA8B, #5C8A6B);" title="翠竹"></div>
+                <div class="theme-dot" data-theme="paper" style="background: linear-gradient(135deg, #FDF8F0, #B8956B, #8B7355);" title="宣纸"></div>
+                <div class="theme-dot" data-theme="midnight" style="background: linear-gradient(135deg, #2A2525, #D4A857, #D85A3A);" title="宫夜"></div>
+            </div>
+
+            <div class="cover-options">
+                <div class="option-row">
+                    <span>选择化身</span>
+                </div>
+                <div class="member-select-grid" id="memberSelectGrid" style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 16px;">
+                </div>
+                <div class="option-row">
+                    <span>恋爱剧情</span>
+                    <label class="switch">
+                        <input type="checkbox" id="romanceToggle">
+                        <span class="slider"></span>
+                    </label>
+                    <span style="color: var(--muted); font-size: 12px;">（开启后皇子可攻略）</span>
+                </div>
+                <div class="option-row">
+                    <span>打字动画</span>
+                    <label class="switch">
+                        <input type="checkbox" id="typingToggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                    <span style="color: var(--muted); font-size: 12px;">（关闭则立即显示）</span>
+                </div>
+            </div>
+
+            <button class="start-btn" id="startBtn" disabled>请先选择化身</button>
+
+            <div class="cover-footer">更新时间 · 2026年6月 · 长安城</div>
+        </div>
+    </div>
+
+    <!-- ============ 主应用 ============ -->
+    <div id="app">
+
+        <!-- 顶栏 -->
+        <div class="topbar">
+            <div class="brand">
+                <div class="brand-title">十三太饱</div>
+                <div class="brand-sub">长安城 · 宫中无正事</div>
+            </div>
+            <div class="top-stats">
+                <span class="pill pill-day">第 <strong id="dayNum">一</strong> 日</span>
+                <span class="pill">体力 <strong id="energyNum">100</strong></span>
+                <span class="pill maybe-hide">圣眷 <strong id="favorNum">50</strong></span>
+            </div>
+            <button class="menu-btn" id="menuBtn" aria-label="菜单">
+                <svg viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+            </button>
+        </div>
+
+        <!-- 主内容 -->
+        <div class="main">
+            <div id="story"></div>
+            <aside id="sidePanel">
+                <div class="side-title">朝 局</div>
+                <div class="stat-row"><span>皇上心情</span><div class="bar favor"><span style="width: 50%" id="favorBar"></span></div><strong id="sideFavor">50</strong></div>
+                <div class="stat-row"><span>今日体力</span><div class="bar energy"><span style="width: 100%" id="energyBar"></span></div><strong id="sideEnergy">100</strong></div>
+                <div class="stat-row"><span>在位皇子</span><strong>13 位</strong></div>
+
+                <div class="side-title" style="margin-top: 22px;">皇 子 名 录</div>
+                <div class="member-list" id="memberList"></div>
+
+                <div class="side-title muted" style="margin-top: 22px;">近 日 传 闻</div>
+                <div class="mini-note" id="dailyNote">
+                    今日无事发生。<br>
+                    御膳房的桂花糕香气，飘到了尚书房。
+                </div>
+
+                <div class="side-title muted" style="margin-top: 22px;">秘 闻</div>
+                <div class="mini-note">
+                    · 听说太子最近在读《贞观政要》——但每次都睡着了。<br>
+                    · 九皇子金珉奎昨日又把御膳房的锅烧糊了。<br>
+                    · 太监总管方时赫最近心情不太好——也许是因为崔尚宫。
+                </div>
+            </aside>
+        </div>
+
+        <!-- 输入栏 -->
+        <div class="inputbar">
+            <button class="quick-btn map-btn" id="mapBtn" title="查看地图">长安图</button>
+            <button class="quick-btn hide-sm" id="restBtn" title="休息进入下一日">歇息</button>
+            <input type="text" id="input" placeholder="想说什么？（或点击上方选项）" autocomplete="off">
+            <span class="generating-indicator" id="genIndicator">研 墨 中…</span>
+            <button class="quick-btn hide-sm" id="skipBtn" title="跳过动画">跳过</button>
+            <button class="quick-btn hide-sm" onclick="openReviewModal()" title="回顾节点">回 顾</button>
+            <button id="send" title="发送">→</button>
+        </div>
+    </div>
+
+    <!-- ============ 菜单下拉 ============ -->
+    <div id="menuDropdown">
+        <div class="menu-item" data-action="map"><span class="dot"></span>长安地图</div>
+        <div class="menu-item" data-action="theme"><span class="dot"></span>更换主题</div>
+        <div class="menu-item" data-action="review"><span class="dot"></span>回顾节点</div>
+        <div class="menu-item" data-action="faq"><span class="dot"></span>玩法说明</div>
+        <div class="menu-item" data-action="changelog"><span class="dot"></span>更新日志</div>
+        <div class="menu-item" data-action="logic"><span class="dot"></span>逻辑自检</div>
+        <div class="menu-item" data-action="settings"><span class="dot"></span>接入 Key</div>
+        <div class="menu-item" data-action="reset"><span class="dot"></span>重启剧本</div>
+    </div>
+
+    <!-- ============ 设置弹层（API） ============ -->
+    <div class="modal" id="settingsModal">
+        <div class="modal-card">
+            <h2>接 入 设 置</h2>
+            <div class="modal-sub">选择你的 AI 提供商，填入 Key 即可开启剧情</div>
+
+            <div class="field">
+                <label>提供商</label>
+                <div class="provider-row" id="providerRow">
+                    <button class="provider-chip active" data-provider="deepseek">DeepSeek</button>
+                    <button class="provider-chip" data-provider="groq">Groq (免费额度)</button>
+                    <button class="provider-chip" data-provider="gemini">Google Gemini (免费)</button>
+                    <button class="provider-chip" data-provider="silicon">硅基流动</button>
+                    <button class="provider-chip" data-provider="custom">自定义</button>
+                </div>
+                <div class="provider-note" id="providerNote">推荐 DeepSeek-Chat 模型 · 中文表现最佳</div>
+            </div>
+
+            <div class="field" id="customUrlField" style="display:none;">
+                <label>自定义接口地址 (base URL)</label>
+                <input type="text" id="customUrl" placeholder="https://api.example.com/v1/chat/completions">
+            </div>
+
+            <div class="field">
+                <label>API Key</label>
+                <input type="password" id="apiKeyInput" placeholder="sk-... （填入后将自动保存）">
+            </div>
+
+            <div class="field">
+                <label>模型名称（可留空使用默认）</label>
+                <input type="text" id="modelInput" placeholder="如 deepseek-chat / llama-3.3-70b-versatile / gemini-2.0-flash">
+            </div>
+
+            <div class="field">
+                <label>系统提示词（影响整体文风）</label>
+                <textarea id="systemPromptInput" placeholder="留空使用游戏自带的提示词"></textarea>
+            </div>
+
+            <div class="modal-actions">
+                <button class="small-btn" onclick="closeModal('settingsModal')">取消</button>
+                <button class="small-btn primary" id="saveSettingsBtn">保 存</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ 主题弹层 ============ -->
+    <div class="modal" id="themeModal">
+        <div class="modal-card">
+            <h2>主 题 风 貌</h2>
+            <div class="modal-sub">每一种颜色，都是一座不同的长安城</div>
+            <div class="theme-grid" id="themeGrid">
+                <div class="theme-choice" data-theme="ink"><span class="theme-swatch" style="background: linear-gradient(135deg, #F5E6D3 0%, #B8935A 50%, #C84B31 100%);"></span>水墨</div>
+                <div class="theme-choice" data-theme="vermilion"><span class="theme-swatch" style="background: linear-gradient(135deg, #F8E8D8 0%, #C87941 50%, #B83A2A 100%);"></span>朱砂</div>
+                <div class="theme-choice" data-theme="gold"><span class="theme-swatch" style="background: linear-gradient(135deg, #FAF3DC 0%, #D4A857 50%, #C8A041 100%);"></span>金殿</div>
+                <div class="theme-choice" data-theme="jade"><span class="theme-swatch" style="background: linear-gradient(135deg, #E8F0E4 0%, #8BBA8B 50%, #5C8A6B 100%);"></span>翠竹</div>
+                <div class="theme-choice" data-theme="paper"><span class="theme-swatch" style="background: linear-gradient(135deg, #FDF8F0 0%, #B8956B 50%, #8B7355 100%);"></span>宣纸</div>
+                <div class="theme-choice" data-theme="midnight"><span class="theme-swatch" style="background: linear-gradient(135deg, #2A2525 0%, #D4A857 50%, #D85A3A 100%);"></span>宫夜</div>
+            </div>
+            <div class="modal-actions">
+                <button class="small-btn primary" onclick="closeModal('themeModal')">定</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ 地图弹层 ============ -->
+    <div class="modal" id="mapModal">
+        <div class="modal-card">
+            <h2>长 安 图</h2>
+            <div class="modal-sub">点击一处前往，或在输入框中自由描述你想去的地方</div>
+            <div class="map-list" id="mapList"></div>
+            <div class="modal-actions">
+                <button class="small-btn primary" onclick="closeModal('mapModal')">退 下</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ FAQ 弹层 ============ -->
+    <div class="modal" id="faqModal">
+        <div class="modal-card">
+            <h2>玩 法 说 明</h2>
+            <div class="modal-sub">如果你在宫中迷了路，看看这里</div>
+            <div class="faq-list" id="faqList"></div>
+            <div class="modal-actions">
+                <button class="small-btn primary" onclick="closeModal('faqModal')">知 道 了</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ 更新日志 ============ -->
+    <div class="modal" id="changelogModal">
+        <div class="modal-card">
+            <h2>更 新 日 志</h2>
+            <div class="modal-sub">长安城的修缮记录</div>
+            <div class="changelog-list" id="changelogList">
+                <div class="changelog-item">
+                    <div class="version">v2.0 · 智能滚动与回顾</div>
+                    <div class="date">2026年6月14日 · 长安</div>
+                    <div class="log-body">
+                        · AI生成文本后自动滚动到新内容起始处（而非最底部）<br>
+                        · 用户手动向上滑动时暂停自动跟随，避免打断阅读节奏<br>
+                        · 新增「回顾节点」功能：每条消息独立编号，可点击跳转并高亮 2 秒<br>
+                        · 菜单 / 输入栏均可见「回顾」入口
+                    </div>
+                </div>
+                <div class="changelog-item">
+                    <div class="version">v1.5 · 低饱和度与留白</div>
+                    <div class="date">2026年6月14日 · 夜</div>
+                    <div class="log-body">
+                        · 低饱和度配色与留白优化，阅读更舒适<br>
+                        · 统一字体层级，标题/正文/对话清晰区分<br>
+                        · 移动端触摸优化，选项与按钮更大更易点<br>
+                        · 新增逻辑自检，可检查状态一致性
+                    </div>
+                </div>
+                <div class="changelog-item">
+                    <div class="version">v1.0.0 · 首发</div>
+                    <div class="date">2026年6月14日 · 长安</div>
+                    <div class="log-body">
+                        · 长安城首次开启，十三位皇子入宫<br>
+                        · 加入 5 套主题配色（水墨 / 朱砂 / 金殿 / 翠竹 / 宫夜 / 宣纸）<br>
+                        · 加入地图系统、体力系统、圣眷值<br>
+                        · 加入恋爱剧情开关<br>
+                        · 加入打字动画开关与跳过按钮<br>
+                        · 支持 DeepSeek / Groq / Gemini / 自定义多 API<br>
+                        · 移动端响应式适配
+                    </div>
+                </div>
+                <div class="changelog-item">
+                    <div class="version">v1.0.1 · 优化</div>
+                    <div class="date">2026年6月14日 · 夜</div>
+                    <div class="log-body">
+                        · 新增 FAQ 玩法说明<br>
+                        · 预设了每个角色的好感度起始值<br>
+                        · 修复了御膳房失火的偶发 bug（开玩笑的）
+                    </div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="small-btn primary" onclick="closeModal('changelogModal')">退 下</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ 回顾节点 ============ -->
+    <div class="modal" id="reviewModal">
+        <div class="modal-card">
+            <h2>回 顾 节 点</h2>
+            <div class="modal-sub">点击任意条目跳转并高亮 2 秒</div>
+            <div class="changelog-list" id="reviewList" style="max-height: 55vh; overflow-y: auto;">
+                <div class="changelog-item">
+                    <div class="log-body" style="text-align: center; color: var(--ink-soft); padding: 40px 0;">暂无记录。请先开始你的故事~</div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="small-btn primary" onclick="closeModal('reviewModal')">退 下</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ 逻辑自检 ============ -->
+    <div class="modal" id="logicModal">
+        <div class="modal-card">
+            <h2>逻 辑 自 检</h2>
+            <div class="modal-sub">检查游戏状态与配置信息</div>
+            <div id="logicContent" style="font-size: 13px; line-height: 1.8; color: var(--ink-soft);"></div>
+            <div class="modal-actions">
+                <button class="small-btn primary" onclick="runLogicCheck()">重新检查</button>
+                <button class="small-btn" onclick="closeModal('logicModal')">退 下</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ Toast ============ -->
+    <div id="toast">提示</div>
+
+    <script>
+        /* =========================================================
+         * 游戏配置
+         * ========================================================= */
+        const CONFIG = {
+            name: "十三太饱",
+            members: [
+                { rank: "太子", name: "崔胜澈", title: "长子 · 稳重可靠", favorStart: 55, palace: "东宫" },
+                { rank: "二王子", name: "尹净汉", title: "净王 · 聪慧狡黠", favorStart: 60, palace: "净王府" },
+                { rank: "三王子", name: "洪知秀", title: "知王 · 温文尔雅", favorStart: 58, palace: "知王府" },
+                { rank: "四王子", name: "文俊辉", title: "辉王 · 天马行空", favorStart: 45, palace: "辉王府" },
+                { rank: "五王子", name: "权顺荣", title: "荣王 · 精力旺盛", favorStart: 52, palace: "荣王府" },
+                { rank: "六王子", name: "全圆佑", title: "圆王 · 外冷内热", favorStart: 48, palace: "圆王府" },
+                { rank: "七王子", name: "李知勋", title: "勋王 · 才华横溢", favorStart: 62, palace: "勋王府" },
+                { rank: "八王子", name: "徐明浩", title: "明王 · 飘逸出尘", favorStart: 50, palace: "明王府" },
+                { rank: "九王子", name: "金珉奎", title: "珉王 · 阳光万能", favorStart: 65, palace: "珉王府" },
+                { rank: "十王子", name: "李硕珉", title: "硕王 · 温柔治愈", favorStart: 58, palace: "硕王府" },
+                { rank: "十一王子", name: "夫胜宽", title: "胜王 · 能言善辩", favorStart: 50, palace: "胜王府" },
+                { rank: "十二王子", name: "崔韩率", title: "韩王 · 四次元", favorStart: 45, palace: "韩王府" },
+                { rank: "十三王子", name: "李灿", title: "灿王 · 努力上进", favorStart: 55, palace: "灿王府" }
+            ],
+            npcs: [
+                { name: "方时赫", title: "太监总管", desc: "宫里最阴阳怪气的人，却掌管着一切杂务" },
+                { name: "胖婶", title: "御膳房掌勺", desc: "唯一敢骂皇子的人，她的桂花糕远近闻名" },
+                { name: "柳先生", title: "太傅", desc: "皇子们的老师，全皇宫最博学的人" },
+                { name: "崔尚宫", title: "尚宫", desc: "掌管宫女与礼节的女官，不苟言笑" }
+            ],
+            locations: [
+                { icon: "御", name: "御书房", desc: "皇帝与太子处理政事之处，肃静庄重" },
+                { icon: "书", name: "尚书房", desc: "皇子们每日读书习字，柳先生在此教书" },
+                { icon: "膳", name: "御膳房", desc: "胖婶的地盘，永远飘着桂花糕的香气" },
+                { icon: "寝", name: "东宫", desc: "太子居所，宽敞肃穆" },
+                { icon: "庭", name: "御花园", desc: "假山流水，偶遇皇子最频繁的地方" },
+                { icon: "莲", name: "太液池", desc: "夏夜清凉，荷花与星光相伴" },
+                { icon: "泉", name: "华清池", desc: "温泉汤池，是放松的好去处" },
+                { icon: "庙", name: "太庙", desc: "祭祀先祖之地，只有在特殊事件时开放" },
+                { icon: "门", name: "朱雀门", desc: "进出皇宫的正门，有时会有市井消息" },
+                { icon: "塔", name: "大雁塔", desc: "宫外著名的大雁塔，可远眺长安" }
+            ],
+            faq: [
+                { q: "这个游戏怎么玩？", a: "你扮演第十四位皇子，在皇宫中自由行动。通过输入文字（或点击选项）与场景、人物互动。每一日你有有限的体力，体力耗尽后便需要歇息进入下一日。" },
+                { q: "圣眷值有什么用？", a: "圣眷代表皇上对你的印象。它会在与重要人物互动、参与事件后变化，影响后续剧情走向。" },
+                { q: "皇子好感度是？", a: "十三位皇子各有独立的好感度。开启『恋爱剧情』后，他们可以被攻略——你会通过交谈、赠予、一起行动等方式改变他们对你的态度。" },
+                { q: "我可以做什么？", a: "几乎任何事——去御膳房蹭饭、去尚书房听课、去御花园散步、去找某位皇子闲聊、甚至偷懒睡一天。只要在输入框里描述你的意图，AI 会为你编写出对应的剧情。" },
+                { q: "需要接入 Key 才能玩吗？", a: "是的。点击右上角菜单 → 『接入 Key』，将你自己的 DeepSeek（或 Groq/Gemini）Key 填入后保存。Key 只保存在你的浏览器本地。" },
+                { q: "如何跳过动画？", a: "点击输入栏的『跳过』按钮，或在封面关闭『打字动画』。正在播放时按也可以跳过。" }
+            ]
+        };
+
+        /* =========================================================
+         * 状态
+         * ========================================================= */
+        let state = {
+            day: 1,
+            energy: 100,
+            favor: 50,
+            theme: localStorage.getItem('ssb_theme') || 'ink',
+            romance: localStorage.getItem('ssb_romance') === '1',
+            typingEnabled: localStorage.getItem('ssb_typing') !== '0',
+            members: {},
+            avatar: null, // 玩家选择的化身皇子名称
+            chatHistory: [],
+            lastLocation: '入宫',
+            isGenerating: false,
+            apiProvider: localStorage.getItem('ssb_provider') || 'deepseek',
+            apiKey: localStorage.getItem('ssb_apiKey') || '',
+            apiModel: localStorage.getItem('ssb_apiModel') || '',
+            customUrl: localStorage.getItem('ssb_customUrl') || '',
+            customPrompt: localStorage.getItem('ssb_customPrompt') || ''
+        };
+
+        // 初始化各皇子好感度（排除化身）
+        CONFIG.members.forEach(m => {
+            // 化身皇子不初始化好感度
+            if (state.avatar && m.name === state.avatar) return;
+            const saved = localStorage.getItem('ssb_favor_' + m.name);
+            state.members[m.name] = saved ? parseInt(saved) : m.favorStart;
+        });
+
+        const DAY_CHARS = ['一','二','三','四','五','六','七','八','九','十','十一','十二','十三','十四','十五','十六','十七','十八','十九','二十'];
+
+        /* =========================================================
+         * 工具函数
+         * ========================================================= */
+        function $(id) { return document.getElementById(id); }
+        
+        function runLogicCheck() {
+            const content = $('logicContent');
+            let html = '';
+            
+            html += '<div style="padding: 12px; border-bottom: 1px solid var(--border); margin-bottom: 14px;">';
+            html += `<strong style="color: var(--gold); font-family: var(--font-brush); font-size: 15px; letter-spacing: 2px;">游戏状态</strong>`;
+            html += `<div style="margin-top: 8px;">`;
+            html += `<p>当前日期: 第 ${state.day} 日</p>`;
+            html += `<p>化身皇子: ${state.avatar || '未选择'}</p>`;
+            html += `<p>恋爱剧情: ${state.romance ? '开启' : '关闭'}</p>`;
+            html += `<p>打字动画: ${state.typingEnabled ? '开启' : '关闭'}</p>`;
+            html += `</div>`;
+            html += '</div>';
+            
+            html += '<div style="padding: 12px; border-bottom: 1px solid var(--border); margin-bottom: 14px;">';
+            html += `<strong style="color: var(--gold); font-family: var(--font-brush); font-size: 15px; letter-spacing: 2px;">数值检查</strong>`;
+            html += `<div style="margin-top: 8px;">`;
+            const energyValid = state.energy >= 0 && state.energy <= 100;
+            const favorValid = state.favor >= 0 && state.favor <= 100;
+            html += `<p>体力: ${state.energy}/100 <span style="color: ${energyValid ? '#5C8A6B' : 'var(--red)'};">${energyValid ? '[正常]' : '[异常]'}</span></p>`;
+            html += `<p>圣眷: ${state.favor}/100 <span style="color: ${favorValid ? '#5C8A6B' : 'var(--red)'};">${favorValid ? '[正常]' : '[异常]'}</span></p>`;
+            html += `</div>`;
+            html += '</div>';
+            
+            html += '<div style="padding: 12px; border-bottom: 1px solid var(--border); margin-bottom: 14px;">';
+            html += `<strong style="color: var(--gold); font-family: var(--font-brush); font-size: 15px; letter-spacing: 2px;">皇子好感度</strong>`;
+            html += `<div style="margin-top: 8px; max-height: 120px; overflow-y: auto;">`;
+            CONFIG.members.forEach(m => {
+                if (state.avatar && m.name === state.avatar) return;
+                const val = state.members[m.name];
+                const isValid = val >= 0 && val <= 100;
+                html += `<p>${m.rank}${m.name}: ${val || 0} <span style="color: ${isValid ? '#5C8A6B' : 'var(--red)'};">${isValid ? '' : '[异常]'}</span></p>`;
+            });
+            html += `</div>`;
+            html += '</div>';
+            
+            html += '<div style="padding: 12px; border-bottom: 1px solid var(--border); margin-bottom: 14px;">';
+            html += `<strong style="color: var(--gold); font-family: var(--font-brush); font-size: 15px; letter-spacing: 2px;">API 配置</strong>`;
+            html += `<div style="margin-top: 8px;">`;
+            html += `<p>提供商: ${state.apiProvider}</p>`;
+            html += `<p>API Key: ${state.apiKey ? '已配置' : '未配置'}</p>`;
+            html += `<p>模型: ${state.apiModel || '默认'}</p>`;
+            html += `</div>`;
+            html += '</div>';
+            
+            html += '<div style="padding: 12px;">';
+            html += `<strong style="color: var(--gold); font-family: var(--font-brush); font-size: 15px; letter-spacing: 2px;">存储检查</strong>`;
+            html += `<div style="margin-top: 8px;">`;
+            const keys = Object.keys(localStorage).filter(k => k.startsWith('ssb_'));
+            html += `<p>本地存储键数量: ${keys.length}</p>`;
+            html += `<p>聊天历史长度: ${state.chatHistory.length}</p>`;
+            html += `</div>`;
+            html += '</div>';
+            
+            content.innerHTML = html;
+        }
+
+        function showToast(msg) {
+            const t = $('toast');
+            t.textContent = msg;
+            t.classList.add('show');
+            clearTimeout(showToast._t);
+            showToast._t = setTimeout(() => t.classList.remove('show'), 2200);
+        }
+
+        function numberRoll(el, target, suffix = '') {
+            const start = parseInt(el.textContent) || 0;
+            const dur = 600, startT = performance.now();
+            function step(t) {
+                const p = Math.min((t - startT) / dur, 1);
+                const eased = 1 - Math.pow(1 - p, 3);
+                const v = Math.round(start + (target - start) * eased);
+                el.textContent = v + suffix;
+                if (p < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+        }
+
+        function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
+
+        function applyTheme(theme) {
+            state.theme = theme;
+            document.body.setAttribute('data-theme', theme);
+            localStorage.setItem('ssb_theme', theme);
+            // 更新所有主题选择器的激活态
+            document.querySelectorAll('.theme-dot, .theme-choice').forEach(el => {
+                if (el.dataset.theme === theme) el.classList.add('active');
+                else el.classList.remove('active');
+            });
+        }
+
+        function openModal(id) { $(id).classList.add('active'); }
+        function closeModal(id) { $(id).classList.remove('active'); }
+        window.closeModal = closeModal;
+
+        function openReviewModal() {
+            const list = $('reviewList');
+            if (!storyHistory || storyHistory.length === 0) {
+                list.innerHTML = '<div class="changelog-item"><div class="log-body" style="text-align: center; color: var(--ink-soft); padding: 40px 0;">暂无记录。请先开始你的故事~</div></div>';
+            } else {
+                const typeLabel = { assistant: '剧情', user: '行动', system: '系统', narration: '旁白' };
+                let html = '';
+                for (let i = storyHistory.length - 1; i >= 0; i--) {
+                    const item = storyHistory[i];
+                    html += `
+                        <div class="changelog-item" onclick="jumpToMessage('${item.id}')" style="cursor:pointer;">
+                            <div class="version"><span style="color:var(--gold);">◆ ${typeLabel[item.type] || '消息'}</span> · ${item.time}</div>
+                            <div class="log-body">${item.text}</div>
+                        </div>
+                    `;
+                }
+                list.innerHTML = html;
+            }
+            openModal('reviewModal');
+        }
+        window.openReviewModal = openReviewModal;
+
+        function jumpToMessage(msgId) {
+            highlightMessage(msgId);
+            closeModal('reviewModal');
+        }
+        window.jumpToMessage = jumpToMessage;
+
+        /* =========================================================
+         * UI 初始化
+         * ========================================================= */
+        function renderMemberList() {
+            const list = $('memberList');
+            list.innerHTML = '';
+            CONFIG.members.forEach(m => {
+                // 跳过化身角色
+                if (state.avatar && m.name === state.avatar) return;
+                const row = document.createElement('div');
+                row.className = 'member-item';
+                row.innerHTML = `<span><span class="rank">${m.rank}</span><span class="name">${m.name}</span></span><span class="favor">${state.members[m.name]}</span>`;
+                row.title = m.title + ' · ' + m.palace;
+                row.addEventListener('click', () => {
+                    $("input").value = `去找${m.rank}${m.name}闲聊`;
+                    if (window.innerWidth < 860) $('sidePanel').classList.remove('active');
+                });
+                list.appendChild(row);
+            });
+            // 更新皇子数量显示
+            const princeCount = document.querySelector('.stat-row:last-child strong');
+            if (princeCount) {
+                const count = CONFIG.members.length - (state.avatar ? 1 : 0);
+                princeCount.textContent = count + ' 位';
+            }
+        }
+
+        function renderMapList() {
+            const list = $('mapList');
+            list.innerHTML = '';
+            CONFIG.locations.forEach(loc => {
+                const card = document.createElement('div');
+                card.className = 'location-card';
+                card.innerHTML = `<span class="location-icon">${loc.icon}</span><span class="location-info"><span class="name">${loc.name}</span><span class="desc">${loc.desc}</span></span><span class="location-arrow">→</span>`;
+                card.addEventListener('click', () => {
+                    closeModal('mapModal');
+                    $("input").value = `去${loc.name}看看`;
+                    handleSend();
+                });
+                list.appendChild(card);
+            });
+        }
+
+        function renderFAQ() {
+            const list = $('faqList');
+            list.innerHTML = '';
+            CONFIG.faq.forEach(f => {
+                const item = document.createElement('div');
+                item.className = 'faq-item';
+                item.innerHTML = `<div class="faq-q">${f.q}</div><div class="faq-a">${f.a}</div>`;
+                list.appendChild(item);
+            });
+        }
+
+        function updateStatsUI() {
+            // 顶部
+            const dayIdx = clamp(state.day - 1, 0, DAY_CHARS.length - 1);
+            $('dayNum').textContent = DAY_CHARS[dayIdx] || String(state.day);
+            numberRoll($('energyNum'), state.energy);
+            numberRoll($('favorNum'), state.favor);
+            // 侧栏
+            numberRoll($('sideEnergy'), state.energy);
+            numberRoll($('sideFavor'), state.favor);
+            $('energyBar').style.width = state.energy + '%';
+            $('favorBar').style.width = state.favor + '%';
+            // 成员列表的好感度数字
+            document.querySelectorAll('.member-item .favor').forEach(el => {
+                // 已在 renderMemberList 中直接填充数字，此处简单同步
+            });
+            // 重新渲染以更新数字
+            renderMemberList();
+        }
+
+        function persistAll() {
+            localStorage.setItem('ssb_day', state.day);
+            localStorage.setItem('ssb_energy', state.energy);
+            localStorage.setItem('ssb_favor', state.favor);
+            CONFIG.members.forEach(m => {
+                localStorage.setItem('ssb_favor_' + m.name, state.members[m.name]);
+            });
+        }
+
+        /* =========================================================
+         * 智能滚动系统
+         * ========================================================= */
+        let isUserScrollingUp = false;
+        let _lastScrollTop = 0;
+        let _programmaticScrolling = false;
+        let _msgIdSeq = 0;
+        const storyHistory = [];
+
+        function bindScrollDetector() {
+            const s = $('story');
+            if (!s) return;
+            s.addEventListener('scroll', () => {
+                if (_programmaticScrolling) return;
+                const st = s.scrollTop;
+                const distFromBottom = s.scrollHeight - (st + s.clientHeight);
+                // 用户向上滚动 / 或滚离底部超过 150px → 暂停自动跟随
+                if (st < _lastScrollTop - 2 || distFromBottom > 150) {
+                    isUserScrollingUp = true;
+                } else if (distFromBottom <= 2) {
+                    // 用户已滚回底部，恢复自动跟随
+                    isUserScrollingUp = false;
+                }
+                _lastScrollTop = st;
+            });
+        }
+
+        function highlightMessage(msgId) {
+            const el = document.getElementById(msgId);
+            if (!el) return;
+            const origBg = el.style.background;
+            const origBorder = el.style.borderLeftColor;
+            el.style.transition = 'background 0.4s, box-shadow 0.4s';
+            el.style.background = 'rgba(200, 75, 49, 0.18)';
+            el.style.boxShadow = '0 0 0 1px var(--red)';
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            setTimeout(() => {
+                el.style.background = 'rgba(200, 75, 49, 0.08)';
+            }, 300);
+            setTimeout(() => {
+                el.style.background = origBg || '';
+                el.style.boxShadow = 'none';
+            }, 2000);
+        }
+
+        /* =========================================================
+         * 内容渲染
+         * ========================================================= */
+        function appendSystem(msg) {
+            const story = $('story');
+            const startPos = story.scrollHeight;
+            const div = document.createElement('div');
+            div.className = 'block system-block';
+            div.id = 'msg-' + Date.now() + '-' + (++_msgIdSeq);
+            div.textContent = msg;
+            story.appendChild(div);
+            storyHistory.push({
+                id: div.id, type: 'system',
+                text: msg.length > 80 ? msg.slice(0, 80) + '…' : msg,
+                time: new Date().toLocaleTimeString('zh-CN', { hour12: false })
+            });
+            scrollStory(Math.max(0, startPos - 30));
+            isUserScrollingUp = false;
+        }
+
+        function appendNarration(html) {
+            const story = $('story');
+            const startPos = story.scrollHeight;
+            const div = document.createElement('div');
+            div.className = 'block narration';
+            div.id = 'msg-' + Date.now() + '-' + (++_msgIdSeq);
+            div.innerHTML = html;
+            story.appendChild(div);
+            storyHistory.push({
+                id: div.id, type: 'narration',
+                text: html.replace(/<[^>]*>/g,'').replace(/\s+/g,' ').slice(0, 80),
+                time: new Date().toLocaleTimeString('zh-CN', { hour12: false })
+            });
+            scrollStory(Math.max(0, startPos - 30));
+            isUserScrollingUp = false;
+        }
+
+        function appendUser(text) {
+            const story = $('story');
+            const startPos = story.scrollHeight;
+            const div = document.createElement('div');
+            div.className = 'block user-block';
+            div.id = 'msg-' + Date.now() + '-' + (++_msgIdSeq);
+            div.innerHTML = '<span style="color:var(--gold);font-family:var(--font-brush);letter-spacing:2px;">我 </span>' + escapeHTML(text);
+            story.appendChild(div);
+            storyHistory.push({
+                id: div.id, type: 'user',
+                text: text.length > 80 ? text.slice(0, 80) + '…' : text,
+                time: new Date().toLocaleTimeString('zh-CN', { hour12: false })
+            });
+            scrollStory(Math.max(0, startPos - 30));
+            isUserScrollingUp = false;
+        }
+
+        function appendAssistant(text) {
+            const story = $('story');
+            const startPos = story.scrollHeight;
+            const div = document.createElement('div');
+            div.className = 'block narration';
+            div.id = 'msg-' + Date.now() + '-' + (++_msgIdSeq);
+            // 将对话（“某人：…”）以斜体显示
+            const formatted = text
+                .replace(/\n/g, '<br>')
+                .replace(/([^<\s][^：<>]{0,12}[^<])[：:]/g, '<span style="color:var(--red);font-family:var(--font-brush);">$1：</span><em style="color:var(--ink-soft);">')
+                .replace(/。<br>|！<br>|？<br>|…<br>/g, match => {
+                    // 每段对话在句号/感叹号后闭合em
+                    const idx = match.indexOf('<br>');
+                    return match.slice(0, idx) ? (match.slice(0, idx) + '</em>' + '<br>') : match;
+                });
+            // 如果还有未关闭的em
+            div.innerHTML = formatted + (formatted.indexOf('<em>') !== -1 && formatted.lastIndexOf('</em>') < formatted.indexOf('<em>') ? '</em>' : '');
+            story.appendChild(div);
+            storyHistory.push({
+                id: div.id, type: 'assistant',
+                text: text.replace(/\s+/g, ' ').slice(0, 80) + (text.length > 80 ? '…' : ''),
+                time: new Date().toLocaleTimeString('zh-CN', { hour12: false })
+            });
+            scrollStory(Math.max(0, startPos - 30));
+            isUserScrollingUp = false;
+            // 消耗体力
+            changeEnergy(-3);
+            parseStatusFromText(text);
+        }
+
+        function escapeHTML(s) {
+            return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        }
+
+        function scrollStory(targetPosition) {
+            const s = $('story');
+            if (!s) return;
+            // 用户已手动向上滚动 → 暂停自动跟随（仅在无参数调用时）
+            if (isUserScrollingUp && targetPosition === undefined) return;
+
+            _programmaticScrolling = true;
+            if (targetPosition !== undefined) {
+                // 滚到新内容开头（留 30px 上下文余量）
+                s.scrollTop = targetPosition;
+            } else {
+                s.scrollTop = s.scrollHeight;
+            }
+            // 稍等再释放标记，避免触发 detector 的用户滚动误判
+            setTimeout(() => {
+                _programmaticScrolling = false;
+                _lastScrollTop = s.scrollTop;
+            }, 80);
+        }
+
+        function showOptions(options) {
+            const story = $('story');
+            const startPos = story.scrollHeight;
+            const wrap = document.createElement('div');
+            wrap.className = 'options-list';
+            options.forEach(opt => {
+                const b = document.createElement('button');
+                b.className = 'option-btn';
+                b.textContent = opt;
+                b.addEventListener('click', () => {
+                    wrap.querySelectorAll('button').forEach(x => x.disabled = true);
+                    $("input").value = opt;
+                    handleSend();
+                });
+                wrap.appendChild(b);
+            });
+            story.appendChild(wrap);
+            
+            const hint = document.createElement('div');
+            hint.id = 'input-hint';
+            hint.style.cssText = 'text-align: center; color: var(--muted); font-size: 12px; margin-top: 12px; letter-spacing: 2px; font-family: var(--font-gentle);';
+            hint.innerHTML = '◆ 君可自择言行，天道自有定数。';
+            story.appendChild(hint);
+            
+            scrollStory(Math.max(0, startPos - 30));
+            isUserScrollingUp = false;
+        }
+
+        /* =========================================================
+         * 状态变更
+         * ========================================================= */
+        function changeEnergy(delta) {
+            state.energy = clamp(state.energy + delta, 0, 100);
+            updateStatsUI();
+            persistAll();
+        }
+        function changeFavor(delta) {
+            state.favor = clamp(state.favor + delta, 0, 100);
+            updateStatsUI();
+            persistAll();
+        }
+        function changeMemberFavor(name, delta) {
+            if (state.members[name] !== undefined) {
+                state.members[name] = clamp(state.members[name] + delta, 0, 100);
+                updateStatsUI();
+                persistAll();
+            }
+        }
+
+        // 从生成文本中解析简单的状态指令，如：[体力-5] / [圣眷+3] / [金珉奎好感+5]
+        function parseStatusFromText(text) {
+            const energyMatch = text.match(/体力[+\-]?\s*(\d+)|体力[：:]\s*([+\-]?\s*\d+)/g);
+            const favorMatch = text.match(/圣眷[+\-]?\s*(\d+)|圣眷[：:]\s*([+\-]?\s*\d+)/g);
+            // 解析 [某人好感+x] 或 [某人 +x]
+            CONFIG.members.forEach(m => {
+                const re = new RegExp(m.name + '[^\n。]{0,8}[+]\\s*(\\d+)|' + m.name + '[^\n。]{0,8}[-]\\s*(\\d+)');
+                const mm = text.match(re);
+                if (mm) {
+                    const delta = parseInt(mm[1] || mm[2] || '0');
+                    if (delta) changeMemberFavor(m.name, delta);
+                }
+            });
+        }
+
+        /* =========================================================
+         * 打字机动画
+         * ========================================================= */
+        let streamingEl = null;
+        let streamingTimer = null;
+        let streamingSkip = false;
+
+        function startStreamingBlock() {
+            const story = $('story');
+            const startPos = story.scrollHeight;
+            const div = document.createElement('div');
+            div.className = 'streaming-block';
+            div.innerHTML = '<span class="streaming-text"></span><span class="typing-cursor">|</span>';
+            story.appendChild(div);
+            streamingEl = div.querySelector('.streaming-text');
+            scrollStory(Math.max(0, startPos - 30));
+            isUserScrollingUp = false;
+            return div;
+        }
+
+        function typeText(text, onDone) {
+            if (!streamingEl) { onDone && onDone(); return; }
+            streamingSkip = false;
+            const showInstantly = !state.typingEnabled;
+            let i = 0;
+            const buf = [];
+            const totalLen = text.length;
+            const interval = showInstantly ? 0 : Math.max(8, Math.min(30, Math.floor(1800 / Math.max(totalLen, 1))));
+
+            function flush() {
+                if (buf.length) {
+                    streamingEl.innerHTML += buf.join('');
+                    buf.length = 0;
+                }
+            }
+
+            if (showInstantly) {
+                streamingEl.innerHTML = escapeHTML(text).replace(/\n/g, '<br>');
+                streamingTimer = setTimeout(() => { finishStreaming(); onDone && onDone(); }, 120);
+                return;
+            }
+
+            // 使用 requestAnimationFrame 分帧显示
+            const chunkSize = Math.max(1, Math.floor(totalLen / 200) + 1);
+            function step() {
+                if (streamingSkip || state._forceStop) {
+                    streamingEl.innerHTML = escapeHTML(text).replace(/\n/g, '<br>');
+                    finishStreaming();
+                    onDone && onDone();
+                    return;
+                }
+                let added = 0;
+                while (i < text.length && added < chunkSize) {
+                    const ch = text[i];
+                    if (ch === '\n') buf.push('<br>');
+                    else buf.push(ch === '<' ? '&lt;' : ch === '>' ? '&gt;' : ch);
+                    i++; added++;
+                }
+                flush();
+                scrollStory();
+                if (i < text.length) {
+                    streamingTimer = setTimeout(step, interval);
+                } else {
+                    finishStreaming();
+                    onDone && onDone();
+                }
+            }
+            step();
+        }
+
+        function finishStreaming() {
+            if (streamingEl && streamingEl.parentElement) {
+                // 把 streaming-block 转为普通 block
+                const parent = streamingEl.parentElement;
+                parent.classList.remove('streaming-block');
+                parent.classList.add('block', 'narration');
+                parent.innerHTML = streamingEl.innerHTML;
+            }
+            streamingEl = null;
+            clearTimeout(streamingTimer);
+        }
+
+        function skipStreaming() {
+            streamingSkip = true;
+        }
+
+        /* =========================================================
+         * API 系统
+         * ========================================================= */
+        const PROVIDERS = {
+            deepseek: {
+                url: 'https://api.deepseek.com/chat/completions',
+                defaultModel: 'deepseek-chat',
+                note: '推荐 DeepSeek-Chat · 中文表现最佳'
+            },
+            groq: {
+                url: 'https://api.groq.com/openai/v1/chat/completions',
+                defaultModel: 'llama-3.3-70b-versatile',
+                note: '速度很快 · 有免费额度'
+            },
+            gemini: {
+                url: 'https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={key}',
+                defaultModel: 'gemini-2.0-flash',
+                note: 'Google Gemini · 有免费额度',
+                format: 'gemini'
+            },
+            silicon: {
+                url: 'https://api.siliconflow.cn/v1/chat/completions',
+                defaultModel: 'Qwen/Qwen2.5-72B-Instruct',
+                note: '硅基流动 · 支持多个模型'
+            },
+            custom: {
+                url: '',
+                defaultModel: '',
+                note: '需要填入自定义接口地址 (OpenAI 兼容格式)'
+            }
+        };
+
+        function buildSystemPrompt() {
+            if (state.customPrompt && state.customPrompt.trim()) return state.customPrompt.trim();
+            // 排除化身后构建成员列表
+            const availableMembers = CONFIG.members.filter(m => !state.avatar || m.name !== state.avatar);
+            const memberList = availableMembers.map(m => `${m.rank}${m.name}（${m.title}，当前好感度${state.members[m.name] || 0}）`).join('；');
+            const avatarInfo = state.avatar ? `，汝化身为${state.avatar}` : '';
+            return `你扮演一位古风宫廷文字游戏的剧情主持（说书人），游戏名为《十三太饱》。
+
+当前世界信息：
+- 地点：大唐皇宫（长安城）
+- 第 ${state.day} 日
+- 玩家体力：${state.energy}/100
+- 圣眷（皇帝对玩家的印象）：${state.favor}/100
+- 恋爱剧情开关：${state.romance ? '开启（皇子可以被攻略，允许情感互动与暧昧描写）' : '关闭（仅限兄弟情谊，不可出现恋爱/暧昧内容）'}
+
+主要角色：
+- 玩家：第十四皇子（由用户扮演${avatarInfo}，尚未在宫中确立势力）
+- ${memberList}
+- 方时赫：太监总管，阴阳怪气，掌管宫内事务
+- 胖婶：御膳房掌勺，性格豪爽，桂花糕是她的招牌
+- 柳先生：太傅，皇子们的老师，博学严肃
+- 崔尚宫：尚宫，掌管宫女与礼节，不苟言笑
+
+重要地图：御书房、尚书房、御膳房、东宫、御花园、太液池、华清池、太庙、朱雀门、大雁塔
+
+你的职责：
+1. 根据用户的输入，生成 150-400 字的生动剧情，包含环境描述、人物动作与对话
+2. 对话请以"人物：内容"格式写出
+3. 风格：轻松略带荒诞，偶尔诙谐，保持古风口吻但不艰涩
+4. 每次剧情结束时，提出 2-4 个简短的行动选项供玩家选择（另起一行，以"◇"开头列出）
+5. 可以在剧情中自然地描述角色好感度变化（例如"金珉奎似乎对你颇有好感 +2"），会被系统自动解析并更新
+6. 当玩家体力较低时提醒他休息
+7. 当事件涉及皇帝时可以让"圣眷"数值变化（例如"圣上微微一笑 圣眷+3"）
+8. 语气：叙事采用第三人称，玩家的选择由"你"开头（即第二人称）
+9. 保持剧情连贯，参考上文（玩家最近的位置是：${state.lastLocation}）
+10. 如用户输入与当前皇宫世界完全无关，温和地将他拉回剧情
+
+不要输出 Markdown 标题，不要输出元信息或提示，直接输出剧情正文。`;
+        }
+
+        function buildMessages(userInput) {
+            // 限制历史长度，节省 token
+            const recentHistory = state.chatHistory.slice(-8);
+            const messages = [
+                { role: 'system', content: buildSystemPrompt() }
+            ];
+            recentHistory.forEach(h => messages.push(h));
+            messages.push({ role: 'user', content: userInput });
+            return messages;
+        }
+
+        async function fetchAI(userText) {
+            if (!state.apiKey) {
+                showToast('请先在菜单 → 接入 Key 中填入你的 API Key');
+                openModal('settingsModal');
+                return null;
+            }
+            if (state.isGenerating) return null;
+            state.isGenerating = true;
+            document.body.classList.add('is-generating');
+
+            const providerKey = state.apiProvider;
+            const provider = PROVIDERS[providerKey];
+            let url = provider.url;
+            let body;
+
+            const model = state.apiModel && state.apiModel.trim() ? state.apiModel.trim() : provider.defaultModel;
+
+            try {
+                if (providerKey === 'gemini') {
+                    url = url.replace('{model}', model).replace('{key}', state.apiKey);
+                    const contents = buildMessages(userText).map(m => ({
+                        role: m.role === 'assistant' ? 'model' : 'user',
+                        parts: [{ text: m.content }]
+                    }));
+                    body = { contents: contents };
+                    const resp = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(body)
+                    });
+                    const data = await resp.json();
+                    if (!resp.ok) throw new Error((data.error && data.error.message) || '请求失败');
+                    if (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts) {
+                        return data.candidates[0].content.parts.map(p => p.text).filter(Boolean).join('');
+                    }
+                    throw new Error('返回格式异常');
+                } else {
+                    // OpenAI 兼容格式
+                    const finalUrl = providerKey === 'custom' ? (state.customUrl || url) : url;
+                    body = {
+                        model: model,
+                        messages: buildMessages(userText),
+                        temperature: 0.75,
+                        max_tokens: 800,
+                        stream: false
+                    };
+                    const resp = await fetch(finalUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer ' + state.apiKey
+                        },
+                        body: JSON.stringify(body)
+                    });
+                    const data = await resp.json();
+                    if (!resp.ok) {
+                        const msg = (data.error && (data.error.message || data.error)) || '请求失败 (HTTP ' + resp.status + ')';
+                        throw new Error(msg);
+                    }
+                    const text = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
+                    if (!text) throw new Error('返回为空');
+                    return text.trim();
+                }
+            } catch (err) {
+                console.error(err);
+                showToast('AI 接入失败: ' + (err.message || '未知错误'));
+                // 提供一个兜底的简单剧情
+                return `（AI 接入暂时不通畅。）
+门外传来方时赫的尖细嗓音："殿下，这会儿时辰不早了——" 你眨了眨眼，窗外的日影斜斜拖过朱红廊柱。也许你可以：
+
+◇ 在宫中随便走走
+◇ 去御膳房找点吃的
+◇ 歇息一下进入明日`;
+            } finally {
+                state.isGenerating = false;
+                document.body.classList.remove('is-generating');
+            }
+        }
+
+        /* =========================================================
+         * 输入处理
+         * ========================================================= */
+        function handleSend() {
+            const input = $("input");
+            const text = input.value.trim();
+            if (!text) return;
+            if (state.isGenerating) {
+                showToast('正在研墨中，请稍候…');
+                return;
+            }
+            if (state.energy <= 0) {
+                showToast('体力已尽，点击「歇息」进入下一日');
+                return;
+            }
+            appendUser(text);
+            input.value = '';
+            // 记录历史
+            state.chatHistory.push({ role: 'user', content: text });
+
+            // 先判断是否是特殊指令
+            const lower = text.toLowerCase();
+            if (/^(歇息|睡觉|休息|睡一觉)/.test(text)) {
+                advanceDay();
+                return;
+            }
+            if (/^(查看状态|状态|我的状态|状态面板)/.test(text)) {
+                appendSystem(`第 ${state.day} 日 · 体力 ${state.energy}/100 · 圣眷 ${state.favor}/100`);
+                return;
+            }
+
+            // 普通对话：请求 AI
+            startStreamingBlock();
+            fetchAI(text).then(response => {
+                if (!response) {
+                    // 失败：移除 streaming 块
+                    const last = document.querySelector('.streaming-block');
+                    if (last) last.remove();
+                    return;
+                }
+                // 播放打字动画
+                typeText(response, () => {
+                    // 记录历史
+                    state.chatHistory.push({ role: 'assistant', content: response });
+                    // 从文本中提取选项（以◇、◆、◇、数字开头的行）
+                    const optionLines = response.split(/\n/).filter(line => /^\s*[◇◆\d\[\(①②③④⑤]/.test(line) || /^[1-4][．.\、]/.test(line));
+                    if (optionLines.length >= 2) {
+                        const opts = optionLines.map(l => l.replace(/^\s*[◇◆\d\[\(①②③④⑤\.．\、]\s*/, '').trim()).slice(0, 4);
+                        showOptions(opts);
+                    } else {
+                        // 给一组默认选项
+                        const defaults = ['在附近走走', '去找某位皇子闲聊', '回自己的宫中歇息', '去御膳房蹭点吃的'];
+                        showOptions(defaults);
+                    }
+                    // 记录最近位置（简单从 text 中提取）
+                    const locMatch = CONFIG.locations.find(l => text.indexOf(l.name) !== -1);
+                    if (locMatch) state.lastLocation = locMatch.name;
+                });
+            });
+        }
+
+        /* =========================================================
+         * 日期推进
+         * ========================================================= */
+        function advanceDay() {
+            state.day += 1;
+            state.energy = 100;
+            state.chatHistory = [];
+            persistAll();
+
+            const story = $('story');
+            // 清理当前选项按钮
+            story.querySelectorAll('.options-list').forEach(el => el.remove());
+
+            // 日期宣告
+            const div = document.createElement('div');
+            div.className = 'block day-announce';
+            const dayChar = DAY_CHARS[state.day - 1] || String(state.day);
+            div.innerHTML = `<div class="day-label">第 ${dayChar} 日</div><div class="day-sub">— 长安晨钟 · 体力已恢复 —</div>`;
+            story.appendChild(div);
+
+            // 每日随机传闻
+            const rumors = [
+                '御膳房今早传出桂花香，胖婶似乎心情不错。',
+                '太子今日在御书房与太傅争执，宫人议论纷纷。',
+                '有人在御花园看见十三王子与蝴蝶嬉戏。',
+                '太液池畔今日出现了一位陌生的西域乐师。',
+                '九王子今早又把锅烧糊了——宫里飘着淡淡的焦味。',
+                '方时赫总管今日在朱雀门处反复踱步，似乎在等什么人。',
+                '圣上今日心情甚好，御书房传出笑声。'
+            ];
+            const rumor = rumors[Math.floor(Math.random() * rumors.length)];
+            appendSystem(rumor);
+            updateStatsUI();
+
+            // 自动给出一个简单开场
+            startStreamingBlock();
+            fetchAI('第' + state.day + '日的清晨，你刚从睡梦中醒来，请描述一下今晨的皇宫气氛，并给出 2-4 个可选行动。').then(resp => {
+                if (!resp) return;
+                typeText(resp, () => {
+                    state.chatHistory.push({ role: 'assistant', content: resp });
+                    const optionLines = resp.split(/\n/).filter(line => /^\s*[◇◆\d①②③④⑤]/.test(line) || /^[1-4][．.\、]/.test(line));
+                    if (optionLines.length >= 2) {
+                        const opts = optionLines.map(l => l.replace(/^\s*[◇◆\d①②③④⑤\.．\、]\s*/, '').trim()).slice(0, 4);
+                        showOptions(opts);
+                    } else {
+                        showOptions(['去尚书房读书', '去找某位皇子', '去御膳房蹭早饭', '去御花园散步']);
+                    }
+                });
+            });
+        }
+
+        /* =========================================================
+         * 开场剧情
+         * ========================================================= */
+        function showOpening() {
+            appendSystem('—— 长安城 · 大明宫 · 第 一 日 ——');
+            const opening = `晨雾还未完全散去，长安宫内的红瓦金顶已被朝阳染作一片温柔。
+
+你缓缓睁开眼，发现自己躺在一间陌生却雅致的寝宫里。檀香炉里升起袅袅青烟，窗外的廊柱间传来宫女轻缓的脚步声。
+
+方时赫：殿下，您终于醒了。圣上召您即刻去御书房见驾——不过依老奴看，您这身装束，倒不妨先在宫中四处走动走动。
+
+这位尖嗓的太监总管微微欠身，嘴角挂着一抹说不清是善意还是讥讽的笑。
+
+你是大唐新册封的第十四皇子。今日，是你在宫中的第一个清晨。十三位皇兄已在这座皇宫里生活多年——他们之中，有人对你好奇，有人对你提防，也有人……或许会成为你的盟友或对手。
+
+胖婶：（从门外远远地传来）哎哟，新殿下醒了？御膳房给您留着桂花糕呢！`;
+            startStreamingBlock();
+            typeText(opening, () => {
+                showOptions([
+                    '先去御书房拜见父皇',
+                    '去御膳房尝尝桂花糕',
+                    '在宫里先四处逛逛',
+                    '去找某位皇子见个面'
+                ]);
+            });
+        }
+
+        /* =========================================================
+         * 事件绑定
+         * ========================================================= */
+        function initMemberSelect() {
+            const grid = $('memberSelectGrid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            CONFIG.members.forEach(m => {
+                const btn = document.createElement('button');
+                btn.className = 'member-select-btn';
+                btn.textContent = m.name;
+                btn.dataset.name = m.name;
+                btn.title = m.title + ' · ' + m.palace;
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.member-select-btn').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                    state.avatar = m.name;
+                    $('startBtn').disabled = false;
+                    $('startBtn').textContent = '入 宫';
+                    // 重新初始化好感度（排除化身）
+                    state.members = {};
+                    CONFIG.members.forEach(mem => {
+                        if (mem.name === state.avatar) return;
+                        const saved = localStorage.getItem('ssb_favor_' + mem.name);
+                        state.members[mem.name] = saved ? parseInt(saved) : mem.favorStart;
+                    });
+                    renderMemberList();
+                });
+                grid.appendChild(btn);
+            });
+        }
+
+        function bindEvents() {
+            // 封面
+            initMemberSelect();
+            document.querySelectorAll('#themeSelector .theme-dot').forEach(el => {
+                el.addEventListener('click', () => applyTheme(el.dataset.theme));
+            });
+            $('romanceToggle').checked = state.romance;
+            $('romanceToggle').addEventListener('change', e => {
+                state.romance = e.target.checked;
+                localStorage.setItem('ssb_romance', state.romance ? '1' : '0');
+            });
+            $('typingToggle').checked = state.typingEnabled;
+            $('typingToggle').addEventListener('change', e => {
+                state.typingEnabled = e.target.checked;
+                localStorage.setItem('ssb_typing', state.typingEnabled ? '1' : '0');
+            });
+            $('startBtn').addEventListener('click', () => {
+                $('cover').classList.add('hidden');
+                $('app').classList.add('visible');
+                setTimeout(() => {
+                    if ($('story').children.length === 0) showOpening();
+                }, 400);
+            });
+
+            // 顶部菜单
+            $('menuBtn').addEventListener('click', e => {
+                e.stopPropagation();
+                $('menuDropdown').classList.toggle('active');
+            });
+            document.body.addEventListener('click', () => {
+                $('menuDropdown').classList.remove('active');
+            });
+            document.querySelectorAll('#menuDropdown .menu-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const action = item.dataset.action;
+                    if (action === 'map') openModal('mapModal');
+                    else if (action === 'theme') openModal('themeModal');
+                    else if (action === 'review') openReviewModal();
+                    else if (action === 'faq') openModal('faqModal');
+                    else if (action === 'changelog') openModal('changelogModal');
+                    else if (action === 'logic') { openModal('logicModal'); runLogicCheck(); }
+                    else if (action === 'settings') openModal('settingsModal');
+                    else if (action === 'reset') {
+                        if (confirm('重启剧本会清空当日剧情，是否继续？')) {
+                            localStorage.clear();
+                            location.reload();
+                        }
+                    }
+                });
+            });
+
+            // 主题弹层
+            document.querySelectorAll('#themeGrid .theme-choice').forEach(el => {
+                el.addEventListener('click', () => applyTheme(el.dataset.theme));
+            });
+
+            // 地图按钮
+            $('mapBtn').addEventListener('click', () => openModal('mapModal'));
+            $('restBtn').addEventListener('click', () => {
+                if (confirm('歇息后将进入下一日，确定吗？')) advanceDay();
+            });
+            $('skipBtn').addEventListener('click', skipStreaming);
+
+            // 输入
+            $("input").addEventListener('keydown', e => {
+                if (e.key === 'Enter') { e.preventDefault(); handleSend(); }
+            });
+            // 发送按钮
+            const sendBtn = document.querySelector('#send');
+            if (sendBtn) sendBtn.addEventListener('click', handleSend);
+
+            // 设置弹层
+            document.querySelectorAll('#providerRow .provider-chip').forEach(el => {
+                el.addEventListener('click', () => {
+                    document.querySelectorAll('#providerRow .provider-chip').forEach(x => x.classList.remove('active'));
+                    el.classList.add('active');
+                    state.apiProvider = el.dataset.provider;
+                    $('providerNote').textContent = PROVIDERS[state.apiProvider].note;
+                    $('customUrlField').style.display = state.apiProvider === 'custom' ? 'block' : 'none';
+                });
+            });
+            // 设置默认选中
+            document.querySelectorAll('#providerRow .provider-chip').forEach(el => {
+                el.classList.toggle('active', el.dataset.provider === state.apiProvider);
+            });
+            $('providerNote').textContent = PROVIDERS[state.apiProvider].note;
+            $('customUrlField').style.display = state.apiProvider === 'custom' ? 'block' : 'none';
+            $('apiKeyInput').value = state.apiKey;
+            $('modelInput').value = state.apiModel;
+            $('customUrl').value = state.customUrl;
+            $('systemPromptInput').value = state.customPrompt;
+            $('saveSettingsBtn').addEventListener('click', () => {
+                state.apiKey = $('apiKeyInput').value.trim();
+                state.apiModel = $('modelInput').value.trim();
+                state.customUrl = $('customUrl').value.trim();
+                state.customPrompt = $('systemPromptInput').value.trim();
+                localStorage.setItem('ssb_provider', state.apiProvider);
+                localStorage.setItem('ssb_apiKey', state.apiKey);
+                localStorage.setItem('ssb_apiModel', state.apiModel);
+                localStorage.setItem('ssb_customUrl', state.customUrl);
+                localStorage.setItem('ssb_customPrompt', state.customPrompt);
+                closeModal('settingsModal');
+                showToast('设置已保存');
+            });
+
+            // 弹层背景点击关闭
+            document.querySelectorAll('.modal').forEach(m => {
+                m.addEventListener('click', e => { if (e.target === m) m.classList.remove('active'); });
+            });
+
+            // 小屏幕：点击空白处关闭侧栏
+            if (window.innerWidth < 860) {
+                $('story').addEventListener('click', () => {
+                    $('sidePanel').classList.remove('active');
+                });
+            }
+
+            // ESC 关闭弹层
+            document.addEventListener('keydown', e => {
+                if (e.key === 'Escape') {
+                    document.querySelectorAll('.modal.active').forEach(m => m.classList.remove('active'));
+                }
+            });
+
+            // 页面离开前保存
+            window.addEventListener('beforeunload', persistAll);
+        }
+
+        /* =========================================================
+         * 启动
+         * ========================================================= */
+        function init() {
+            applyTheme(state.theme);
+            renderMemberList();
+            renderMapList();
+            renderFAQ();
+            updateStatsUI();
+            bindEvents();
+            bindScrollDetector();
+        }
+
+        init();
+    </script>
+</body>
+</html>
