@@ -683,9 +683,9 @@
           <div class="sub-options-list" id="subOptionsList"></div>
           <button class="btn btn-small btn-cancel" onclick="hideSubOptions()">取消</button>
         </div>
-        <div class="input-area" style="display:flex;gap:8px;align-items:center;">
-          <input type="text" id="freeInput" placeholder="自由输入行动..." style="flex:1;height:40px;font-size:14px;" />
-          <button class="btn btn-primary" id="btnSubmit" onclick="submitFreeInput()" style="height:40px;padding:0 20px;">呈上</button>
+        <div class="input-area" style="display:flex;gap:8px;align-items:center;max-width:100%;">
+          <input type="text" id="freeInput" placeholder="自由输入行动..." style="flex:1;height:40px;font-size:14px;min-width:0;" />
+          <button class="btn btn-primary" id="btnSubmit" onclick="submitFreeInput()" style="height:40px;padding:0 16px;white-space:nowrap;flex-shrink:0;">呈上</button>
         </div>
       </div>
     </div>
@@ -754,6 +754,14 @@
   }
   @media (max-width: 480px) {
     .status-panel-body { grid-template-columns: 1fr !important; max-height: 60vh !important; }
+    .input-area { gap: 6px !important; padding: 0 2px !important; }
+    .input-area input { height: 38px !important; font-size: 13px !important; }
+    .input-area button { height: 38px !important; padding: 0 12px !important; font-size: 13px !important; }
+  }
+  @media (max-width: 360px) {
+    .input-area { gap: 4px !important; }
+    .input-area input { height: 36px !important; font-size: 12px !important; padding: 0 8px !important; }
+    .input-area button { height: 36px !important; padding: 0 10px !important; font-size: 12px !important; }
     .stats-four-grid { grid-template-columns: repeat(4, 1fr) !important; }
     .stat-big-value { font-size: 18px !important; }
     .favor-grid { grid-template-columns: repeat(2, 1fr) !important; }
@@ -2836,7 +2844,117 @@ function init(){
   for(let i=1;i<=13;i++){ const t=localStorage.getItem(`ssb_title_${i}`); if(t) customTitles[i]=t; }
   const sp=localStorage.getItem('ssb_api_provider'); if(sp) apiConfig.provider=sp; const su=localStorage.getItem('ssb_custom_url'); if(su) apiConfig.url=su;
   if(!state.loveEnabled){ $('loveTrack').classList.remove('on'); $('loveStatus').textContent='关闭'; }else{ $('loveTrack').classList.add('on'); $('loveStatus').textContent='开启'; }
-  const as=localStorage.getItem('ssb_autosave'); if(as){ try{ const saved=JSON.parse(as); if(saved.player&&confirm('检测到自动存档，是否继续上次的游戏？')){ state=saved; selectedPrinceId=state.player.id; showScreen('game-screen'); updateUI(); $('actionBar').classList.remove('hidden'); addStoryMessage('自动存档已恢复。','system'); } }catch(e){ console.error(e); } }
+  const as=localStorage.getItem('ssb_autosave'); if(as){ try{ const saved=JSON.parse(as); if(saved.player&&confirm('检测到自动存档，是否继续上次的游戏？')){ state=saved; selectedPrinceId=state.player.id; showScreen('game-screen'); updateUI(); $('actionBar').classList.remove('hidden'); recoverGameHistory(); } }catch(e){ console.error(e); } }
+
+function recoverGameHistory(){
+  // 显示分隔线
+  const div = document.createElement('div');
+  div.className = 'story-message system';
+  div.innerHTML = `<div style="text-align:center;color:var(--text-secondary);font-size:12px;letter-spacing:2px;margin:8px 0;">━━ 上回说到 ━━</div>`;
+  $('storyContent').appendChild(div);
+  
+  // 调用AI生成回顾
+  if(apiConfig.key && state.conversation && state.conversation.length >= 2){
+    const historySummary = state.conversation.slice(-10).map(c => {
+      const prefix = c.role === 'user' ? '你' : ' narrator';
+      return `${prefix}：${c.content.substring(0, 100)}${c.content.length > 100 ? '...' : ''}`;
+    }).join('\n');
+    
+    const p = state.player;
+    const age = getPrinceAge(p.id, state.age);
+    const prompt = `【前文回顾】请用说书人的口吻，简洁地总结这段游戏剧情（100字以内）。
+玩家身份：${p.name}，${p.rank}，${age}岁。
+当前时间：${state.year}年${state.month}月${['上','中','下'][state.xun-1]}旬，地点：${state.location}。
+
+最近剧情：
+${historySummary}
+
+要求：
+1. 用叙事层口吻，古风但不文言
+2. 像说书人"上回说到"的感觉
+3. 最后一句引导玩家继续行动
+4. 不要列出数值，只讲故事`;
+    
+    // 显示加载中
+    const loadingDiv = document.createElement('div');
+    loadingDiv.className = 'story-message system';
+    loadingDiv.id = 'recover-loading';
+    loadingDiv.innerHTML = '<div style="text-align:center;color:var(--text-secondary);font-size:12px;">整理回忆中...</div>';
+    $('storyContent').appendChild(loadingDiv);
+    
+    callAI(prompt);
+    
+    // 显示"查看完整历史"按钮
+    setTimeout(() => {
+      const btnDiv = document.createElement('div');
+      btnDiv.className = 'story-message system';
+      btnDiv.id = 'history-toggle-btn';
+      btnDiv.innerHTML = `<div style="text-align:center;margin-top:8px;"><button class="btn btn-small" onclick="showFullHistory()" style="font-size:12px;color:var(--text-secondary);border:1px dashed var(--border-color);background:transparent;">📜 查看完整历史</button></div>`;
+      $('storyContent').appendChild(btnDiv);
+    }, 500);
+  } else {
+    // 没有API或没有对话历史，只显示状态摘要
+    showHistorySummary();
+  }
+}
+
+function showHistorySummary(){
+  const p = state.player;
+  const age = getPrinceAge(p.id, state.age);
+  addStoryMessage(`你当前是${p.name}（${p.rank}），${age}岁，${state.year}年${state.month}月${['上','中','下'][state.xun-1]}旬，${state.location}。体力${state.energy}/100，银钱${state.silver}，圣眷${state.favorEmperor}。`, 'system');
+}
+
+window.showFullHistory = function(){
+  // 移除按钮
+  const btn = $('history-toggle-btn');
+  if(btn) btn.remove();
+  
+  // 显示分隔线
+  const div = document.createElement('div');
+  div.className = 'story-message system';
+  div.innerHTML = `<div style="text-align:center;color:var(--text-secondary);font-size:12px;letter-spacing:2px;margin:8px 0;">━━ 完整历史 ━━</div>`;
+  $('storyContent').appendChild(div);
+  
+  // 渲染所有历史对话
+  if(state.conversation && state.conversation.length > 0){
+    state.conversation.forEach(msg => {
+      if(msg.role === 'user'){
+        addStoryMessage(`你：${msg.content}`, 'narrative');
+      } else if(msg.role === 'assistant'){
+        // 解析AI回复，分层显示
+        const lines = msg.content.split('\n').filter(l => l.trim());
+        lines.forEach(line => {
+          const t = line.trim();
+          if(!t) return;
+          if(t.startsWith('「') && t.endsWith('」')){
+            const mechanicDiv = document.createElement('div');
+            mechanicDiv.className = 'story-mechanic';
+            mechanicDiv.textContent = t;
+            $('storyContent').appendChild(mechanicDiv);
+          } else if(t.startsWith('【') && t.includes('】')){
+            const dialogueDiv = document.createElement('div');
+            dialogueDiv.className = 'story-dialogue';
+            dialogueDiv.innerHTML = t.replace(/【([^】]+)】/g, '<span class="speaker">【$1】</span>');
+            $('storyContent').appendChild(dialogueDiv);
+          } else {
+            const narrativeDiv = document.createElement('div');
+            narrativeDiv.className = 'story-narrative';
+            narrativeDiv.textContent = t;
+            $('storyContent').appendChild(narrativeDiv);
+          }
+        });
+      }
+    });
+  }
+  
+  // 显示分隔线
+  const endDiv = document.createElement('div');
+  endDiv.className = 'story-message system';
+  endDiv.innerHTML = `<div style="text-align:center;color:var(--text-secondary);font-size:12px;letter-spacing:2px;margin:8px 0;">━━ 以上为历史记录 ━━</div>`;
+  $('storyContent').appendChild(endDiv);
+  
+  scrollToBottom();
+};
   $('freeInput').addEventListener('keydown',function(e){ if(e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); submitFreeInput(); } });
 }
 init();
