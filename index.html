@@ -644,11 +644,9 @@
   <div class="game-layout" id="gameLayout" style="display:flex;height:100vh;padding-top:52px;position:relative;">
     <div class="main-content" style="flex:1;display:flex;flex-direction:column;overflow:hidden;">
       <div class="story-area" id="storyArea" style="flex:1;overflow-y:auto;padding:16px 20px;background:var(--bg-primary);position:relative;">
-        <!-- 状态栏展开按钮 -->
-        <div class="info-bar" id="infoBar" style="position:sticky;top:0;z-index:25;background:var(--bg-primary);padding-top:1px;margin-top:-12px;">
-          <div class="info-bar-header" onclick="openStatusFloatWindow()">
-            <span class="info-bar-icon" id="infoBarIcon">印</span>
-          </div>
+        <!-- 浮动印章按钮（可拖动） -->
+        <div class="fab-seal" id="fabSeal" onclick="onSealClick()">
+          <span class="fab-seal-text">印</span>
         </div>
         <!-- 角色状态浮动窗口 -->
         <div class="status-float-window hidden" id="statusFloatWindow">
@@ -880,25 +878,41 @@
   }
 
   /* 收起状态：一行简略 */
-  .info-bar-header { display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 4px 0; user-select: none; }
-  /* 印章按钮 */
-  .info-bar-icon {
-    width: 22px;
-    height: 22px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 1.5px solid var(--accent-gold);
-    border-radius: 2px;
-    background: transparent;
-    font-size: 10px;
-    font-weight: 700;
-    color: var(--accent-gold);
-    transition: var(--transition);
-  }
-  .info-bar-header:hover .info-bar-icon {
+  /* 浮动印章按钮 */
+  .fab-seal {
+    position: fixed;
+    bottom: 100px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     background: var(--accent-gold);
     color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    z-index: 40;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    user-select: none;
+    touch-action: none;
+  }
+  .fab-seal:hover {
+    transform: scale(1.08);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  }
+  .fab-seal:active {
+    transform: scale(0.95);
+  }
+  .fab-seal.dragging {
+    opacity: 0.85;
+    transition: none;
+  }
+  .fab-seal-text {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
   }
   .info-bar-content { overflow: hidden; transition: max-height 0.3s ease; }
   .info-bar-content.hidden { max-height: 0; }
@@ -1907,9 +1921,12 @@ async function callAI(userMsg){
   state.conversation.push({role:'assistant',content:reply}); 
   if(state.conversation.length>30) state.conversation.shift();
   
-  addStoryMessage(narrative,'narrative');
+  // 添加叙事文本，保存返回的div用于精确滚动
+  const narrativeDiv = addStoryMessage(narrative,'narrative');
   if(options.length>0) showOptions(options); else hideOptions();
   state.isLoading=false; showLoading(false); updateUI(); autoSave(); checkEndings();
+  // 统一滚动：让叙事文本顶部出现在屏幕中上方
+  scrollToElementTop(narrativeDiv);
 }
 
 
@@ -1989,41 +2006,56 @@ let floatWinDrag = { active: false, startX: 0, startY: 0, origLeft: 0, origTop: 
 let statusFloatOpen = false;
 
 function initFloatWindowDrag(){
-  const header = $('statusFloatHeader');
-  if(!header) return;
-  header.addEventListener('mousedown', onFloatDragStart);
-  header.addEventListener('touchstart', onFloatDragStart, {passive: false});
-  document.addEventListener('mousemove', onFloatDragMove);
-  document.addEventListener('touchmove', onFloatDragMove, {passive: false});
-  document.addEventListener('mouseup', onFloatDragEnd);
-  document.addEventListener('touchend', onFloatDragEnd);
+  // 初始化印章按钮拖动
+  const seal = $('fabSeal');
+  if(!seal) return;
+  seal.addEventListener('mousedown', onSealDragStart);
+  seal.addEventListener('touchstart', onSealDragStart, {passive: false});
+  document.addEventListener('mousemove', onSealDragMove);
+  document.addEventListener('touchmove', onSealDragMove, {passive: false});
+  document.addEventListener('mouseup', onSealDragEnd);
+  document.addEventListener('touchend', onSealDragEnd);
 }
 
-function onFloatDragStart(e){
+let sealDrag = { active: false, moved: false, startX: 0, startY: 0, origLeft: 0, origTop: 0 };
+
+function onSealDragStart(e){
   if(e.type === 'touchstart') e.preventDefault();
-  floatWinDrag.active = true;
-  floatWinDrag.startX = e.type.startsWith('touch') ? e.touches[0].clientX : e.clientX;
-  floatWinDrag.startY = e.type.startsWith('touch') ? e.touches[0].clientY : e.clientY;
-  const win = $('statusFloatWindow');
-  floatWinDrag.origLeft = parseInt(win.style.left || win.offsetLeft);
-  floatWinDrag.origTop = parseInt(win.style.top || win.offsetTop);
+  sealDrag.active = true;
+  sealDrag.moved = false;
+  sealDrag.startX = e.type.startsWith('touch') ? e.touches[0].clientX : e.clientX;
+  sealDrag.startY = e.type.startsWith('touch') ? e.touches[0].clientY : e.clientY;
+  const seal = $('fabSeal');
+  const rect = seal.getBoundingClientRect();
+  sealDrag.origLeft = rect.left;
+  sealDrag.origTop = rect.top;
+  seal.classList.add('dragging');
 }
 
-function onFloatDragMove(e){
-  if(!floatWinDrag.active) return;
+function onSealDragMove(e){
+  if(!sealDrag.active) return;
   if(e.type === 'touchmove') e.preventDefault();
   const cx = e.type.startsWith('touch') ? e.touches[0].clientX : e.clientX;
   const cy = e.type.startsWith('touch') ? e.touches[0].clientY : e.clientY;
-  const dx = cx - floatWinDrag.startX;
-  const dy = cy - floatWinDrag.startY;
-  const win = $('statusFloatWindow');
-  win.style.left = (floatWinDrag.origLeft + dx) + 'px';
-  win.style.top = (floatWinDrag.origTop + dy) + 'px';
-  win.style.right = 'auto';
+  const dx = cx - sealDrag.startX;
+  const dy = cy - sealDrag.startY;
+  if(Math.abs(dx) > 3 || Math.abs(dy) > 3) sealDrag.moved = true;
+  const seal = $('fabSeal');
+  seal.style.left = (sealDrag.origLeft + dx) + 'px';
+  seal.style.top = (sealDrag.origTop + dy) + 'px';
+  seal.style.right = 'auto';
+  seal.style.bottom = 'auto';
 }
 
-function onFloatDragEnd(){
-  floatWinDrag.active = false;
+function onSealDragEnd(){
+  if(!sealDrag.active) return;
+  sealDrag.active = false;
+  $('fabSeal').classList.remove('dragging');
+}
+
+function onSealClick(){
+  if(sealDrag.moved) return; // 拖动时不触发点击
+  openStatusFloatWindow();
 }
 
 function openStatusFloatWindow(){
@@ -2454,8 +2486,8 @@ function addStoryMessage(text, type='narrative'){
 
   div.innerHTML = html || text;
   $('storyContent').appendChild(div);
-  _lastInsertedElement = div;
-  scrollToNewContent();
+  // 返回创建的div，由调用方控制滚动
+  return div;
 }
 function showOptions(opts){
   // 移除旧选项
@@ -2472,8 +2504,6 @@ function showOptions(opts){
   // 把选项保存到全局，供selectOptionByIndex使用
   window._currentOptions = opts;
   $('storyContent').appendChild(container);
-  _lastInsertedElement = container;
-  scrollToNewContent();
 }
 function hideOptions(){
   const old = $('dynamicOptions');
@@ -2492,23 +2522,21 @@ function selectOptionByIndex(idx){
 }
 function selectOption(opt){ const cost=Math.abs(opt.cost); consumeEnergy(cost); hideOptions(); addStoryMessage(`你选择了：${opt.text}`,'narrative'); callAI(opt.text); }
 function showLoading(s){ $('loadingIndicator').classList.toggle('hidden',!s); }
-let _lastInsertedElement = null;
-
-function scrollToNewContent(){
+function scrollToElementTop(el){
+  if(!el) return;
   const a = $('storyArea');
-  setTimeout(() => {
-    if(_lastInsertedElement){
-      const elTop = _lastInsertedElement.offsetTop;
+  // 等待DOM渲染完成
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      const elTop = el.offsetTop;
       const viewH = a.clientHeight;
-      // 让新内容出现在视口约 30% 的位置（中上方）
-      a.scrollTop = elTop - viewH * 0.3;
-    } else {
-      a.scrollTop = a.scrollHeight;
-    }
-  }, 50);
+      // 让元素顶部出现在视口约 25% 的位置（中上方）
+      a.scrollTop = elTop - viewH * 0.25;
+    });
+  });
 }
 // 兼容旧调用
-function scrollToBottom(){ scrollToNewContent(); }
+function scrollToBottom(){}
 // 精力分级消耗：微5/轻10/中15/重20/特殊AI自定
 const ENERGY_TIERS = {
   micro: 5,   // 散步/闲逛/观察/简单对话
