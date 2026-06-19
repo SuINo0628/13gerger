@@ -643,7 +643,7 @@
         <div class="info-bar" id="infoBar" style="position:sticky;top:0;z-index:25;background:var(--bg-primary);padding-top:1px;margin-top:-12px;">
           <div class="info-bar-header" onclick="openStatusFloatWindow()">
             <span class="info-bar-line"></span>
-            <span class="info-bar-icon" id="infoBarIcon">▲</span>
+            <span class="info-bar-icon" id="infoBarIcon">印</span>
             <span class="info-bar-line"></span>
           </div>
         </div>
@@ -861,6 +861,26 @@
   }
 
   /* 收起状态：一行简略 */
+  /* 印章按钮 */
+  .info-bar-icon {
+    width: 26px;
+    height: 26px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid var(--accent-gold);
+    border-radius: 2px;
+    background: transparent;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent-gold);
+    flex-shrink: 0;
+    transition: var(--transition);
+  }
+  .info-bar-header:hover .info-bar-icon {
+    background: var(--accent-gold);
+    color: #fff;
+  }
   .info-bar-content { overflow: hidden; transition: max-height 0.3s ease; }
   .info-bar-content.hidden { max-height: 0; }
   .info-bar-row { display: flex; flex-wrap: wrap; gap: 8px; padding: 10px 14px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; }
@@ -1312,6 +1332,23 @@ function getEnergyCost(action){
   return ENERGY_TIERS.light; // 默认轻消耗
 }
 function getFavorEmoji(v){ if(v>=70) return '热络'; if(v>=50) return '友好'; return '平淡'; }
+
+// 获取相对排行：基于玩家选择的皇子
+function getRelativeRank(targetId){
+  if(!state.player) return '';
+  const pid = state.player.id;
+  if(targetId === pid) return '';
+  const tid = parseInt(targetId);
+  if(tid < pid){
+    // 年长的哥哥
+    const rankNames = ['','大','二','三','四','五','六','七','八','九','十','十一','十二','十三'];
+    return rankNames[tid] + '哥';
+  } else {
+    // 年幼的弟弟
+    const rankNames = ['','大','二','三','四','五','六','七','八','九','十','十一','十二','十三'];
+    return rankNames[tid] + '弟';
+  }
+}
 
 function getEraFromAge(age){ if(age<=10)return'childhood'; if(age<=16)return'youth'; return'adult'; }
 
@@ -2039,7 +2076,8 @@ function renderStatusFloatBody(){
   sortedPrinces.forEach(pr=>{
     const v = state.favor[pr.id] || 0;
     const isLove = state.loveInterests.includes(pr.id);
-    html += `<div class="favor-chip" style="${isLove?'border-color:var(--accent-love);':''}"><span class="favor-chip-name">${pr.name}${isLove?'(情)':''}</span><span class="favor-chip-value">${getFavorEmoji(v)} ${v}</span></div>`;
+    const relRank = getRelativeRank(pr.id);
+    html += `<div class="favor-chip" style="${isLove?'border-color:var(--accent-love);':''}"><span class="favor-chip-name">${pr.name}${relRank?'·'+relRank:''}${isLove?'(情)':''}</span><span class="favor-chip-value">${getFavorEmoji(v)} ${v}</span></div>`;
   });
   html += `</div></div>`;
   html += `<div class="status-section"><div class="status-section-title">NPC关系</div><div class="favor-grid">${npcFavorHtml}</div></div>`;
@@ -2158,7 +2196,7 @@ function confirmCustomMother(){
   MOTHERS.push(customMother);
   state.mother=customMother;
   const cm=$('setup-custom-mother'); if(cm) cm.remove();
-  addStoryMessage(`你选择了${name}（${desc || '出身不详'}）。${personality ? '她性情' + personality + '。' : ''}`,`${name}即你的家族背景。`,'system');
+  addStoryMessage(`你选择了${name}（${desc || '出身不详'}）。${personality ? '她性情' + personality + '。' : ''}${name}即你的家族背景。`,'system');
   state.setupStep=2;
   setTimeout(()=>showAssignmentModeSelection(),500);
 }
@@ -2517,7 +2555,14 @@ function manualAdvanceXun(){
   advanceXun();
 }
 function advanceTime(){ advanceXun(); }
-function monthEndSettlement(){ for(const k of Object.keys(state.ambition)){ const c=Math.floor(Math.random()*7)-3; state.ambition[k]=Math.max(0,Math.min(100,state.ambition[k]+c)); } const evs=['宫里传来消息，皇帝近日龙体欠安...','边关急报，有外敌扰境。','太后在御花园设宴，邀请了诸位皇子。','宫里新来了一批贡品，各宫都在争抢。','方时赫又在背后嚼舌根，小心为上。']; if(Math.random()<0.4){ addStoryMessage(evs[Math.floor(Math.random()*evs.length)],'system'); } checkEndings(); }
+function monthEndSettlement(){
+  // 各方野心自然波动
+  for(const k of Object.keys(state.ambition)){
+    const c = Math.floor(Math.random()*7)-3;
+    state.ambition[k] = Math.max(0, Math.min(100, state.ambition[k]+c));
+  }
+  checkEndings();
+}
 
 function submitFreeInput(){
   const inp=$('freeInput');
@@ -2660,7 +2705,8 @@ function updateUI(){
     sortedPrinces.forEach(pr=>{
       const v = state.favor[pr.id] || 0;
       const isLove = state.loveInterests.includes(pr.id);
-      panelHtml += `<div class="favor-chip" style="${isLove?'border-color:var(--accent-love);':''}"><span class="favor-chip-name">${pr.name}${isLove?' (情)':''}</span><span class="favor-chip-value">${getFavorEmoji(v)} ${v}</span></div>`;
+      const relRank2 = getRelativeRank(pr.id);
+      panelHtml += `<div class="favor-chip" style="${isLove?'border-color:var(--accent-love);':''}"><span class="favor-chip-name">${pr.name}${relRank2?'·'+relRank2:''}${isLove?' (情)':''}</span><span class="favor-chip-value">${getFavorEmoji(v)} ${v}</span></div>`;
     });
     panelHtml += `</div></div>`;
 
@@ -2692,7 +2738,7 @@ function renderFavorModal(){
       <div class="favor-item-left">
         <div class="favor-indicator ${cls}"></div>
         <span class="favor-name">${p.name}</span>
-        <span class="favor-rank">${p.rank}</span>
+        <span class="favor-rank">${getRelativeRank(p.id)}</span>
         ${il ? '<span class="favor-love-tag">情缘</span>' : ''}
       </div>
       <div class="favor-right">
